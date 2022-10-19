@@ -4,13 +4,17 @@ import javax.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "adresses")
+@Table(name = "addresses")
 @ToString @EqualsAndHashCode
 public class addressModel {
-    
+
     @Id
+    @Column(name = "add_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @ManyToOne
-    @Getter @Setter @JoinColumn(name = "addr_client_id")
+    @Getter @Setter @JoinColumn(name = "add_client_id")
     private userModel clientId;
 
     @Getter @Setter @Column(name = "add_address")

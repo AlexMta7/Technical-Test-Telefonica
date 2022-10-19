@@ -5,26 +5,26 @@ import lombok.*;
 
 @Entity
 @Table(name = "documents")
+@Getter @Setter
 @ToString @EqualsAndHashCode
 public class documentModel {
-    
-    @Id
+
     @ManyToOne
-    @Getter @Setter @JoinColumn(name = "doc_client_id")
+    @JoinColumn(name = "doc_client_id")
     private userModel clientId;
 
-    @Getter @Setter @Column(name = "doc_dui")
+    @Column(name = "doc_dui")
     private String dui;
     
-    @Getter @Setter @Column(name = "doc_passport")
+    @Column(name = "doc_passport")
     private String passport;
 
-    @Getter @Setter @Column(name = "doc_isss")
+    @Column(name = "doc_isss")
     private String isss;
 
-    @Getter @Setter @Column(name = "doc_nit")
+    @Column(name = "doc_nit")
     private String nit;
 
-    @Getter @Setter @Column(name = "doc_other")
+    @Column(name = "doc_other")
     private String other;
 }

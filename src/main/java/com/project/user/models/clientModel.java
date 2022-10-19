@@ -5,23 +5,24 @@ import lombok.*;
 
 @Entity
 @Table(name = "clients")
+@Getter @Setter
 @ToString @EqualsAndHashCode
 public class clientModel {
     @Id
-    @Getter @Setter @Column(name = "id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter @Setter @Column(name = "cli_name")
+    @Column(name = "cli_name")
     private String name;
 
-    @Getter @Setter @Column(name = "cli_lastname")
+    @Column(name = "cli_lastname")
     private String lastname;
 
-    @Getter @Setter @Column(name = "cli_email")
+    @Column(name = "cli_email")
     private String email;
 
-    @Getter @Setter @Column(name = "cli_service")
+    @Column(name = "cli_service")
     private String service;
 
 }
