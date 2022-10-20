@@ -2,7 +2,6 @@
 $(document).ready(function() {
     //Al iniciar la pagina llama al metodo
     getUsers()
-    alert("Aquí toy")
   //actualizarEmailUsuario()
 });
 
@@ -25,7 +24,7 @@ async function getUsers(){
 console.log(usuarios);
     let listHtml='';
     for (let user of usuarios){
-        let deleteButton =  '<button type="button" onclick="deleteUSer('+user.id+')" class="btn btn-icon btn-outline-danger">'
+        let deleteButton =  '<button type="button" onclick="deleteUser('+user.id+')" class="btn btn-icon btn-outline-danger">'
                          +  '   <span class="tf-icons bx bx-trash-alt"></span>'
                          +  '</button>';
         let userHtml = '   <tr> '
@@ -41,7 +40,42 @@ console.log(usuarios);
     document.querySelector('#table_user tbody').outerHTML = listHtml;
 }
 
-async function deleteUSer(id){
+async function addUser(){
+    let user = {};
+    user.name = document.getElementById("txtName").value;
+    user.lastname = document.getElementById("txtLastname").value;
+    user.email = document.getElementById("txtEmail").value;
+    user.password = document.getElementById("txtPassword").value;
+    user.type = "NO_ADMIN";
+
+    let repeatPassword = document.getElementById("txtRepeatPassword").value;
+
+
+    if(repeatPassword != user.password){
+        alert("Las contraseñas no coinciden.")
+        return;
+    }
+
+ const request = await fetch('api/users', {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(user)
+  });
+  const response = await request.text();
+  console.log(response);
+
+  if (respuesta == 'OK'){
+            alert("Usuario ingresado correctamente");
+          } else{
+            alert("Usuario ya existe");
+          }
+
+
+
+}
+
+
+async function deleteUser(id){
 
     if(!confirm('¿Desea eliminar el usuario?')){
             //Con return se corta el flujo de la función
