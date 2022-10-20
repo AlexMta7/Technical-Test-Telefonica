@@ -6,4 +6,8 @@ import java.util.*;
 
 public interface UserDao {
     List<userModel> getUsers();
+
+    void deleteUsers(Long id);
+
+    userModel addUser(userModel user);
 }

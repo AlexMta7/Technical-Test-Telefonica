@@ -25,7 +25,7 @@ async function getUsers(){
 console.log(usuarios);
     let listHtml='';
     for (let user of usuarios){
-        let deleteButton =  '<button type="button" class="btn btn-icon btn-outline-danger">'
+        let deleteButton =  '<button type="button" onclick="deleteUSer('+user.id+')" class="btn btn-icon btn-outline-danger">'
                          +  '   <span class="tf-icons bx bx-trash-alt"></span>'
                          +  '</button>';
         let userHtml = '   <tr> '
@@ -39,4 +39,18 @@ console.log(usuarios);
     }
 
     document.querySelector('#table_user tbody').outerHTML = listHtml;
+}
+
+async function deleteUSer(id){
+
+    if(!confirm('¿Desea eliminar el usuario?')){
+            //Con return se corta el flujo de la función
+            return;
+        }
+
+    const request = await fetch('api/users/' + id, {
+        method: 'DELETE',
+        headers: getHeaders()
+      });
+        location.reload();
 }

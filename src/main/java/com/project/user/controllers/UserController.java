@@ -18,6 +18,17 @@ public class UserController {
         return userDao.getUsers();
     }
 
+    @RequestMapping(value = "api/users/{id}", method = RequestMethod.DELETE)
+    public void deleteUsers(@PathVariable Long id){
+        userDao.deleteUsers(id);
+    }
+
+    @RequestMapping(value = "api/users/{id}", method = RequestMethod.POST)
+    public userModel addUsers(@RequestBody userModel user){
+        return userDao.addUser(user);
+    }
+
+
     /*
     @RequestMapping(value = "api/users", method = RequestMethod.GET)
     public List<userModel> getUsers(){
