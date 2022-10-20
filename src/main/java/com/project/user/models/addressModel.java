@@ -1,22 +1,20 @@
-package com.project.user.models;
+/*package com.project.user.models;
 
 import javax.persistence.*;
 import lombok.*;
 
 @Entity
 @Table(name = "addresses")
+@Getter @Setter
 @ToString @EqualsAndHashCode
 public class addressModel {
 
     @Id
-    @Column(name = "add_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @ManyToOne
-    @Getter @Setter @JoinColumn(name = "add_client_id")
+    @JoinColumn(name = "add_client_id")
     private userModel clientId;
 
-    @Getter @Setter @Column(name = "add_address")
+    @Column(name = "add_address")
     private String address;
 }
+*/
