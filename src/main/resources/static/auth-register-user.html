@@ -149,7 +149,7 @@
                             <input
                               type="text"
                               class="form-control"
-                              id="basic-icon-default-fullname"
+                              id="txtName"
                               placeholder="John"
                               aria-label="John"
                               aria-describedby="basic-icon-default-fullname2"
@@ -168,7 +168,7 @@
                             <input
                               type="text"
                               class="form-control"
-                              id="basic-icon-default-fullname"
+                              id="txtLastname"
                               placeholder="Doe"
                               aria-label="Doe"
                               aria-describedby="basic-icon-default-fullname2"
@@ -184,7 +184,7 @@
                             <span class="input-group-text"><i class="bx bx-envelope"></i></span>
                             <input
                               type="text"
-                              id="basic-icon-default-email"
+                              id="txtEmail"
                               class="form-control"
                               placeholder="john.doe"
                               aria-label="john.doe"
@@ -201,7 +201,7 @@
                         <!--Password-->
                         <div class="mb-3 form-password-toggle">
                           <div class="d-flex justify-content-between">
-                            <label class="form-label" for="password">Password</label>
+                            <label class="form-label" >Contraseña</label>
                             <a href="auth-forgot-password-basic.html">
                               <small>Forgot Password?</small>
                             </a>
@@ -209,7 +209,7 @@
                           <div class="input-group input-group-merge">
                             <input
                             type="password"
-                            id="password"
+                            id="txtPassword"
                             class="form-control"
                             name="password"
                             placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
@@ -223,14 +223,14 @@
                         <!--Repeat Password-->
                         <div class="mb-3 form-password-toggle">
                           <div class="d-flex justify-content-between">
-                            <label class="form-label" for="password">Repeat password</label>
+                            <label class="form-label" >Repetir Contraseña</label>
                           </div>
                           <div class="input-group input-group-merge">
                             <input
                             type="password"
-                            id="password"
+                            id="txtRepeatPassword"
                             class="form-control"
-                            name="password"
+                            name="repeatPassword"
                             placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                             aria-describedby="password"
                             />
@@ -240,7 +240,7 @@
                         <!--/Repeat Password-->
 
                         <!--Button-->
-                        <button type="submit" class="btn btn-primary">Send</button>
+                        <button onclick="addUser()" class="btn btn-primary">Send</button>
                         <!--/Button-->
                       </form>
 
@@ -259,15 +259,6 @@
 
     <!-- / Content -->
 
-    <div class="buy-now">
-      <a
-        href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
-        target="_blank"
-        class="btn btn-danger btn-buy-now"
-        >Upgrade to Pro</a
-      >
-    </div>
-
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="assets/vendor/libs/jquery/jquery.js"></script>
@@ -284,6 +275,8 @@
     <script src="assets/js/main.js"></script>
 
     <!-- Page JS -->
+    <script src="js/users.js"></script>
+    <script src="js/auth-users.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
