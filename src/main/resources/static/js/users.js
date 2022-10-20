@@ -2,7 +2,7 @@
 $(document).ready(function() {
     //Al iniciar la pagina llama al metodo
     getUsers()
-    alert("Alerta")
+    alert("Aquí toy")
   //actualizarEmailUsuario()
 });
 
@@ -11,17 +11,18 @@ $(document).ready(function() {
         return {
                      'Accept': 'application/json',
                      'Content-Type': 'application/json',
-                     'Authorization':localStorage.token
+                     //'Authorization':localStorage.token
                    };
     }
 
 async function getUsers(){
- const request = await fetch('api/usuarios', {
+ const request = await fetch('api/users', {
     method: 'GET',
     headers: getHeaders()
   });
   const usuarios = await request.json();
 
+console.log(usuarios);
     let listHtml='';
     for (let user of usuarios){
         let deleteButton =  '<button type="button" class="btn btn-icon btn-outline-danger">'
@@ -37,5 +38,5 @@ async function getUsers(){
         listHtml += userHtml;
     }
 
-    document.querySelector('#table_user tbody').outerHTML = listadoHtml;
+    document.querySelector('#table_user tbody').outerHTML = listHtml;
 }

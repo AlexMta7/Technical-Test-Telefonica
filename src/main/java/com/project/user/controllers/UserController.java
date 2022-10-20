@@ -5,12 +5,18 @@ import com.project.user.models.userModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class UserController {
     @Autowired
     private UserDao userDao;
+
+    @RequestMapping(value = "api/users", method = RequestMethod.GET)
+    public List<userModel> getUsers(){
+        return userDao.getUsers();
+    }
 
     /*
     @RequestMapping(value = "api/users", method = RequestMethod.GET)
@@ -20,8 +26,10 @@ public class UserController {
 
      */
 
-    @RequestMapping(value = "api/usuarios", method = RequestMethod.GET)
-    public userModel getUsuario(){
+    /* Funciona, devuelve la lista
+    @RequestMapping(value = "api/usuario123", method = RequestMethod.GET)
+    public List<userModel> getUsuario(){
+        List<userModel> users = new ArrayList<>();
         userModel usuario = new userModel();
         usuario.setId(123L);
         usuario.setName("Alex");
@@ -29,7 +37,19 @@ public class UserController {
         usuario.setEmail("alexmata@hotmail.com");
         usuario.setPassword("1234567");
         usuario.setType("admin");
-        return usuario;
+
+        userModel usuario2 = new userModel();
+        usuario2.setId(123L);
+        usuario2.setName("Alex2");
+        usuario2.setLastname("Mata2");
+        usuario2.setEmail("alexmata2@hotmail.com");
+        usuario2.setPassword("12345678");
+        usuario2.setType("noAdmin");
+
+        users.add(usuario);
+        users.add(usuario2);
+        return users;
     }
+     */
 
 }
