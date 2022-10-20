@@ -6,10 +6,10 @@ import lombok.*;
 @Entity
 @Table(name = "users")
 @Getter @Setter
-@ToString @EqualsAndHashCode
 public class userModel {
+
     @Id
-    @Column(name = "us_id")
+    @Column(unique = true, nullable = false, name = "us_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
