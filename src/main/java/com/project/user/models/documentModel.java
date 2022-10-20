@@ -1,4 +1,4 @@
-package com.project.user.models;
+/*package com.project.user.models;
 
 import javax.persistence.*;
 import lombok.*;
@@ -9,6 +9,7 @@ import lombok.*;
 @ToString @EqualsAndHashCode
 public class documentModel {
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "doc_client_id")
     private userModel clientId;
@@ -28,3 +29,4 @@ public class documentModel {
     @Column(name = "doc_other")
     private String other;
 }
+*/
