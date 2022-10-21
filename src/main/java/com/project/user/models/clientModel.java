@@ -13,16 +13,16 @@ public class clientModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "cli_name")
+    @Column(nullable = false, name = "cli_name")
     private String name;
 
-    @Column(name = "cli_lastname")
+    @Column(nullable = false, name = "cli_lastname")
     private String lastname;
 
-    @Column(name = "cli_email")
+    @Column(nullable = false, name = "cli_email")
     private String email;
 
-    @Column(name = "cli_service")
+    @Column(nullable = false, name = "cli_service")
     private String service;
 
 }
