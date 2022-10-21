@@ -138,7 +138,7 @@
               <h4 class="mb-2">Adventure starts here 🚀</h4>
               <p class="mb-4">Make your app management easy and fun!</p>
 
-                      <form>
+                      <form onsubmit="addUser(event)">
                         <!--Name-->
                         <div class="mb-3">
                           <label class="form-label" >Name</label>
@@ -153,6 +153,7 @@
                               placeholder="John"
                               aria-label="John"
                               aria-describedby="basic-icon-default-fullname2"
+                              required
                             />
                           </div>
                         </div>
@@ -172,6 +173,7 @@
                               placeholder="Doe"
                               aria-label="Doe"
                               aria-describedby="basic-icon-default-fullname2"
+                              required
                             />
                           </div>
                         </div>
@@ -189,6 +191,7 @@
                               placeholder="john.doe"
                               aria-label="john.doe"
                               aria-describedby="basic-icon-default-email2"
+                              required
                             />
                             <!--
                             <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
@@ -215,6 +218,7 @@
                             class="form-control"
                             placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                             aria-describedby="password"
+                            required
                             />
                             <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                           </div>
@@ -233,6 +237,7 @@
                             class="form-control"
                             placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                             aria-describedby="password"
+                            required
                             />
                             <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                           </div>
@@ -240,7 +245,7 @@
                         <!--/Repeat Password-->
 
                         <!--Button-->
-                        <button onclick="addUser()" href="#" class="btn btn-primary">Send</button>
+                        <button type="submit" class="btn btn-primary">Send</button>
                         <!--/Button-->
                       </form>
 

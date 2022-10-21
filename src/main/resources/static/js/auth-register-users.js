@@ -14,6 +14,7 @@ $(document).ready(function() {
     }
 
 async function addUser(){
+    event.preventDefault();
     let user = {};
     user.name = document.getElementById("txtName").value;
     user.lastname = document.getElementById("txtLastname").value;
@@ -23,8 +24,8 @@ async function addUser(){
     let repeatPassword = document.getElementById("txtRepeatPassword").value;
 
     if(user.name == "" && user.lastname == "" && user.email == "" && user.password == "" && repeatPassword == ""){
-        alert("No puede ingresar un dato vació");
-        location.reload();
+        //alert("No puede ingresar un dato vació");
+        //location.reload();
         return;
     }
     else{
@@ -50,7 +51,7 @@ async function addUser(){
   else{
        alert("Usuario ya existe");
   }
-  location.reload();
+  //location.reload();
 }
 
 
