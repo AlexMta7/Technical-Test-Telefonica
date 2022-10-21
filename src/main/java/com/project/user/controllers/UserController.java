@@ -23,9 +23,15 @@ public class UserController {
         userDao.deleteUsers(id);
     }
 
-    @RequestMapping(value = "api/users/{id}", method = RequestMethod.POST)
-    public userModel addUsers(@RequestBody userModel user){
-        return userDao.addUser(user);
+    @RequestMapping(value = "api/users", method = RequestMethod.POST)
+    public String addUser(@RequestBody userModel user){
+        if(!userDao.verifyUser(user)) {
+            userDao.addUser(user);
+            return "OK";
+        }
+        else {
+            return "FAIL";
+        }
     }
 
 

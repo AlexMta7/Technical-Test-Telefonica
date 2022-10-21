@@ -10,4 +10,6 @@ public interface UserDao {
     void deleteUsers(Long id);
 
     userModel addUser(userModel user);
+
+    boolean verifyUser(userModel user);
 }

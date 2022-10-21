@@ -13,19 +13,19 @@ public class userModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "us_name")
+    @Column(nullable = false, name = "us_name")
     private String name;
 
     @Column(name = "us_lastname")
     private String lastname;
 
-    @Column(name = "us_email")
+    @Column(nullable = false, name = "us_email")
     private String email;
 
-    @Column(name = "us_password")
+    @Column(nullable = false, name = "us_password")
     private String password;
 
     //Type: admin/noAdmin
-    @Column(name = "us_type")
+    @Column(nullable = false, name = "us_type")
     private String type;
 }
