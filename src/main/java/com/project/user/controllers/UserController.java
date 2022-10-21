@@ -24,12 +24,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "api/users", method = RequestMethod.POST)
-    public String addUser(@RequestBody userModel user){
-        if(!userDao.verifyUser(user)) {
+    public String addUser(@RequestBody userModel user) {
+        if (!userDao.verifyUser(user)) {
             userDao.addUser(user);
             return "OK";
-        }
-        else {
+        } else {
             return "FAIL";
         }
     }

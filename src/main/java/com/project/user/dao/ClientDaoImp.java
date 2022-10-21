@@ -14,8 +14,14 @@ public class ClientDaoImp implements ClientDao{
     @PersistenceContext
     private EntityManager entityManager;
     @Override
-    public List<ClientDao> getClients() {
+    public List<clientModel> getClients() {
         String query = "FROM clientModel";
+        return entityManager.createQuery(query).getResultList();
+    }
+
+    @Override
+    public List<clientModel> getClient(Long id) {
+        String query = "FROM clientModel WHERE id = " +id;
         return entityManager.createQuery(query).getResultList();
     }
 
@@ -29,4 +35,18 @@ public class ClientDaoImp implements ClientDao{
     public clientModel addClient(clientModel client) {
         return entityManager.merge(client);
     }
+
+    @Override
+    public clientModel updateClient(clientModel client) {
+        return entityManager.merge(client);
+    }
+
+    @Override
+    public boolean verifyClient(clientModel client) {
+        String query = "FROM clientModel WHERE email = :email";
+        List<clientModel> list = entityManager.createQuery(query).setParameter("email", client.getEmail()).getResultList(); 
+        return !list.isEmpty();
+    }
+
+
 }

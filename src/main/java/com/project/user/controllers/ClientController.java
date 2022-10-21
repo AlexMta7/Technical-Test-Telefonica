@@ -14,8 +14,13 @@ public class ClientController {
     private ClientDao clientDao;
 
     @RequestMapping(value = "api/clients", method = RequestMethod.GET)
-    public List<ClientDao> getClients(){
+    public List<clientModel> getClients() {
         return clientDao.getClients();
+    }
+    
+    @RequestMapping(value = "api/clients/{id}", method = RequestMethod.GET)
+    public List<clientModel> getClient(@PathVariable Long id){
+        return clientDao.getClient(id);
     }
 
     @RequestMapping(value = "api/clients/{id}", method = RequestMethod.DELETE)
@@ -24,18 +29,28 @@ public class ClientController {
     }
 
     @RequestMapping(value = "api/clients", method = RequestMethod.POST)
-    public String addUser(@RequestBody clientModel client){
-        clientDao.addClient(client);
-        return "OK";
-        /*
-        if(!clientDao.verifyClient(client)) {
+    public String addClient(@RequestBody clientModel client) {
+        if (!clientDao.verifyClient(client)) {
             clientDao.addClient(client);
             return "OK";
-        }
-        else {
+        } else {
             return "FAIL";
         }
-         */
+    }
+    
+    @RequestMapping(value = "api/clients", method = RequestMethod.PUT)
+    public String updateClient(@RequestBody clientModel client) {
+
+            clientDao.updateClient(client);
+            return "OK";
+   
+        // if(!clientDao.verifyClient(client)) {
+        //     clientDao.updateClient(client);
+        //     return "OK";
+        // }
+        // else {
+        //     return "FAIL";
+        // }
     }
 
 }
