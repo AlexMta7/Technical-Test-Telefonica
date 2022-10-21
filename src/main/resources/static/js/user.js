@@ -27,8 +27,8 @@ async function cargarUsuarios(){
 
       //Se listan los datos para mostrarlos en forma ordenada en la tabla correspondiente
       for(let usu of usuarios){
-       let botonEliminar = '<a href="#" onclick="eliminarCliente(' + usu.id + ')" class="btn btn-icon btn-danger"><span class="tf-icons bx bx-trash"></span></a>';
-       let botonModificar = '<button onclick="getInfoCliente(' + usu.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollable"><span class="tf-icons bx bx-pencil"></span></button>';
+       let botonEliminar = '<a href="#" onclick="#" class="btn btn-icon btn-danger"><span class="tf-icons bx bx-trash"></span></a>';
+       let botonModificar = '<button onclick="#" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#"><span class="tf-icons bx bx-pencil"></span></button>';
 
        let usuarioHtml = '<tr><td>'+ usu.id +'</td><td>' + usu.nombre + '</td><td>' + usu.apellido + '</td><td>'
        + usu.email + '</td><td>'
