@@ -8,25 +8,25 @@ import javax.persistence.*;
 
 @Entity
 @Repository
-@Table(name = "datos_cliente")
-public class Clientes {
+@Table(name = "usuarios")
+public class Usuarios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @Setter @Column(name="id")
-    private Long id;
+    private Long id_usu;
 
     @Getter @Setter @Column(name="name")
-    private String nombre;
+    private String nom_usu;
 
     @Getter @Setter @Column(name="last_name")
-    private String apellido;
-
-    @Getter @Setter @Column(name="gender")
-    private String genero;
-
-    @Getter @Setter @Column(name="document")
-    private String documento;
+    private String ln_usu;
 
     @Getter @Setter @Column(name="email")
-    private String email;
+    private String email_usu;
+
+    @Getter @Setter @Column(name="password")
+    private String pass_usu;
+
+    @Getter @Setter @Column(name="type")
+    private String car_usu;
 }

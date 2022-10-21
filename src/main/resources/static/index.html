@@ -123,7 +123,7 @@
               </a>
             </li>
             <li class="menu-item">
-              <a href="#" class="menu-link">
+              <a href="registerUser.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-save"></i>
                 <div data-i18n="ingreso">Ingreso Usuario</div>
               </a>
@@ -152,8 +152,8 @@
                   <input
                     type="text"
                     class="form-control border-0 shadow-none"
-                    placeholder="Search..."
-                    aria-label="Search..."/>
+                    placeholder="Buscar Cliente..."
+                    aria-label="Buscar Cliente..."/>
                 </div>
               </div>
               <!-- /Search -->
@@ -223,16 +223,23 @@
                     <input type="text" class="form-control" id="txtLastName" placeholder="Apellido">
                   </div>
                 </div>
+                <br>
                 <div class="row g-2">
                   <div class="col mb-0">
-                    <label for="txtGender" class="form-label">Genero</label>
-                    <input type="text" class="form-control" id="txtGender" placeholder="Género">
+                    <label class="form-label" for="txtGender">Género</label>
+                    <select id="txtGender" class="form-select">
+                      <option>Seleccione una opción</option>
+                      <option value="M">Masculino</option>
+                      <option value="F">Femenino</option>
+                      <option value="N/A">No Especificar</option>
+                    </select>
                   </div>
                   <div class="col mb-0">
                     <label for="txtDocument" class="form-label">Documento</label>
                     <input type="text" class="form-control" id="txtDocument" placeholder="Número Documento Identificación">
                   </div>
                 </div>
+                <br>
                 <div class="row g-2">
                   <div class="col mb-0">
                     <label for="txtEmail" class="form-label">Email</label>

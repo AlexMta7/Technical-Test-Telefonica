@@ -123,7 +123,7 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="#" class="menu-link">
+                    <a href="registerUser.html" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-save"></i>
                         <div data-i18n="ingreso">Ingreso Usuario</div>
                     </a>
@@ -152,8 +152,8 @@
                             <input
                                     type="text"
                                     class="form-control border-0 shadow-none"
-                                    placeholder="Search..."
-                                    aria-label="Search..."/>
+                                    placeholder="Buscar Usuario..."
+                                    aria-label="Buscar Usuario..."/>
                         </div>
                     </div>
                     <!-- /Search -->
@@ -206,7 +206,7 @@
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalScrollableTitle">Modificación de Cliente</h5>
+                <h5 class="modal-title" id="modalScrollableTitle">Modificación de Usuario</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -214,24 +214,31 @@
                     <form>
                         <div class="row g-2">
                             <div class="col mb-0">
-                                <label for="txtName" class="form-label">Nombre Cliente</label>
+                                <label for="txtName" class="form-label">Nombre Usuario</label>
                                 <input type="text" class="form-control" id="txtName" placeholder="Nombre">
                             </div>
                             <div class="col mb-0">
-                                <label for="txtLastName" class="form-label">Apellido Cliente</label>
+                                <label for="txtLastName" class="form-label">Apellido Usuario</label>
                                 <input type="text" class="form-control" id="txtLastName" placeholder="Apellido">
                             </div>
                         </div>
+                        <br>
                         <div class="row g-2">
                             <div class="col mb-0">
-                                <label for="txtGender" class="form-label">Genero</label>
-                                <input type="text" class="form-control" id="txtGender" placeholder="Género">
+                                <label class="form-label" for="txtType">Cargo</label>
+                                <select id="txtType" class="form-select">
+                                    <option>Seleccione una opción</option>
+                                    <option value="Administrador">Administrador</option>
+                                    <option value="Gerente">Gerente</option>
+                                    <option value="Supervisor">Supervisor</option>
+                                </select>
                             </div>
                             <div class="col mb-0">
-                                <label for="txtDocument" class="form-label">Documento</label>
-                                <input type="text" class="form-control" id="txtDocument" placeholder="Número Documento Identificación">
+                                <label for="txtPassword" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="txtPassword" placeholder="Password">
                             </div>
                         </div>
+                        <br>
                         <div class="row g-2">
                             <div class="col mb-0">
                                 <label for="txtEmail" class="form-label">Email</label>
@@ -249,7 +256,7 @@
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     Cerrar
                 </button>
-                <button type="button" onclick="#" class="btn btn-primary">Modificar</button>
+                <button type="button" onclick="editarUsuario()" class="btn btn-primary">Modificar</button>
             </div>
         </div>
     </div>
