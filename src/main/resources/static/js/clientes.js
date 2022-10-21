@@ -29,8 +29,10 @@ async function cargarClientes(){
 
       //Se listan los datos para mostrarlos en forma ordenada en la tabla correspondiente
       for(let cliente of clientes){
-       let botonEliminar = '<a href="#" onclick="eliminarCliente(' + cliente.id + ')" class="btn btn-icon btn-danger"><span class="tf-icons bx bx-trash"></span></a>';
-       let botonModificar = '<button onclick="getInfoCliente(' + cliente.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollable"><span class="tf-icons bx bx-pencil"></span></button>';
+       let btnEliminar = '<a href="#" onclick="eliminarCliente(' + cliente.id + ')" class="btn btn-icon btn-danger"><span class="tf-icons bx bx-trash"></span></a>';
+       let btnModificar = '<button onclick="getInfoCliente(' + cliente.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollable"><span class="tf-icons bx bx-pencil"></span></button>';
+       let btnDocs = '<button onclick="#" class="btn btn-icon btn-success"><span class="tf-icons bx bx-file"></span></button>';
+       let btnAddr = '<button onclick="#" class="btn btn-icon btn-warning"><span class="tf-icons bx bx-home"></span></button>';
 
 
 
@@ -38,8 +40,7 @@ async function cargarClientes(){
 
        let clienteHtml = '<tr><td>'+ cliente.id +'</td><td>' + cliente.nombre + '</td><td>' + cliente.apellido + '</td><td>'
        + cliente.genero + '</td><td>'
-       + cliente.documento + '</td><td>' + cliente.email +  '</td><td>' + botonEliminar + ' ' + botonModificar +'</td></tr>'
-
+       + cliente.documento + '</td><td>' + cliente.email +  '</td><td>' + btnDocs + ' ' + btnAddr + '</td><td>' + btnEliminar + ' ' + btnModificar + '</td></tr>';
         listadoHtml += clienteHtml;
       }
 
@@ -71,8 +72,6 @@ async function getInfoCliente (id){
             headers: getHeaders()
           });
           const clientes = await request.json();
-
-        //console.log(clientes);
 
         for(let clie of clientes){
             document.getElementById("txtName").value = clie.nombre;
