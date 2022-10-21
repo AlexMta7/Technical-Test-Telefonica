@@ -47,11 +47,11 @@ async function addUser(){
   console.log(response);
   if (response == 'OK'){
             alert("Usuario ingresado correctamente");
+            location.reload();
   }
   else{
        alert("Usuario ya existe");
   }
-  //location.reload();
 }
 
 
