@@ -29,3 +29,12 @@ public class userModel {
     @Column(nullable = false, name = "us_type")
     private String type;
 }
+
+/*
+"Para declarar que una clase debe ser tratada como bean de spring, hay que anotarla con @Component, @Service o @Repository. 
+En el fondo spring las trata de la misma forma, pero tienen diferente valor semántico para la lectura de tu código. 
+Si esa clase va a trabajar para acceder a datos de una base de datos, de un fichero, etc, queda mejor si le pones 
+@Repository. Si la clase funciona como un clase de negocio que recibe una entrada y la transforma, lo suyo es usar 
+@Service. Para todo los demás, @Component."
+*/
+
