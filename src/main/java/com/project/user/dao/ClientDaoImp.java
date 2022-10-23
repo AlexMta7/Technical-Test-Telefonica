@@ -21,8 +21,8 @@ public class ClientDaoImp implements ClientDao{
 
     @Override
     public List<clientModel> getClient(Long id) {
-        String query = "FROM clientModel WHERE id = " +id;
-        return entityManager.createQuery(query).getResultList();
+        String query = "FROM clientModel WHERE id = :id_user";
+        return entityManager.createQuery(query).setParameter("id_user", id).getResultList();
     }
 
     @Override

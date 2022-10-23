@@ -31,17 +31,6 @@ async function getClient(id) {
     document.getElementById("txtModalEmail").value = client.email;
     document.getElementById("txtModalService").value =   client.service  ;
   }
-  
- 
-  
-  // document.getElementById("saveModal").innerHTML = "Update";  
-  // document.getElementById("txtModalId").value = '"'+cliente.id+'"';
-  // document.getElementById("txtModalName").value = '"'+cliente.name+'"';
-  // document.getElementById("txtModalLastname").value = '"'+cliente.lastname+'"';
-  // document.getElementById("txtModalEmail").value = '"'+cliente.email+'"';
-  // document.getElementById("txtModalService").value = '"'+cliente.service+'"';
-
-
 }
 
 
