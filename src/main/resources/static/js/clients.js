@@ -29,7 +29,7 @@ async function getClient(id) {
     document.getElementById("txtModalName").value = client.name;
     document.getElementById("txtModalLastname").value = client.lastname;
     document.getElementById("txtModalEmail").value = client.email;
-    document.getElementById("txtModalService").value =   client.service  ;
+    document.getElementById("txtModalService").value =   client.service;
   }
 }
 
@@ -45,10 +45,13 @@ console.log(clientes);
     let listHtml='';
     for (let client of clientes){
         let updateButton =  '<button type="button" id="updateButton" onclick="getClient('+client.id+')" class="btn btn-icon btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">'
-                         +  '   <span class="tf-icons bx bx-file"></span>'
+                         +  '   <span class="tf-icons bx bx-edit"></span>'
                          +  '</button>';
-        let deleteButton =  '<button type="button" onclick="deleteClient('+client.id+')" class="btn btn-icon btn-outline-danger">'
+        let deleteButton =  '<button type="button" id="deleteButton" onclick="deleteClient('+client.id+')" class="btn btn-icon btn-outline-danger">'
                          +  '   <span class="tf-icons bx bx-trash-alt"></span>'
+                         +  '</button>';
+        let documentButton =  '<button type="button" id="documentButton" onclick="document('+client.id+')" class="btn btn-icon btn-outline-success">'
+                         +  '   <span class="tf-icons bx bx-file"></span>'
                          +  '</button>';
 
         let clientHtml = '   <tr> '
@@ -56,7 +59,7 @@ console.log(clientes);
                      +  '  <td><strong>'+client.name+ ' ' +client.lastname+ '</strong></td>'
                      +  '  <td>'+client.email+'</td> '
                      +  '  <td>'+client.service+'</td>'
-                     +  '  <td>'+updateButton+' ' +deleteButton+'</td>'
+                     +  '  <td>'+updateButton+' '+documentButton+' '+deleteButton+'</td>'
                      +  '</tr>';
         listHtml += clientHtml;
     }
@@ -139,4 +142,10 @@ async function deleteClient(id){
 //Changes the name of the button depending on what button is clicked on
 function modifyModalAdd() {
   document.getElementById("saveModal").innerHTML = "Add";
+
+  document.getElementById("txtModalId").value = "";
+  document.getElementById("txtModalName").value = "";
+  document.getElementById("txtModalLastname").value = "";
+  document.getElementById("txtModalEmail").value = "";
+  document.getElementById("txtModalService").value = "";
 }
