@@ -13,6 +13,11 @@ public class UserController {
     @Autowired
     private UserDao userDao;
 
+    @RequestMapping(value = "api/users/{id}", method = RequestMethod.GET)
+    public List<userModel> getUser(@PathVariable Long id) {
+        return userDao.getUser(id);
+    }
+
     @RequestMapping(value = "api/users", method = RequestMethod.GET)
     public List<userModel> getUsers(){
         return userDao.getUsers();
@@ -31,6 +36,18 @@ public class UserController {
         } else {
             return "FAIL";
         }
+    }
+
+    @RequestMapping(value = "api/users", method = RequestMethod.PUT)
+    public String updateUser(@RequestBody userModel user) {
+        userDao.updateUser(user);
+            return "OK";
+        // if (userDao.verifyUser(user)) {
+        //     userDao.updateUser(user);
+        //     return "OK";
+        // } else {
+        //     return "FAIL";
+        // }
     }
 
 

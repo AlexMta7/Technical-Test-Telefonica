@@ -12,4 +12,8 @@ public interface UserDao {
     userModel addUser(userModel user);
 
     boolean verifyUser(userModel user);
+
+    List<userModel> getUser(Long id);
+
+    userModel updateUser(userModel user);
 }
