@@ -2,6 +2,8 @@ package com.project.user.controllers;
 
 import com.project.user.dao.ClienteDao;
 import com.project.user.models.Clientes;
+import com.project.user.models.Direcciones;
+import com.project.user.models.Documentos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +34,12 @@ public class ClienteController {
         return clienteDao.getInfoClientes(id);
     }
 
+    @RequestMapping(value = "api/cliente/{id}", method = RequestMethod.GET )
+    public List<Clientes> getIdCliente(@PathVariable Long id){
+
+        return clienteDao.getInfoCliente(id);
+    }
+
     @RequestMapping(value = "api/cliente", method = RequestMethod.PUT)
     public void editarCliente(@RequestBody Clientes cliente){
         clienteDao.editar(cliente);
@@ -42,4 +50,13 @@ public class ClienteController {
         clienteDao.registro(cliente);
     }
 
+    @RequestMapping(value = "api/documentos", method = RequestMethod.POST)
+    public void addDocuments(@RequestBody Documentos documento){
+        clienteDao.agregar(documento);
+    }
+
+    @RequestMapping(value = "api/direcciones", method = RequestMethod.POST)
+    public void addAddress(@RequestBody Direcciones direcciones){
+        clienteDao.agregarD(direcciones);
+    }
 }

@@ -24,9 +24,6 @@ public class Clientes {
     @Getter @Setter @Column(name="gender")
     private String genero;
 
-    @Getter @Setter @Column(name="document")
-    private String documento;
-
     @Getter @Setter @Column(name="email")
     private String email;
 }

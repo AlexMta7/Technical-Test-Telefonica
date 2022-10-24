@@ -29,18 +29,15 @@ async function cargarClientes(){
 
       //Se listan los datos para mostrarlos en forma ordenada en la tabla correspondiente
       for(let cliente of clientes){
-       let btnEliminar = '<a href="#" onclick="eliminarCliente(' + cliente.id + ')" class="btn btn-icon btn-danger"><span class="tf-icons bx bx-trash"></span></a>';
-       let btnModificar = '<button onclick="getInfoCliente(' + cliente.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollable"><span class="tf-icons bx bx-pencil"></span></button>';
-       let btnDocs = '<button onclick="#" class="btn btn-icon btn-success"><span class="tf-icons bx bx-file"></span></button>';
-       let btnAddr = '<button onclick="#" class="btn btn-icon btn-warning"><span class="tf-icons bx bx-home"></span></button>';
-
-
+       let btnEliminar = '<a href="#" onclick="eliminarCliente(' + cliente.id + ')" class="btn btn-icon btn-danger" title="Eliminar"><span class="tf-icons bx bx-trash"></span></a>';
+       let btnModificar = '<button type="button" onclick="getInfoCliente(' + cliente.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollable" title="Modificar"><span class="tf-icons bx bx-pencil"></span></button>';
+       let btnDocs = '<button type="button" onclick="getIdCliente(' + cliente.id + ')" class="btn btn-icon btn-primary" title="Agregar Documentos" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEnd" aria-controls="offcanvasEnd"><span class="tf-icons bx bx-file"></span></button>';
+       let btnAddr = '<button type="button" onclick="getIdCliente(' + cliente.id + ')" class="btn btn-icon btn-secondary" title="Agregar Direcciones" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEnd1" aria-controls="offcanvasEnd"><span class="tf-icons bx bx-home"></span></button>';
 
        //let telefonoTexto = (cliente.telefono == null || cliente.telefono == '') ? '-' : cliente.telefono;
 
        let clienteHtml = '<tr><td>'+ cliente.id +'</td><td>' + cliente.nombre + '</td><td>' + cliente.apellido + '</td><td>'
-       + cliente.genero + '</td><td>'
-       + cliente.documento + '</td><td>' + cliente.email +  '</td><td>' + btnDocs + ' ' + btnAddr + '</td><td>' + btnEliminar + ' ' + btnModificar + '</td></tr>';
+       + cliente.genero + '</td><td>' + cliente.email +  '</td><td>' + btnDocs + ' ' + btnAddr + ' ' + btnEliminar + ' ' + btnModificar + '</td></tr>';
         listadoHtml += clienteHtml;
       }
 
@@ -77,10 +74,24 @@ async function getInfoCliente (id){
             document.getElementById("txtName").value = clie.nombre;
             document.getElementById("txtLastName").value = clie.apellido;
             document.getElementById("txtGender").value = clie.genero;
-            document.getElementById("txtDocument").value = clie.documento;
             document.getElementById("txtEmail").value = clie.email;
             document.getElementById("txtId").value = clie.id;
         }
+}
+
+//Función para mostrar el id del cliente en el formulario para poder ingresar los documentos de identificacion
+//Funcionando al 100%
+async function getIdCliente(id){
+    const request = await fetch('api/cliente/' + id, {
+                method: 'GET',
+                headers: getHeaders()
+              });
+              const clientes = await request.json();
+
+       for(let cli of clientes){
+            document.getElementById("txtIdC").value = cli.id;
+            document.getElementById("txtIdCl").value = cli.id;
+       }
 }
 
 //Función para editar la información del cliente seleccionado
@@ -92,7 +103,6 @@ async function editarCliente(){
     datosCliente.apellido = document.getElementById("txtLastName").value;
     datosCliente.nombre = document.getElementById("txtName").value;
     datosCliente.genero = document.getElementById("txtGender").value;
-    datosCliente.documento = document.getElementById("txtDocument").value;
     datosCliente.email = document.getElementById("txtEmail").value;
 
     const request = await fetch('api/cliente/', {
@@ -100,7 +110,4 @@ async function editarCliente(){
                 headers: getHeaders(),
                 body: JSON.stringify(datosCliente)
               });
-
-    alert("Información Actualizada con Éxito");
-    location.reload();
 }

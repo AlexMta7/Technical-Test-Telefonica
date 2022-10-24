@@ -1,6 +1,8 @@
 package com.project.user.dao;
 
 import com.project.user.models.Clientes;
+import com.project.user.models.Direcciones;
+import com.project.user.models.Documentos;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -45,5 +47,23 @@ public class ClienteDaoImp implements ClienteDao{
     @Override
     public void registro(Clientes cliente) {
         entityManager.merge(cliente);
+    }
+
+    @Override
+    public List<Clientes> getInfoCliente(Long id) {
+        String query="From Clientes WHERE id = " + id ;
+        List<Clientes> resultado = entityManager.createQuery(query).getResultList();
+
+        return resultado;
+    }
+
+    @Override
+    public void agregar(Documentos documento) {
+        entityManager.merge(documento);
+    }
+
+    @Override
+    public void agregarD(Direcciones direcciones) {
+        entityManager.merge(direcciones);
     }
 }

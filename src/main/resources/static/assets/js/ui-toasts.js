@@ -24,6 +24,8 @@
   // Placement Button click
   if (toastPlacementBtn) {
     toastPlacementBtn.onclick = function () {
+      //Llama la función para la edición de los datos del cliente
+      editarCliente();
       if (toastPlacement) {
         toastDispose(toastPlacement);
       }
@@ -37,3 +39,4 @@
     };
   }
 })();
+
