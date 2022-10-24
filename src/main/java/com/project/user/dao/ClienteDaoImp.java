@@ -66,4 +66,20 @@ public class ClienteDaoImp implements ClienteDao{
     public void agregarD(Direcciones direcciones) {
         entityManager.merge(direcciones);
     }
+
+    @Override
+    public List<Documentos> getDocs() {
+        String query="From Documentos"; //Hace referencia al modelo creado
+        List<Documentos> resultado = entityManager.createQuery(query).getResultList();
+
+        return resultado;
+    }
+
+    @Override
+    public List<Direcciones> getDir() {
+        String query="From Direcciones"; //Hace referencia al modelo creado
+        List<Direcciones> resultado = entityManager.createQuery(query).getResultList();
+
+        return resultado;
+    }
 }

@@ -24,7 +24,7 @@ async function registrarCliente(){
                   });
 
         alert("Cliente Ingresado con Éxito");
-        location.href = "index.html"
+        location.href = "index.html";
 }
 
 /********* Funciones para la parte de los Documentos del Cliente *********/
@@ -45,7 +45,7 @@ async function addDocuments(){
                   });
 
         alert("Documento Añadido Exitosamente");
-        location.href = "index.html"
+        location.href = "infoClient.html";
 }
 
 //Función para el registro de las Direcciones del cliente
@@ -64,5 +64,5 @@ async function addAddress(){
                   });
 
         alert("Dirección Añadida Exitosamente");
-        location.href = "index.html"
+        location.href = "infoClient.html";
 }

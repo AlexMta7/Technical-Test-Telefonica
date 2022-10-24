@@ -22,4 +22,8 @@ public interface ClienteDao {
     void agregar(Documentos documento);
 
     void agregarD(Direcciones direcciones);
+
+    List<Documentos> getDocs();
+
+    List<Direcciones> getDir();
 }

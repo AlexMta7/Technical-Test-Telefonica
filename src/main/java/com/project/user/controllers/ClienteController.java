@@ -50,6 +50,8 @@ public class ClienteController {
         clienteDao.registro(cliente);
     }
 
+    /* ********** Métodos para el manejo de información de los Documentos y Direcciones ********* */
+
     @RequestMapping(value = "api/documentos", method = RequestMethod.POST)
     public void addDocuments(@RequestBody Documentos documento){
         clienteDao.agregar(documento);
@@ -59,4 +61,17 @@ public class ClienteController {
     public void addAddress(@RequestBody Direcciones direcciones){
         clienteDao.agregarD(direcciones);
     }
+
+    @RequestMapping(value = "api/docs/clients")
+    public List<Documentos> getDocs(){
+
+        return clienteDao.getDocs();
+    }
+
+    @RequestMapping(value = "api/address/clients")
+    public List<Direcciones> getDir(){
+
+        return clienteDao.getDir();
+    }
+
 }
