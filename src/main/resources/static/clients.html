@@ -342,7 +342,8 @@
                             </button>
     
                             <!-- Modal -->
-                            <div class="modal fade" id="modalCenter" tabindex="-1" style="display: none;" aria-hidden="true">
+                            <form onsubmit="updateClient()">
+                              <div class="modal fade" id="modalCenter" tabindex="-1" style="display: none;" aria-hidden="true">
                               <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
@@ -363,7 +364,7 @@
                                       </div>
                                       <div class="col mb-3">
                                         <label for="txtModalLastname" class="form-label">Lastname</label>
-                                        <input type="text" id="txtModalLastname" class="form-control" placeholder="Enter Lastname">
+                                        <input type="text" id="txtModalLastname" class="form-control" placeholder="Enter Lastname" required>
                                       </div>
                                     </div>
                                     <div class="row g-2">
@@ -381,11 +382,12 @@
                                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                       Close
                                     </button>
-                                    <button type="button" id="saveModal" onclick="updateClient()" class="btn btn-primary">Save changes</button>
+                                    <button type="submit" id="saveModal" class="btn btn-primary">Save changes</button>
                                   </div>
                                 </div>
                               </div>
-                            </div>
+                              </div>
+                            </form>
                         </div>
 
 

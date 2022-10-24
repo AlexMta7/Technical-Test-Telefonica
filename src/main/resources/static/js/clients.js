@@ -94,7 +94,7 @@ else{
 async function updateClient(){
   let client = {};
   let method = "";
-  if (document.getElementById("txtModalId").value != null) {
+  if (document.getElementById("txtModalId").value != "") {
     method = 'PUT';
     client.id = document.getElementById("txtModalId").value;
   }
@@ -113,14 +113,26 @@ const request = await fetch('api/clients', {
   body: JSON.stringify(client)
 });
 const response = await request.text();
-console.log(response);
-if (response == 'OK'){
-          alert("Client updated successfully");
-          location.reload();
-}
-else{
-     alert("Client");
-}
+  console.log(response);
+  
+  if (method == 'PUT') {
+    if (response == 'OK'){
+      alert("Client updated successfully");
+      location.reload();
+    }
+    else{
+      alert("Couldn't update client");
+    }
+  }
+  else if (method == 'POST') {
+    if (response == 'OK'){
+      alert("Client added successfully");
+      location.reload();
+    }
+    else{
+      alert("Client already exists");
+    }
+  }
 }
 
 async function deleteClient(id){
