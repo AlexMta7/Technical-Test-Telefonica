@@ -22,7 +22,8 @@ async function getClient(id) {
        const cliente = await request.json();
      
   console.log(cliente);
-  document.getElementById("saveModal").innerHTML = "Update";  
+  document.getElementById("saveModal").innerHTML = "Update"; 
+  document.getElementById("lblModalTitle").innerHTML = "Update Client";
 
   for(client of cliente){
     document.getElementById("txtModalId").value = client.id;
@@ -50,7 +51,7 @@ console.log(clientes);
         let deleteButton =  '<button type="button" id="deleteButton" onclick="deleteClient('+client.id+')" class="btn btn-icon btn-outline-danger">'
                          +  '   <span class="tf-icons bx bx-trash-alt"></span>'
                          +  '</button>';
-        let documentButton =  '<button type="button" id="documentButton" onclick="document('+client.id+')" class="btn btn-icon btn-outline-success">'
+        let documentButton =  '<button type="button" id="documentButton" onclick="getClient('+client.id+')" class="btn btn-icon btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalLong">'
                          +  '   <span class="tf-icons bx bx-file"></span>'
                          +  '</button>';
 
@@ -154,6 +155,7 @@ async function deleteClient(id){
 //Changes the name of the button depending on what button is clicked on
 function modifyModalAdd() {
   document.getElementById("saveModal").innerHTML = "Add";
+  document.getElementById("lblModalTitle").innerHTML = "Add Client";
 
   document.getElementById("txtModalId").value = "";
   document.getElementById("txtModalName").value = "";

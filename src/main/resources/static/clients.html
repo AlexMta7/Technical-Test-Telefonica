@@ -200,14 +200,14 @@
                 <!-- Tables -->
                 <li class="menu-item">
                     <a href="users.html" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-table"></i>
+                        <i class="menu-icon tf-icons bx bxs-user-detail"></i>
                         <div data-i18n="Tables">Users</div>
                     </a>
                 </li>
 
                 <li class="menu-item active">
                     <a href="clients.html" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-table"></i>
+                        <i class="menu-icon tf-icons bx bxs-user-detail"></i>
                         <div data-i18n="Tables">Clients</div>
                     </a>
                 </li>
@@ -336,18 +336,18 @@
                     <div class="card">
                         <h5 class="card-header">Clients Info</h5>
                         <div class="mb-2">
-                            <!-- Button trigger modal -->
-                            <button type="button" id="addButton" onclick="modifyModalAdd()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">
+                            <!-- Button trigger modal de ingreso de clientes-->
+                            <button type="button" id="addClientButton" onclick="modifyModalAdd()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">
                               Add Client
                             </button>
     
-                            <!-- Modal -->
+                            <!-- Modal de ingreso de clientes -->
                             <form onsubmit="updateClient()">
                               <div class="modal fade" id="modalCenter" tabindex="-1" style="display: none;" aria-hidden="true">
                               <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 class="modal-title" id="modalCenterTitle">Modal title</h5>
+                                    <h5 class="modal-title" id="lblModalClient">Modal title</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
                                   <div class="modal-body">
@@ -414,6 +414,69 @@
 
                     <hr class="my-5" />
 
+                     <!-- Button trigger modal de ingreso de documentos y direcciones-->
+                     <!-- <button type="button" id="addDocButton" onclick="modifyModalAdd()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDocs">
+                      Add Client
+                    </button> -->
+
+                    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLong">
+                      Option 1
+                    </button> -->
+
+                            <!-- Modal de ingreso de documentos y direcciones -->
+                            <div class="modal fade" id="modalLong" tabindex="-1" style="display: none;" aria-hidden="true">
+                              <div class="modal-dialog modal-xl" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLongTitle">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="row">
+                                      <div class="col mb-3">
+                                        <label for="txtModalName" class="form-label">Documentos</label>
+                                        <input type="text" id="txtModalName" class="form-control" placeholder="Enter Name" required>
+                                      </div>
+                                      <div class="col mb-3">
+                                        <label for="txtModalLastname" class="form-label">Direcciones</label>
+                                        <input type="text" id="txtModalLastname" class="form-control" placeholder="Enter Lastname" required>
+                                      </div>
+                                    </div>
+                                    <div class="row col-md-9"> 
+                                      <!-- ME HE QUEDADO AQUIIIII
+                                      QUIERO GENERAR LAS COLUMNAS AUTOMATICAMENTE -->
+                                      <div class="input-group col mb-3">
+                                        <button class="btn btn-outline-primary dropdown-toggle" id="btnDropDown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                          <i class='bx bx-id-card' ></i>
+                                        </button>
+                                        <ul class="dropdown-menu" id="dropDown" style="">
+                                          <li><a id="dpType1" class="dropdown-item" onclick="changeDP(document.getElementById('dpType1').innerHTML)">DUI</a></li>
+                                          <li><a id="dpType2" class="dropdown-item" onclick="changeDP(document.getElementById('dpType2').innerHTML)">NIT</a></li>
+                                          <li><a id="dpType3" class="dropdown-item" onclick="changeDP(document.getElementById('dpType3').innerHTML)">ISSS</a></li>
+                                          <li><a id="dpType3" class="dropdown-item" onclick="changeDP(document.getElementById('dpType3').innerHTML)">Passport</a></li>
+                                          <li>
+                                            <hr class="dropdown-divider">
+                                          </li>
+                                          <li><input id="dpType4" class="dropdown-item" onclick="changeDP(document.getElementById('dpType4').value)" placeholder="Type an option"></input></li>
+                                        </ul>
+                                        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                                      </div>
+                                      <div class="input-group col mb-3">
+                                        <!-- Lo que va a la par -->
+                                      </div>
+                                    </div>
+                                    <button type="button" onclick="contador()" id="btnAddDoc" class="btn btn-primary">Add</button>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                      Close
+                                    </button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
                 </div>
                 <!-- / Content -->
 
@@ -437,44 +500,6 @@
 </div>
 <!-- / Layout wrapper -->
 
- <!-- Modal -->
- <!--
-<div class="modal fade show" id="modalCenter" tabindex="-1" style="display: block;" aria-modal="true" role="dialog">
-                          <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="modalCenterTitle">Modal title</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                                <div class="row">
-                                  <div class="col mb-3">
-                                    <label for="nameWithTitle" class="form-label">Name</label>
-                                    <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Name">
-                                  </div>
-                                </div>
-                                <div class="row g-2">
-                                  <div class="col mb-0">
-                                    <label for="emailWithTitle" class="form-label">Email</label>
-                                    <input type="text" id="emailWithTitle" class="form-control" placeholder="xxxx@xxx.xx">
-                                  </div>
-                                  <div class="col mb-0">
-                                    <label for="dobWithTitle" class="form-label">DOB</label>
-                                    <input type="text" id="dobWithTitle" class="form-control" placeholder="DD / MM / YY">
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                  Close
-                                </button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                              </div>
-                            </div>
-                          </div>
-</div>
--->
-
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
 <script src="assets/vendor/libs/jquery/jquery.js"></script>
@@ -492,7 +517,7 @@
 
 <!-- Page JS -->
 <script src="js/clients.js"></script>
-<!-- <script src="assets/js/ui-modals.js"></script> -->
+<script src="js/client-documents.js"></script>
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
