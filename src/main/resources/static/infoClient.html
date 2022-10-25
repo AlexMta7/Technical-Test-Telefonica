@@ -225,7 +225,7 @@
         <i class='bx bx-check me-2'></i>
         <div class="me-auto fw-semibold">Sistema de Clientes</div>
     </div>
-    <div class="toast-body">Cliente Modificado Exitosamente</div>
+    <div class="toast-body">Información Modificada Exitosamente</div>
     <div class="toast-footer"><button type="button" onclick="location.reload()" class="btn btn-success">OK</button></div>
 </div>
 <!-- Toast with Placements -->
@@ -235,14 +235,14 @@
     <div class="card-body">
         <div class="row gx-3 gy-2 align-items-center">
             <div class="col-md-3">
-                <label class="form-label" for="selectTypeOpt">Type</label>
-                <select id="selectTypeOpt" class="form-select color-dropdown">
+                <label class="form-label" for="selectTypeOpt1">Type</label>
+                <select id="selectTypeOpt1" class="form-select color-dropdown">
                     <option value="bg-success">Success</option>
                 </select>
             </div>
             <div class="col-md-3">
-                <label class="form-label" for="selectPlacement">Placement</label>
-                <select class="form-select placement-dropdown" id="selectPlacement">
+                <label class="form-label" for="selectPlacement1">Placement</label>
+                <select class="form-select placement-dropdown" id="selectPlacement1">
                     <option value="top-0 start-50 translate-middle-x">Top center</option>
                 </select>
             </div>
@@ -253,11 +253,11 @@
 
 
 <!-- Maquetación del modal de modificación de cliente -->
-<div class="modal" id="modalScrollable" tabindex="-1" aria-labelledby="modalScrollableTitle" aria-hidden="true">
+<div class="modal" id="modalScrollableDoc" tabindex="-1" aria-labelledby="modalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalScrollableTitle">Modificación de Cliente</h5>
+                <h5 class="modal-title" id="modalScrollableTitle">Modificación de Documentos</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -265,35 +265,30 @@
                     <form>
                         <div class="row g-2">
                             <div class="col mb-0">
-                                <label for="txtName" class="form-label">Nombre Cliente</label>
-                                <input type="text" class="form-control" id="txtName" placeholder="Nombre">
-                            </div>
-                            <div class="col mb-0">
-                                <label for="txtLastName" class="form-label">Apellido Cliente</label>
-                                <input type="text" class="form-control" id="txtLastName" placeholder="Apellido">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row g-2">
-                            <div class="col mb-3">
-                                <label class="form-label" for="txtGender">Género</label>
-                                <select id="txtGender" class="form-select">
-                                    <option>Seleccione una opción</option>
-                                    <option value="Masculino">Masculino</option>
-                                    <option value="Femenino">Femenino</option>
-                                    <option value="Sin Especificar">No Especificar</option>
-                                </select>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row g-2">
-                            <div class="col mb-0">
-                                <label for="txtEmail" class="form-label">Email</label>
-                                <input type="text" class="form-control" id="txtEmail" placeholder="Email">
-                            </div>
-                            <div class="col mb-0">
                                 <label for="txtId" class="form-label">Id</label>
                                 <input type="text" class="form-control" id="txtId" readonly>
+                            </div>
+                            <div class="col mb-0">
+                                <label for="txtIdCli" class="form-label">Id Cliente</label>
+                                <input type="text" class="form-control" id="txtIdCli" readonly>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row g-2">
+                            <div class="col mb-0">
+                                <label class="form-label" for="txtTypeD">Tipo de Documento</label>
+                                <select id="txtTypeD" class="form-select">
+                                    <option>Seleccione una opción</option>
+                                    <option value="DUI">DUI</option>
+                                    <option value="NIT">NIT</option>
+                                    <option value="PASAPORTE">PASAPORTE</option>
+                                    <option value="SEGURO">SEGURO</option>
+                                    <option value="OTRO TIPO DOCUMENTO">OTRO</option>
+                                </select>
+                            </div>
+                            <div class="col mb-0">
+                                <label for="txtAddress" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" id="txtAddress" placeholder="Dirección">
                             </div>
                         </div>
                     </form>
@@ -303,7 +298,7 @@
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     Cerrar
                 </button>
-                <button type="button" id="showToastPlacement" data-bs-dismiss="modal" class="btn btn-primary">Modificar</button>
+                <button type="button" id="showToastPlacement1" data-bs-dismiss="modal" class="btn btn-primary">Modificar</button>
             </div>
         </div>
     </div>

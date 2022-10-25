@@ -74,4 +74,10 @@ public class ClienteController {
         return clienteDao.getDir();
     }
 
+    @RequestMapping(value = "api/docs/client/{id}", method = RequestMethod.GET )
+    public List<Documentos> getInfoDoc(@PathVariable Long id){
+
+        return clienteDao.getInfoDoc(id);
+    }
+
 }

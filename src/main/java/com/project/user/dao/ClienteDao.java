@@ -26,4 +26,6 @@ public interface ClienteDao {
     List<Documentos> getDocs();
 
     List<Direcciones> getDir();
+
+    List<Documentos> getInfoDoc(Long id);
 }

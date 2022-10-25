@@ -82,4 +82,12 @@ public class ClienteDaoImp implements ClienteDao{
 
         return resultado;
     }
+
+    @Override
+    public List<Documentos> getInfoDoc(Long id) {
+        String query="From Documentos WHERE id = " + id ;
+        List<Documentos> resultado = entityManager.createQuery(query).getResultList();
+
+        return resultado;
+    }
 }
