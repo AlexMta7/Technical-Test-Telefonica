@@ -50,17 +50,21 @@ console.log(clientes);
                          +  '</button>';
         let deleteButton =  '<button type="button" id="deleteButton" onclick="deleteClient('+client.id+')" class="btn btn-icon btn-outline-danger">'
                          +  '   <span class="tf-icons bx bx-trash-alt"></span>'
-                         +  '</button>';
-        let documentButton =  '<button type="button" id="documentButton" onclick="getDocuments()" class="btn btn-icon btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalLong">'
-                         +  '   <span class="tf-icons bx bx-file"></span>'
-                         +  '</button>';
+        + '</button>';
+        let findButton =  '<button type="button" id="findButton" onclick="getDocuments(\''+client.email+'\')" class="btn btn-icon btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalLong">'
+                         +  '   <span class="tf-icons bx bx-search-alt"></span>'
+        + '</button>';
+      
+        let documentButton =  '<button type="button" id="documentButton" onclick="getDocuments(\''+client.email+'\')" class="btn btn-icon btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalLong">'
+        +  '   <span class="tf-icons bx bx-file"></span>'
+        +  '</button>';
 
         let clientHtml = '   <tr> '
                      +  '  <td>'+client.id+'</td>'
                      +  '  <td><strong>'+client.name+ ' ' +client.lastname+ '</strong></td>'
                      +  '  <td>'+client.email+'</td> '
                      +  '  <td>'+client.service+'</td>'
-                     +  '  <td>'+updateButton+' '+documentButton+' '+deleteButton+'</td>'
+                     +  '  <td>'+updateButton+' '+findButton+' '+documentButton+' '+deleteButton+'</td>'
                      +  '</tr>';
         listHtml += clientHtml;
     }

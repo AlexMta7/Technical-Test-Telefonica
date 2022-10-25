@@ -21,8 +21,9 @@ $(document).ready(function() {
 // }
 // }
 
-async function getDocuments() {
-    const request = await fetch('api/docs/alex@gmail.com', {
+async function getDocuments(email) { 
+  console.log();
+    const request = await fetch('api/docs/'+email, {
        method: 'GET',
        headers: getHeaders()
     });
@@ -32,79 +33,105 @@ async function getDocuments() {
 console.log(documents);
   let inputHtml = '';
   let cont = 0;
-  let cont2 = 0;
-  let cont3 = 0;
-  let cont4 = 0;
-  let cont5 = 0;
-  let id = '';
+  let cont2 = 1;
+  let cont3 = 2;
+  let cont4 = 3;
+  let cont5 = 4;
+  let cont6 = 5;
+  let cont7 = 6;
 
   for (let docs of documents) {
     cont++;
-    cont2++;
-    cont3+=2;
-    cont4+=3;
-    cont5+=4;
+    cont2+=6;
+    cont3+=6;
+    cont4+=6;
+    cont5+=6;
+    cont6+=6;
+    cont7+=6;
     console.log(cont);
-   
-//  document.getElementById("btnDropDown"+cont+"").innerText = docs.type //EL boton
-    
-  //document.getElementById("txtModalClientSecret").value = docs.id;
 
-  let data = '<div class="input-group col mb-3">'
+    let data = '<div class="input-group col mb-3">'
+           + '<input id="txtSecretID'+cont+'" class="dropdown-item" value="' + docs.id + '" disabled hidden></input>'
+           +'<input id="txtSecretEmail" class="dropdown-item" value="'+email+'"  disabled hidden></input>'
            + '<button class="btn btn-outline-primary dropdown-toggle" value="'+docs.type+'" id="btnDropDown'+cont+'" type="button" data-bs-toggle="dropdown" aria-expanded="false">'
-           + ' '+docs.type+''
+           + ''+docs.type+''
            + '</button>'
            + '<ul class="dropdown-menu" id="dropDown'+cont+'" style="">'
-           + '<li><a id="dpType'+cont2+'" class="dropdown-item" onclick="changeDP(document.getElementById("dpType1").innerHTML)">DUI</a></li>'
-           + '<li><a id="dpType'+cont3+'" class="dropdown-item" onclick="changeDP(document.getElementById("dpType2").innerHTML)">NIT</a></li>'
-           + '<li><a id="dpType'+cont4+'" class="dropdown-item" onclick="changeDP(document.getElementById("dpType3").innerHTML)">ISSS</a></li>'
-           + '<li><a id="dpType'+cont5+'" class="dropdown-item" onclick="changeDP(document.getElementById("dpType4").innerHTML)">Passport</a></li>'
+           + '<li><a id="dpType'+cont2+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont2+'\').innerHTML,'+cont+')">DUI</a></li>'
+           + '<li><a id="dpType'+cont3+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont3+'\').innerHTML,'+cont+')">NIT</a></li>'
+           + '<li><a id="dpType'+cont4+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont4+'\').innerHTML,'+cont+')">ISSS</a></li>'
+           + '<li><a id="dpType'+cont5+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont5+'\').innerHTML,'+cont+')">Passport</a></li>'
+           + '<li>'
+           + '<hr class="dropdown-divider">'
+           + '</li>'
+           + '<li><input id="dpType'+cont6+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont6+'\').value,'+cont+')" placeholder="Type an option"></input></li>'
+           + '</ul>'
+           + '<input type="text" id="txtDocument'+cont+'" class="form-control" value="'+docs.document+'" aria-label="Text input with dropdown button">'
+           + '<button class="btn btn-outline-primary tf-icons bx bxs-edit"  onclick="updateDoc('+docs.id+','+cont+')" type="button" aria-expanded="false">'
+           + '</button>'
+           + '</div>';
+    inputHtml += data;
+    
+  }
+  // console.log(inputHtml);
+    document.querySelector('#input_docs div div').outerHTML = inputHtml;
+ 
+}
+
+function addButton() {
+  let data = '<div class="input-group col mb-3">'
+           + '<button class="btn btn-outline-primary dropdown-toggle" value="" id="btnDropDown" type="button" data-bs-toggle="dropdown" aria-expanded="false">'
+          
+           + '</button>'
+           + '<ul class="dropdown-menu" id="dropDown" style="">'
+           + '<li><a id="dpType" class="dropdown-item" onclick="changeDP(document.getElementById(dpType).innerHTML)">DUI</a></li>'
+           + '<li><a id="dpType" class="dropdown-item" onclick="changeDP(document.getElementById(dpType).innerHTML)">NIT</a></li>'
+           + '<li><a id="dpType" class="dropdown-item" onclick="changeDP(document.getElementById(dpType).innerHTML)">ISSS</a></li>'
+           + '<li><a id="dpType" class="dropdown-item" onclick="changeDP(document.getElementById(dpType).innerHTML)">Passport</a></li>'
            + '<li>'
            + '<hr class="dropdown-divider">'
            + '</li>'
            + '<li><input id="dpType5" class="dropdown-item" onclick="changeDP(document.getElementById("dpType5").value)" placeholder="Type an option"></input></li>'
            + '</ul>'
-           + '<input type="text" class="form-control" value="'+docs.document+'" aria-label="Text input with dropdown button">'
-           + '</div>';
-    inputHtml += data;
-    
-}
-document.querySelector('#input_docs div div').outerHTML = inputHtml;
+    + '<input type="text" class="form-control" value="" aria-label="Text input with dropdown button">'
+    + '</div>';
+    document.querySelector('#input_docs div div').outerHTML = data;
   
- 
 }
 
 function addDocument() {
     let type = "";
     type = document.getElementById("btnDropDown").innerHTML;
     console.log(type);
-
- 
-    for (let client of clientes){
-        let updateButton =  '<button type="button" id="updateButton" onclick="getClient('+client.id+')" class="btn btn-icon btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">'
-                         +  '   <span class="tf-icons bx bx-edit"></span>'
-                         +  '</button>';
-        let deleteButton =  '<button type="button" id="deleteButton" onclick="deleteClient('+client.id+')" class="btn btn-icon btn-outline-danger">'
-                         +  '   <span class="tf-icons bx bx-trash-alt"></span>'
-                         +  '</button>';
-        let documentButton =  '<button type="button" id="documentButton" onclick="getClient('+client.id+')" class="btn btn-icon btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalLong">'
-                         +  '   <span class="tf-icons bx bx-file"></span>'
-                         +  '</button>';
-
-        let clientHtml = '   <tr> '
-                     +  '  <td>'+client.id+'</td>'
-                     +  '  <td><strong>'+client.name+ ' ' +client.lastname+ '</strong></td>'
-                     +  '  <td>'+client.email+'</td> '
-                     +  '  <td>'+client.service+'</td>'
-                     +  '  <td>'+updateButton+' '+documentButton+' '+deleteButton+'</td>'
-                     +  '</tr>';
-        listHtml += clientHtml;
-    }
-
-    document.querySelector('#table_docs div div').outerHTML = listHtml;
 }
 
-function changeDP(name) {
-    document.getElementById('btnDropDown').innerHTML = name;
+async function updateDoc(id,cont) {
+
+  let docs = {};
+  docs.id = id
+  docs.client_id = document.getElementById("txtSecretEmail").value;
+  docs.document = document.getElementById("txtDocument"+cont+"").value;
+  docs.type = document.getElementById("btnDropDown"+cont+"").innerHTML;
+
+  console.log();
+  const request = await fetch('api/docs/', {
+     method: 'PUT',
+    headers: getHeaders(),
+    body: JSON.stringify(docs)
+  });
+
+  const response = await request.text();
+  console.log(response);
+}
+
+function changeDP(name,numId) {
+    document.getElementById('btnDropDown'+numId+'').innerHTML = name;
+}
+
+function cleanModal() {
+  location.reload();
+  // document.querySelector("#input_docs div").outerHTML = '<div class="col mb-3">'
+  // +'<label class="form-label">Documentos</label>'
+  // + '</div>';
 }
 

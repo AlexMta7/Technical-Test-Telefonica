@@ -429,7 +429,7 @@
                                 <div class="modal-content" >
                                   <div class="modal-header">
                                     <h5 class="modal-title" id="modalLongTitle">Modal title</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" onclick="cleanModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
                                   <div class="modal-body">
                                     <div class="row" id="input_docs">
@@ -437,7 +437,7 @@
                                         <label class="form-label">Documentos</label>
                                         <!-- Input generado por JS -->
                                         <div>
-                                          
+                                         
                                         </div>
                                       </div>
                                       <div class="col mb-3" id="input_address">
@@ -445,37 +445,19 @@
                                         <input type="text"  class="form-control" placeholder="Enter Lastname" required>
                                       </div>
                                     </div>
-                                    <div class="row col-md-9"> 
-                                      <!-- ME HE QUEDADO AQUIIIII
-                                      QUIERO GENERAR LAS COLUMNAS AUTOMATICAMENTE -->
-                                      <!-- <div class="input-group col mb-3">
-                                        <button class="btn btn-outline-primary dropdown-toggle" id="btnDropDown2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                          <i class='bx bx-id-card' ></i>
-                                        </button>
-                                        <ul class="dropdown-menu" id="dropDown" style="">
-                                          <li><a id="dpType1" class="dropdown-item" onclick="changeDP(document.getElementById('dpType1').innerHTML)">DUI</a></li>
-                                          <li><a id="dpType2" class="dropdown-item" onclick="changeDP(document.getElementById('dpType2').innerHTML)">NIT</a></li>
-                                          <li><a id="dpType3" class="dropdown-item" onclick="changeDP(document.getElementById('dpType3').innerHTML)">ISSS</a></li>
-                                          <li><a id="dpType3" class="dropdown-item" onclick="changeDP(document.getElementById('dpType4').innerHTML)">Passport</a></li>
-                                          <li>
-                                            <hr class="dropdown-divider">
-                                          </li>
-                                          <li><input id="dpType4" class="dropdown-item" onclick="changeDP(document.getElementById('dpType5').value)" placeholder="Type an option"></input></li>
-                                        </ul>
-                                        <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                                      </div> -->
-                                      <div class="input-group col mb-3">
-                                        <!-- Lo que va a la par -->
-                                      </div>
-                                    </div>
                                   </div>
                                   <div class="modal-footer">
-                                    <button type="button" onclick="contador()" id="btnAddDoc" class="btn btn-primary">Add</button>
-
-                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                      Close
-                                    </button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <div class="row">
+                                      <div class="">
+                                        <button type="button" onclick="addButton()" id="btnAddDoc" class="btn btn-success">Add</button>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col align-self-center">
+                                        <button type="button" onclick="updateDoc()" class="btn btn-primary">Save changes</button>
+                                      </div>
+                                      
+                                    </div>
                                   </div>
                                 </div>
                               </div>
