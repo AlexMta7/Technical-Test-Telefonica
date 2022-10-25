@@ -6,6 +6,7 @@ import com.project.user.models.Documentos;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.OneToMany;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -89,5 +90,35 @@ public class ClienteDaoImp implements ClienteDao{
         List<Documentos> resultado = entityManager.createQuery(query).getResultList();
 
         return resultado;
+    }
+
+    @Override
+    public void editarDoc(Documentos documentos) {
+        entityManager.merge(documentos);
+    }
+
+    @Override
+    public List<Direcciones> getInfoDirec(Long id) {
+        String query="From Direcciones WHERE id = " + id ;
+        List<Direcciones> resultado = entityManager.createQuery(query).getResultList();
+
+        return resultado;
+    }
+
+    @Override
+    public void editarDire(Direcciones direcciones) {
+        entityManager.merge(direcciones);
+    }
+
+    @Override
+    public void eliminarDoc(Long id) {
+        Documentos documentos = entityManager.find(Documentos.class,id);
+        entityManager.remove(documentos);
+    }
+
+    @Override
+    public void eliminarDirec(Long id) {
+        Direcciones direcciones= entityManager.find(Direcciones.class,id);
+        entityManager.remove(direcciones);
     }
 }

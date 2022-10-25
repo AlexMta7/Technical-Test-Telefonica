@@ -28,4 +28,14 @@ public interface ClienteDao {
     List<Direcciones> getDir();
 
     List<Documentos> getInfoDoc(Long id);
+
+    void editarDoc(Documentos documentos);
+
+    List<Direcciones> getInfoDirec(Long id);
+
+    void editarDire(Direcciones direcciones);
+
+    void eliminarDoc(Long id);
+
+    void eliminarDirec(Long id);
 }

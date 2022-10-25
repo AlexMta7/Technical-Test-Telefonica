@@ -74,10 +74,39 @@ public class ClienteController {
         return clienteDao.getDir();
     }
 
+
+
     @RequestMapping(value = "api/docs/client/{id}", method = RequestMethod.GET )
     public List<Documentos> getInfoDoc(@PathVariable Long id){
 
         return clienteDao.getInfoDoc(id);
     }
 
+    @RequestMapping(value = "api/docs/client", method = RequestMethod.PUT)
+    public void editarDocCli(@RequestBody Documentos documentos){
+        clienteDao.editarDoc(documentos);
+    }
+
+    @RequestMapping(value = "api/direc/client/{id}", method = RequestMethod.GET )
+    public List<Direcciones> getInfoDirec(@PathVariable Long id){
+
+        return clienteDao.getInfoDirec(id);
+    }
+
+    @RequestMapping(value = "api/dire/client", method = RequestMethod.PUT)
+    public void editarDirecCli(@RequestBody Direcciones direcciones){
+        clienteDao.editarDire(direcciones);
+    }
+
+    @RequestMapping(value = "api/docs/client/{id}", method = RequestMethod.DELETE)
+    public void eliminarDoc(@PathVariable Long id){
+
+        clienteDao.eliminarDoc(id);
+    }
+
+    @RequestMapping(value = "api/direc/client/{id}", method = RequestMethod.DELETE)
+    public void eliminarDirec(@PathVariable Long id){
+
+        clienteDao.eliminarDirec(id);
+    }
 }

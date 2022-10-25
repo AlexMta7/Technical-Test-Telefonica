@@ -251,8 +251,7 @@
 </div>
 <!--/ Bootstrap Toasts with Placement -->
 
-
-<!-- Maquetación del modal de modificación de cliente -->
+<!-- Maquetación del modal de modificación de documentos del cliente -->
 <div class="modal" id="modalScrollableDoc" tabindex="-1" aria-labelledby="modalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
@@ -287,8 +286,8 @@
                                 </select>
                             </div>
                             <div class="col mb-0">
-                                <label for="txtAddress" class="form-label">Dirección</label>
-                                <input type="text" class="form-control" id="txtAddress" placeholder="Dirección">
+                                <label for="txtDocument" class="form-label">Número Documento</label>
+                                <input type="text" class="form-control" id="txtDocument" placeholder="Número Documento">
                             </div>
                         </div>
                     </form>
@@ -304,6 +303,56 @@
     </div>
 </div>
 
+
+<!-- Maquetación del modal de modificación de direcciones del cliente -->
+<div class="modal" id="modalScrollableDir" tabindex="-1" aria-labelledby="modalScrollableTitle1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalScrollableTitle1">Modificación de Direcciones</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert">
+                    <form>
+                        <div class="row g-2">
+                            <div class="col mb-0">
+                                <label for="txtiDi" class="form-label">Id</label>
+                                <input type="text" class="form-control" id="txtiDi" readonly>
+                            </div>
+                            <div class="col mb-0">
+                                <label for="txtIdClie" class="form-label">Id Cliente</label>
+                                <input type="text" class="form-control" id="txtIdClie" readonly>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row g-2">
+                            <div class="col mb-0">
+                                <label class="form-label" for="txtNameDi">Tipo Dirección</label>
+                                <select id="txtNameDi" class="form-select">
+                                    <option>Seleccione una opción</option>
+                                    <option value="PRINCIPAL">PRINCIPAL</option>
+                                    <option value="SECUNDARIA">SECUNDARIA</option>
+                                    <option value="OTRA DIRECCIÓN">OTRA</option>
+                                </select>
+                            </div>
+                            <div class="col mb-0">
+                                <label for="txtAddr" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" id="txtAddr" placeholder="Dirección">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Cerrar
+                </button>
+                <button type="button" id="showToastPlacement2" data-bs-dismiss="modal" class="btn btn-primary">Modificar</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
 <script src="/assets/vendor/libs/jquery/jquery.js"></script>
