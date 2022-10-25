@@ -1,4 +1,4 @@
-/*package com.project.user.models;
+package com.project.user.models;
 
 import javax.persistence.*;
 import lombok.*;
@@ -10,23 +10,16 @@ import lombok.*;
 public class documentModel {
 
     @Id
-    @ManyToOne
-    @JoinColumn(name = "doc_client_id")
-    private userModel clientId;
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
 
-    @Column(name = "doc_dui")
-    private String dui;
+    @Column(name = "doc_client_id")
+    private String client_id;
+
+    @Column(name = "doc_type")
+    private String type;
     
-    @Column(name = "doc_passport")
-    private String passport;
-
-    @Column(name = "doc_isss")
-    private String isss;
-
-    @Column(name = "doc_nit")
-    private String nit;
-
-    @Column(name = "doc_other")
-    private String other;
+    @Column(name = "doc_document")
+    private String document;
 }
-*/
