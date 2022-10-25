@@ -414,16 +414,7 @@
 
                     <hr class="my-5" />
 
-                     <!-- Button trigger modal de ingreso de documentos y direcciones-->
-                     <!-- <button type="button" id="addDocButton" onclick="modifyModalAdd()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDocs">
-                      Add Client
-                    </button> -->
-
-                    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLong">
-                      Option 1
-                    </button> -->
-
-                            <!-- Modal de ingreso de documentos y direcciones -->
+                            <!-- Modal de busqueda de documentos y direcciones por email de cliente -->
                             <div class="modal fade" id="modalLong" tabindex="-1" style="display: none;" aria-hidden="true">
                               <div class="modal-dialog modal-xl" role="document">
                                 <div class="modal-content" >
@@ -448,9 +439,9 @@
                                   </div>
                                   <div class="modal-footer">
                                     <div class="row">
-                                      <div class="">
+                                      <!-- <div class="">
                                         <button type="button" onclick="addButton()" id="btnAddDoc" class="btn btn-success">Add</button>
-                                      </div>
+                                      </div> -->
                                     </div>
                                     <div class="row">
                                       <div class="col align-self-center">
@@ -462,6 +453,49 @@
                                 </div>
                               </div>
                             </div>
+                            <!--/ Modal de busqueda de documentos y direcciones por email de cliente -->
+
+                            <!-- Modal de ingreso de documentos y direcciones por email de cliente -->
+                            <div class="modal fade" id="modalIngresoDoc" tabindex="-1" style="display: none;" aria-hidden="true">
+                              <div class="modal-dialog modal-xl" role="document">
+                                <div class="modal-content" >
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLongTitle">Modal title</h5>
+                                    <button type="button" onclick="cleanModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="row" id="input_docs">
+                                      <div class="col mb-3" >
+                                        <label class="form-label">Documentos</label>
+                                        <!-- Input generado por JS -->
+                                        <div>
+                                         
+                                        </div>
+                                      </div>
+                                      <div class="col mb-3" id="input_address">
+                                        <label  class="form-label">Direcciones</label>
+                                        <input type="text"  class="form-control" placeholder="Enter Lastname" required>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <div class="row">
+                                      <!-- <div class="">
+                                        <button type="button" onclick="addButton()" id="btnAddDoc" class="btn btn-success">Add</button>
+                                      </div> -->
+                                    </div>
+                                    <div class="row">
+                                      <div class="col align-self-center">
+                                        <button type="button" onclick="updateDoc()" class="btn btn-primary">Save changes</button>
+                                      </div>
+                                      
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!--/ Modal de ingreso de documentos y direcciones por email de cliente -->
+
 
                 </div>
                 <!-- / Content -->

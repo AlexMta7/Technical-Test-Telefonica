@@ -55,7 +55,7 @@ console.log(clientes);
                          +  '   <span class="tf-icons bx bx-search-alt"></span>'
         + '</button>';
       
-        let documentButton =  '<button type="button" id="documentButton" onclick="getDocuments(\''+client.email+'\')" class="btn btn-icon btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalLong">'
+        let documentButton =  '<button type="button" id="documentButton" onclick="getDocuments(\''+client.email+'\')" class="btn btn-icon btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalIngresoDoc">'
         +  '   <span class="tf-icons bx bx-file"></span>'
         +  '</button>';
 

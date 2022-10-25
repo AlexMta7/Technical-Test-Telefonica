@@ -124,6 +124,7 @@ async function updateDoc(id,cont) {
 
   const response = await request.text();
   console.log(response);
+  alert("Document updated");
 }
 
 
