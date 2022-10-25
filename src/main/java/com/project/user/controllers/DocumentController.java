@@ -35,5 +35,10 @@ public class DocumentController {
     public String updateDocs(@RequestBody documentModel document) {
         documentDao.updateDocs(document);
         return "OK";
-    }   
+    }
+    
+    @RequestMapping(value = "api/docs/{id}", method = RequestMethod.DELETE)
+    public void deleteDoc(@PathVariable Long id){
+        documentDao.deleteDoc(id);
+    }
 }

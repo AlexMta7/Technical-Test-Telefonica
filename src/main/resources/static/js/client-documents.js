@@ -68,6 +68,8 @@ console.log(documents);
            + '</ul>'
            + '<input type="text" id="txtDocument'+cont+'" class="form-control" value="'+docs.document+'" aria-label="Text input with dropdown button">'
            + '<button class="btn btn-outline-primary tf-icons bx bxs-edit"  onclick="updateDoc('+docs.id+','+cont+')" type="button" aria-expanded="false">'
+      + '</button>'
+      + '<button class="btn btn-outline-danger tf-icons bx bx-trash-alt"  onclick="deleteDoc('+docs.id+')" type="button" aria-expanded="false">'
            + '</button>'
            + '</div>';
     inputHtml += data;
@@ -122,6 +124,23 @@ async function updateDoc(id,cont) {
 
   const response = await request.text();
   console.log(response);
+}
+
+
+async function deleteDoc(id){
+
+  if(!confirm('Do you want to delete document?')){
+          //Con return se corta el flujo de la función
+          return;
+      }
+
+  const request = await fetch('api/docs/' + id, {
+      method: 'DELETE',
+      headers: getHeaders()
+    });
+      location.reload();
+
+  alert("Document deleted");
 }
 
 function changeDP(name,numId) {

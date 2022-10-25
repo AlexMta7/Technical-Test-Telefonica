@@ -13,6 +13,7 @@ public class UserDaoImp implements UserDao{
 
     @PersistenceContext
     private EntityManager entityManager;
+    
     @Override
     public List<userModel> getUsers() {
         String query = "FROM userModel";

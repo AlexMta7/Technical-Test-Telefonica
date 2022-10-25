@@ -13,5 +13,7 @@ public interface DocumentDao {
     documentModel addDocs(documentModel document);
 
     documentModel updateDocs(documentModel document);
+
+    void deleteDoc(Long id);
     
 }

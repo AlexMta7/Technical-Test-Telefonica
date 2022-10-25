@@ -12,7 +12,7 @@ public class documentModel {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
 
     @Column(name = "doc_client_id")
     private String client_id;

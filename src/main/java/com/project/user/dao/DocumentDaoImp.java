@@ -36,5 +36,11 @@ public class DocumentDaoImp implements DocumentDao{
         return entityManager.merge(document);
     }
 
+    @Override
+    public void deleteDoc(Long id) {
+        documentModel document = entityManager.find(documentModel.class,id);
+        entityManager.remove(document);
+    }
+
     
 }
