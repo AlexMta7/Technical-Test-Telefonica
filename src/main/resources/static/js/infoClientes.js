@@ -30,7 +30,7 @@ async function cargarInfoDocs(){
        let btnDelete = '<button type="button" onclick="eliminarDoc(' + doc.id + ')" class="btn btn-icon btn-danger" title="Eliminar Documento"><span class="tf-icons bx bx-trash"></span></button>';
        let btnMod = '<button type="button" onclick="getInfoDoc(' + doc.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollableDoc" title="Modificar Documento"><span class="tf-icons bx bx-pencil"></span></button>';
 
-       let docHtml = '<tr><td>'+ doc.id +'</td><td>' + doc.id_client + '</td><td>' + doc.document_name + '</td><td>'
+       let docHtml = '<tr><td>'+ doc.id +'</td><td>' + doc.id_client + '</td><td>'  + doc.name_client + '</td><td>' + doc.document_name + '</td><td>'
        + doc.document +  '</td><td>' + btnDelete + ' ' + btnMod + '</td></tr>';
         listHtml += docHtml;
       }
@@ -58,8 +58,8 @@ async function cargarInfoAddress(){
        let btnDelete = '<a href="#" onclick="eliminarAdr(' + ac.id + ')" class="btn btn-icon btn-danger" title="Eliminar Dirección"><span class="tf-icons bx bx-trash"></span></a>';
        let btnMod = '<button type="button" onclick="getInfoDirec(' + ac.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollableDir" title="Modificar Dirección"><span class="tf-icons bx bx-pencil"></span></button>';
 
-       let docHtml = '<tr><td>'+ ac.id +'</td><td>' + ac.id_client + '</td><td>' + ac.name_address + '</td><td>'
-       + ac.address +  '</td><td>' + btnDelete + ' ' + btnMod + '</td></tr>';
+       let docHtml = '<tr><td>' + ac.id + '</td><td>'  + ac.id_client + '</td><td>' + ac.name_client + '</td><td>'
+       + ac.name_address + '</td><td>' + ac.address +  '</td><td>' + btnDelete + ' ' + btnMod + '</td></tr>';
         listHtml += docHtml;
       }
 
@@ -79,6 +79,7 @@ async function getInfoDoc(id){
         for(let docu of documentos){
             document.getElementById("txtId").value = docu.id;
             document.getElementById("txtIdCli").value = docu.id_client;
+            document.getElementById("txtNaC").value = docu.name_client;
             document.getElementById("txtTypeD").value = docu.document_name;
             document.getElementById("txtDocument").value = docu.document;
         }
@@ -91,6 +92,7 @@ async function editarDoc(){
 
     datoEditDoc.id = document.getElementById("txtId").value;
     datoEditDoc.id_client = document.getElementById("txtIdCli").value;
+    datoEditDoc.name_client = document.getElementById("txtNaC").value;
     datoEditDoc.document_name = document.getElementById("txtTypeD").value;
     datoEditDoc.document = document.getElementById("txtDocument").value;
 
@@ -113,6 +115,7 @@ async function getInfoDirec(id){
         for(let dire of direcciones){
             document.getElementById("txtiDi").value = dire.id;
             document.getElementById("txtIdClie").value = dire.id_client;
+            document.getElementById("txtNaCl").value = dire.name_client;
             document.getElementById("txtNameDi").value = dire.name_address;
             document.getElementById("txtAddr").value = dire.address;
         }
@@ -125,6 +128,7 @@ async function editarDire(){
 
     datoEditDir.id = document.getElementById("txtiDi").value;
     datoEditDir.id_client = document.getElementById("txtIdClie").value;
+    datoEditDir.name_client = document.getElementById("txtNaCl").value;
     datoEditDir.name_address = document.getElementById("txtNameDi").value;
     datoEditDir.address = document.getElementById("txtAddr").value;
 

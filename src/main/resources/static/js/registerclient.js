@@ -35,6 +35,7 @@ async function addDocuments(){
     let datoDocument = {};
 
         datoDocument.id_client = document.getElementById("txtIdC").value;
+        datoDocument.name_client = document.getElementById("txtNameC").value;
         datoDocument.document_name = document.getElementById("txtTypeD").value;
         datoDocument.document = document.getElementById("txtNumDoc").value;
 
@@ -54,6 +55,7 @@ async function addAddress(){
     let datoAddress = {};
 
         datoAddress.id_client = document.getElementById("txtIdCl").value;
+        datoAddress.name_client = document.getElementById("txtNameCl").value;
         datoAddress.name_address = document.getElementById("txtNameD").value;
         datoAddress.address = document.getElementById("txtAddress").value;
 

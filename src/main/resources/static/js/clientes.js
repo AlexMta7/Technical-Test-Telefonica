@@ -94,7 +94,9 @@ async function getIdCliente(id){
 
        for(let cli of clientes){
             document.getElementById("txtIdC").value = cli.id;
+            document.getElementById("txtNameC").value = cli.nombre;
             document.getElementById("txtIdCl").value = cli.id;
+            document.getElementById("txtNameCl").value = cli.nombre;
        }
 }
 
