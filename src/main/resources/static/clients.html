@@ -340,6 +340,12 @@
                             <button type="button" id="addClientButton" onclick="modifyModalAdd()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">
                               Add Client
                             </button>
+                            <!--/ Button trigger modal de ingreso de clientes-->
+                            <!-- Button trigger modal de ingreso de clientes-->
+                            <button type="button" id="btnDownloadData" onclick="getDataToDownload()" class="btn btn-info">
+                              Download Info
+                            </button>
+                            <!--/ Button trigger modal de ingreso de clientes-->
     
                             <!-- Modal de ingreso de clientes -->
                             <form onsubmit="updateClient()">
@@ -388,6 +394,7 @@
                               </div>
                               </div>
                             </form>
+                            <!--/ Modal de ingreso de clientes -->
                         </div>
 
 
@@ -530,7 +537,6 @@
                                       <div class="col align-self-center">
                                         <button type="button" onclick="" data-bs-dismiss="modal" class="btn btn-primary">Done</button>
                                       </div>
-                                      
                                     </div>
                                   </div>
                                 </div>
@@ -581,6 +587,12 @@
 <script src="js/clients.js"></script>
 <script src="js/client-documents.js"></script>
 <script src="js/client-addresses.js"></script>
+<script src="js/FileSaver.js"></script>
+<script src="js/download-data.js"></script>
+<!-- <script type="text/javascript">
+    var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, "hello world.txt");
+</script> -->
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>

@@ -49,5 +49,11 @@ public class ClientDaoImp implements ClientDao{
         return !list.isEmpty();
     }
 
+    @Override
+    public List<clientModel> getClientsReport() {
+        String query = "FROM clientModel INTO OUTFILE 'C:/Users/GIS0607/Desktop/Reports/abc.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n';";
+        return entityManager.createQuery(query).getResultList();
+    }
+
 
 }

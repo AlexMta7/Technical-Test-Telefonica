@@ -17,6 +17,6 @@ public interface AddressDao {
 
     void deleteAddress(Long id);
 
-    // void deleteAddressByEmail(String email);
+    String deleteAddressByEmail(String email);
     
 }

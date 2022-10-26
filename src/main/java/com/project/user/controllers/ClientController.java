@@ -41,9 +41,9 @@ public class ClientController {
     @RequestMapping(value = "api/clients", method = RequestMethod.PUT)
     public String updateClient(@RequestBody clientModel client) {
 
-            clientDao.updateClient(client);
-            return "OK";
-   
+        clientDao.updateClient(client);
+        return "OK";
+
         // if(!clientDao.verifyClient(client)) {
         //     clientDao.updateClient(client);
         //     return "OK";
@@ -51,6 +51,11 @@ public class ClientController {
         // else {
         //     return "FAIL";
         // }
+    }
+    
+    @RequestMapping(value = "api/clients/report", method = RequestMethod.GET)
+    public List<clientModel> getClientsReport() {
+        return clientDao.getClientsReport();
     }
 
 }
