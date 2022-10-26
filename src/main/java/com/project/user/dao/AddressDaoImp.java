@@ -42,5 +42,11 @@ public class AddressDaoImp implements AddressDao {
         addressModel address = entityManager.find(addressModel.class,id);
         entityManager.remove(address);
     }
+
+    // @Override
+    // public void deleteAddressByEmail(String email) {
+    //     addressModel address = entityManager.find(addressModel.class,email);
+    //     entityManager.remove(address);
+    // }
     
 }

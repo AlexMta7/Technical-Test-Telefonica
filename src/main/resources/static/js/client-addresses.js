@@ -49,7 +49,7 @@ $(document).ready(function () {
              + '</li>'
              + '<li><input id="dpTypeAddress'+cont6+'" class="dropdown-item" onclick="changeDDAddress(document.getElementById(\'dpTypeAddress'+cont6+'\').value,'+cont+')" placeholder="Type an option"></input></li>'
              + '</ul>'
-             + '<input type="text" id="txtDocument'+cont+'" class="form-control" value="'+addre.address+'" aria-label="Text input with dropdown button">'
+             + '<input type="text" id="txtAddress'+cont+'" class="form-control" value="'+addre.address+'" aria-label="Text input with dropdown button">'
              + '<button class="btn btn-outline-primary tf-icons bx bxs-edit"  onclick="updateAddress('+addre.id+','+cont+')" type="button" aria-expanded="false">'
         + '</button>'
         + '<button class="btn btn-outline-danger tf-icons bx bx-trash-alt"  onclick="deleteAddress('+addre.id+')" type="button" aria-expanded="false">'
@@ -84,6 +84,42 @@ async function addAddress() {
        alert("Couldn't add the address");
   }
   }
+
+  async function updateAddress(id,cont) {
+
+    let address = {};
+    address.id = id
+    address.client_id = document.getElementById("txtSecretEmail").value;
+    address.type = document.getElementById("btnDropDownAddress"+cont+"").innerHTML;
+    address.address = document.getElementById("txtAddress"+cont+"").value;
+    
+    console.log(address);
+    const request = await fetch('api/address/', {
+       method: 'PUT',
+      headers: getHeaders(),
+      body: JSON.stringify(address)
+    });
+  
+    const response = await request.text();
+    console.log(response);
+    alert("Address updated");
+}
+  
+async function deleteAddress(id){
+
+  if(!confirm('Do you want to delete the addres?')){
+          //Con return se corta el flujo de la función
+          return;
+      }
+
+  const request = await fetch('api/address/' + id, {
+      method: 'DELETE',
+      headers: getHeaders()
+    });
+      location.reload();
+
+  alert("Address deleted");
+}
 
   function insertAddressAtEmail(email) {
     document.getElementById('txtInsertAddressSecretEmail').value = email;

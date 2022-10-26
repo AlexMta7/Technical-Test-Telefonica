@@ -41,4 +41,10 @@ public class AddressController {
         addressDao.deleteAddress(id);
     }
 
+    /*Eliminar por email para que al momento de eliminar un cliente con email x, se elimine todo el documento/direcione relacionado*/
+    // @RequestMapping(value = "api/address/{email}", method = RequestMethod.DELETE)
+    // public void deleteAddressByEmail(@PathVariable String email){
+    //     addressDao.deleteAddressByEmail(email);
+    // }
+
 }
