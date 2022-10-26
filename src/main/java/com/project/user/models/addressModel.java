@@ -1,4 +1,4 @@
-/*package com.project.user.models;
+package com.project.user.models;
 
 import javax.persistence.*;
 import lombok.*;
@@ -10,11 +10,16 @@ import lombok.*;
 public class addressModel {
 
     @Id
-    @ManyToOne
-    @JoinColumn(name = "add_client_id")
-    private userModel clientId;
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column(name = "add_client_id")
+    private String client_id;
+
+    @Column(name = "add_type")
+    private String type;
 
     @Column(name = "add_address")
     private String address;
 }
-*/

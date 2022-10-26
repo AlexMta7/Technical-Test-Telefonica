@@ -1,4 +1,5 @@
-$(document).ready(function() {
+
+$(document).ready(function () {
   //   //Al iniciar la pagina llama al metodo
   // getDocuments();
 });
@@ -117,8 +118,10 @@ const request = await fetch('api/docs', {
 const response = await request.text();
 console.log(response);
 if (response == 'OK'){
-          alert("Document added successfully");
-          location.reload();
+  alert("Document added successfully");
+  document.getElementById('btnDropDownInsertDoc').innerHTML = "<i class='bx bx-file-blank'></i>";
+  document.getElementById('txtDocumentInsert').value = "";
+  //location.reload();
 }
 else{
      alert("Couldn't add document");
@@ -127,6 +130,7 @@ else{
 
 function insertDocumentAtEmail(email) {
   document.getElementById('txtInsertDocSecretEmail').value = email;
+  document.getElementById("modalLongTitle2").innerHTML = email;
 }
 
 async function updateDoc(id,cont) {
@@ -172,7 +176,7 @@ function changeDP(name,numId) {
 }
 
 /*Cambia el estado del boton para agregar documentos*/
-function changeDDInsert(name) {
+function changeDDInsertDoc(name) {
   document.getElementById('btnDropDownInsertDoc').innerHTML = name;
 }
 

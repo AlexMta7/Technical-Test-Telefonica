@@ -1,5 +1,5 @@
 
-$(document).ready(function() {
+$(document).ready(function () {
     //Al iniciar la pagina llama al metodo
     getClients()
   //actualizarEmailUsuario()
@@ -51,11 +51,11 @@ console.log(clientes);
         let deleteButton =  '<button type="button" id="deleteButton" onclick="deleteClient('+client.id+')" class="btn btn-icon btn-outline-danger">'
                          +  '   <span class="tf-icons bx bx-trash-alt"></span>'
         + '</button>';
-        let findButton =  '<button type="button" id="findButton" onclick="getDocuments(\''+client.email+'\')" class="btn btn-icon btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalLong">'
+        let findButton =  '<button type="button" id="findButton" onclick="getDocuments(\''+client.email+'\');getAddresses(\''+client.email+'\')" class="btn btn-icon btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalLong">'
                          +  '   <span class="tf-icons bx bx-search-alt"></span>'
         + '</button>';
       
-        let documentButton =  '<button type="button" id="documentButton" onclick="insertDocumentAtEmail(\''+client.email+'\')" class="btn btn-icon btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalIngresoDoc">'
+        let documentButton =  '<button type="button" id="documentButton" onclick="insertDocumentAtEmail(\''+client.email+'\');insertAddressAtEmail(\''+client.email+'\')" class="btn btn-icon btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalIngresoDoc">'
         +  '   <span class="tf-icons bx bx-file"></span>'
         +  '</button>';
 

@@ -13,6 +13,7 @@ import java.util.List;
 public class ClientDaoImp implements ClientDao{
     @PersistenceContext
     private EntityManager entityManager;
+    
     @Override
     public List<clientModel> getClients() {
         String query = "FROM clientModel";
