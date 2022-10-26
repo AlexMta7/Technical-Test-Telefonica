@@ -439,15 +439,11 @@
                                   </div>
                                   <div class="modal-footer">
                                     <div class="row">
-                                      <!-- <div class="">
-                                        <button type="button" onclick="addButton()" id="btnAddDoc" class="btn btn-success">Add</button>
-                                      </div> -->
                                     </div>
                                     <div class="row">
                                       <div class="col align-self-center">
-                                        <button type="button" onclick="updateDoc()" class="btn btn-primary">Save changes</button>
+                                        <button type="button" onclick="cleanModal()" class="btn btn-primary">Done</button>
                                       </div>
-                                      
                                     </div>
                                   </div>
                                 </div>
@@ -464,13 +460,33 @@
                                     <button type="button" onclick="cleanModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
                                   <div class="modal-body">
-                                    <div class="row" id="input_docs">
+                                    <div class="row">
                                       <div class="col mb-3" >
                                         <label class="form-label">Documentos</label>
-                                        <!-- Input generado por JS -->
-                                        <div>
-                                         
-                                        </div>
+                                        <!-- Input  -->
+                                        <div class="input-group col mb-3">
+                                          <!-- <input id="txtInsertSecretID" class="dropdown-item" value="" disabled hidden></input> -->
+                                          <input id="txtInsertDocSecretEmail" class="dropdown-item" disabled hidden></input>
+                                          <button class="btn btn-outline-primary dropdown-toggle" value="" id="btnDropDownInsertDoc" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class='bx bx-file-blank'></i>
+                                          </button>
+                                          <ul class="dropdown-menu" id="dropDownInsert">
+                                          <li><a id="dpInsertDoc1" class="dropdown-item" onclick="changeDDInsert(document.getElementById('dpInsertDoc1').innerHTML)">DUI</a></li>
+                                          <li><a id="dpInsertDoc2" class="dropdown-item" onclick="changeDDInsert(document.getElementById('dpInsertDoc2').innerHTML)">NIT</a></li>
+                                          <li><a id="dpInsertDoc3" class="dropdown-item" onclick="changeDDInsert(document.getElementById('dpInsertDoc3').innerHTML)">ISSS</a></li>
+                                          <li><a id="dpInsertDoc4" class="dropdown-item" onclick="changeDDInsert(document.getElementById('dpInsertDoc4').innerHTML)">Passport</a></li>
+                                          <li>
+                                          <hr class="dropdown-divider">
+                                          </li>
+                                          <li><input id="dpInsertDoc5" class="dropdown-item" onclick="changeDDInsert(document.getElementById('dpInsertDoc5').value)" placeholder="Type an option"></input></li>
+                                          </ul>
+                                          <input type="text" id="txtDocumentInsert" class="form-control" value="" aria-label="Text input with dropdown button">
+                                          <button class="btn btn-outline-primary tf-icons bx bx-send"  onclick="addDocument()" type="button" aria-expanded="false">
+                                          </button>
+                                          <!-- <button class="btn btn-outline-danger tf-icons bx bx-trash-alt"  onclick="deleteDoc('+docs.id+')" type="button" aria-expanded="false">
+                                          </button> -->
+                                          </div>
+                                        <!--/ Input  -->
                                       </div>
                                       <div class="col mb-3" id="input_address">
                                         <label  class="form-label">Direcciones</label>
@@ -486,7 +502,7 @@
                                     </div>
                                     <div class="row">
                                       <div class="col align-self-center">
-                                        <button type="button" onclick="updateDoc()" class="btn btn-primary">Save changes</button>
+                                        <button type="button" onclick="cleanModal()" class="btn btn-primary">Done</button>
                                       </div>
                                       
                                     </div>

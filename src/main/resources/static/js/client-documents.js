@@ -30,7 +30,7 @@ async function getDocuments(email) {
   
      const documents = await request.json();
    
-console.log(documents);
+  console.log(documents);
   let inputHtml = '';
   let cont = 0;
   let cont2 = 1;
@@ -39,6 +39,8 @@ console.log(documents);
   let cont5 = 4;
   let cont6 = 5;
   let cont7 = 6;
+
+  document.getElementById("modalLongTitle").innerHTML = email;
 
   for (let docs of documents) {
     cont++;
@@ -75,36 +77,56 @@ console.log(documents);
     inputHtml += data;
     
   }
-  // console.log(inputHtml);
     document.querySelector('#input_docs div div').outerHTML = inputHtml;
- 
 }
 
-function addButton() {
-  let data = '<div class="input-group col mb-3">'
-           + '<button class="btn btn-outline-primary dropdown-toggle" value="" id="btnDropDown" type="button" data-bs-toggle="dropdown" aria-expanded="false">'
+// function addButton() {
+//   let data = '<div class="input-group col mb-3">'
+//            + '<button class="btn btn-outline-primary dropdown-toggle" value="" id="btnDropDown" type="button" data-bs-toggle="dropdown" aria-expanded="false">'
           
-           + '</button>'
-           + '<ul class="dropdown-menu" id="dropDown" style="">'
-           + '<li><a id="dpType" class="dropdown-item" onclick="changeDP(document.getElementById(dpType).innerHTML)">DUI</a></li>'
-           + '<li><a id="dpType" class="dropdown-item" onclick="changeDP(document.getElementById(dpType).innerHTML)">NIT</a></li>'
-           + '<li><a id="dpType" class="dropdown-item" onclick="changeDP(document.getElementById(dpType).innerHTML)">ISSS</a></li>'
-           + '<li><a id="dpType" class="dropdown-item" onclick="changeDP(document.getElementById(dpType).innerHTML)">Passport</a></li>'
-           + '<li>'
-           + '<hr class="dropdown-divider">'
-           + '</li>'
-           + '<li><input id="dpType5" class="dropdown-item" onclick="changeDP(document.getElementById("dpType5").value)" placeholder="Type an option"></input></li>'
-           + '</ul>'
-    + '<input type="text" class="form-control" value="" aria-label="Text input with dropdown button">'
-    + '</div>';
-    document.querySelector('#input_docs div div').outerHTML = data;
+//            + '</button>'
+//            + '<ul class="dropdown-menu" id="dropDown" style="">'
+//            + '<li><a id="dpType" class="dropdown-item" onclick="changeDP(document.getElementById(dpType).innerHTML)">DUI</a></li>'
+//            + '<li><a id="dpType" class="dropdown-item" onclick="changeDP(document.getElementById(dpType).innerHTML)">NIT</a></li>'
+//            + '<li><a id="dpType" class="dropdown-item" onclick="changeDP(document.getElementById(dpType).innerHTML)">ISSS</a></li>'
+//            + '<li><a id="dpType" class="dropdown-item" onclick="changeDP(document.getElementById(dpType).innerHTML)">Passport</a></li>'
+//            + '<li>'
+//            + '<hr class="dropdown-divider">'
+//            + '</li>'
+//            + '<li><input id="dpType5" class="dropdown-item" onclick="changeDP(document.getElementById("dpType5").value)" placeholder="Type an option"></input></li>'
+//            + '</ul>'
+//     + '<input type="text" class="form-control" value="" aria-label="Text input with dropdown button">'
+//     + '</div>';
+//     document.querySelector('#input_docs div div').outerHTML = data;
   
+// }
+
+/*Agrega un documento pasando como parametro un email*/
+async function addDocument() {
+  let doc = {};
+  doc.id = '';
+  doc.client_id = document.getElementById('txtInsertDocSecretEmail').value;
+  doc.type = document.getElementById('btnDropDownInsertDoc').innerHTML;
+  doc.document = document.getElementById('txtDocumentInsert').value;
+
+const request = await fetch('api/docs', {
+  method: 'POST',
+  headers: getHeaders(),
+  body: JSON.stringify(doc)
+});
+const response = await request.text();
+console.log(response);
+if (response == 'OK'){
+          alert("Document added successfully");
+          location.reload();
+}
+else{
+     alert("Couldn't add document");
+}
 }
 
-function addDocument() {
-    let type = "";
-    type = document.getElementById("btnDropDown").innerHTML;
-    console.log(type);
+function insertDocumentAtEmail(email) {
+  document.getElementById('txtInsertDocSecretEmail').value = email;
 }
 
 async function updateDoc(id,cont) {
@@ -144,14 +166,18 @@ async function deleteDoc(id){
   alert("Document deleted");
 }
 
+/*Cambia el estado del boton cuando muestra los resultados de los documentos*/
 function changeDP(name,numId) {
     document.getElementById('btnDropDown'+numId+'').innerHTML = name;
 }
 
+/*Cambia el estado del boton para agregar documentos*/
+function changeDDInsert(name) {
+  document.getElementById('btnDropDownInsertDoc').innerHTML = name;
+}
+
+/*Recarga la pagina */
 function cleanModal() {
   location.reload();
-  // document.querySelector("#input_docs div").outerHTML = '<div class="col mb-3">'
-  // +'<label class="form-label">Documentos</label>'
-  // + '</div>';
 }
 
