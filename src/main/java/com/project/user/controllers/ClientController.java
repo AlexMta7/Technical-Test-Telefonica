@@ -52,10 +52,4 @@ public class ClientController {
         //     return "FAIL";
         // }
     }
-    
-    @RequestMapping(value = "api/clients/report", method = RequestMethod.GET)
-    public List<clientModel> getClientsReport() {
-        return clientDao.getClientsReport();
-    }
-
 }
