@@ -109,4 +109,22 @@ public class ClienteController {
 
         clienteDao.eliminarDirec(id);
     }
+
+    @RequestMapping(value = "api/client/{name}", method = RequestMethod.GET )
+    public List<Clientes> getClient(@PathVariable String name){
+
+        return clienteDao.getClient(name);
+    }
+
+    @RequestMapping(value = "api/search/docs/client/{id}", method = RequestMethod.GET )
+    public List<Documentos> getClientByID(@PathVariable Long id){
+
+        return clienteDao.getClientByID(id);
+    }
+
+    @RequestMapping(value = "api/search/dirs/client/{id}", method = RequestMethod.GET )
+    public List<Direcciones> getDirClientByID(@PathVariable Long id){
+
+        return clienteDao.getDirClientByID(id);
+    }
 }

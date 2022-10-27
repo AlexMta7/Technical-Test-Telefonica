@@ -172,3 +172,82 @@ async function eliminarAdr(id){
     alert("Dirección con id: " + id + " eliminada exitosamente");
     location.reload();
 }
+
+async function getDocsClientByID(id){
+
+    const request = await fetch('api/search/docs/client/' + id, {
+                method: 'GET',
+                headers: getHeaders()
+              });
+              const client = await request.json();
+
+    console.log(client);
+
+    if(client == ""){
+        console.log("ERROR");
+
+        let docHtml1 = '<tr><td>EL</td><td>USUARIO</td><td>NO POSEE </td><td>DOCUMENTOS</td><td> POR EL</td><td>MOMENTO</td></tr>';
+
+                          //Se crean las filas para los datos extraidos de la base de datos
+                          document.querySelector('#infoCliente tbody').outerHTML = docHtml1;
+    }else{
+        let listHtml1 = '';
+
+                  //Se listan los datos para mostrarlos en forma ordenada en la tabla correspondiente
+                  for(let clis of client){
+                   let btnDelete = '<button type="button" onclick="eliminarDoc(' + clis.id + ')" class="btn btn-icon btn-danger" title="Eliminar Documento"><span class="tf-icons bx bx-trash"></span></button>';
+                   let btnMod = '<button type="button" onclick="getInfoDoc(' + clis.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollableDoc" title="Modificar Documento"><span class="tf-icons bx bx-pencil"></span></button>';
+
+                   let docHtml1 = '<tr><td>'+ clis.id +'</td><td>' + clis.id_client + '</td><td>'  + clis.name_client + '</td><td>' + clis.document_name + '</td><td>'
+                   + clis.document +  '</td><td>' + btnDelete + ' ' + btnMod + '</td></tr>';
+                    listHtml1 += docHtml1;
+                  }
+
+                  //Se crean las filas para los datos extraidos de la base de datos
+                  document.querySelector('#infoCliente tbody').outerHTML = listHtml1;
+    }
+}
+
+async function getDirClientByID(id){
+
+    const request = await fetch('api/search/dirs/client/' + id, {
+                method: 'GET',
+                headers: getHeaders()
+              });
+              const dir_client = await request.json();
+
+    console.log(dir_client);
+
+    if(dir_client == ""){
+        console.log("ERROR");
+
+        let docHtml2 = '<tr><td>EL</td><td>USUARIO</td><td>NO POSEE </td><td>DIRECCIONES</td><td> POR EL</td><td>MOMENTO</td></tr>';
+
+                          //Se crean las filas para los datos extraidos de la base de datos
+                          document.querySelector('#infoAddress tbody').outerHTML = docHtml2;
+    }else{
+        let listHtml2 = '';
+
+                  //Se listan los datos para mostrarlos en forma ordenada en la tabla correspondiente
+                  for(let di of dir_client){
+                   let btnDelete = '<button type="button" onclick="eliminarDoc(' + di.id + ')" class="btn btn-icon btn-danger" title="Eliminar Documento"><span class="tf-icons bx bx-trash"></span></button>';
+                   let btnMod = '<button type="button" onclick="getInfoDoc(' + di.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollableDoc" title="Modificar Documento"><span class="tf-icons bx bx-pencil"></span></button>';
+
+                   let docHtml2 = '<tr><td>'+ di.id +'</td><td>' + di.id_client + '</td><td>'  + di.name_client + '</td><td>' + di.name_address + '</td><td>'
+                   + di.address +  '</td><td>' + btnDelete + ' ' + btnMod + '</td></tr>';
+                    listHtml2 += docHtml2;
+                  }
+
+                  //Se crean las filas para los datos extraidos de la base de datos
+                  document.querySelector('#infoAddress tbody').outerHTML = listHtml2;
+    }
+}
+
+async function searchClientByID(){
+
+    var val = document.getElementById("txtSearchID").value;
+
+    getDocsClientByID(val);
+    getDirClientByID(val);
+
+}

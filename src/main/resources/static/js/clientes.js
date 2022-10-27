@@ -117,3 +117,24 @@ async function editarCliente(){
                 body: JSON.stringify(datosCliente)
               });
 }
+
+async function getClient(name){
+
+    var na = name.toString();
+
+    const request = await fetch('api/client/' + na, {
+                method: 'GET',
+                headers: getHeaders()
+              });
+              const client = await request.json();
+
+    console.log(client);
+}
+
+async function searchClient(){
+
+    var val = document.getElementById("txtSearch").value;
+
+    getClient(val);
+
+}

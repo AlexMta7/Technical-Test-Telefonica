@@ -38,4 +38,10 @@ public interface ClienteDao {
     void eliminarDoc(Long id);
 
     void eliminarDirec(Long id);
+
+    List<Clientes> getClient(String name);
+
+    List<Documentos> getClientByID(Long id);
+
+    List<Direcciones> getDirClientByID(Long id);
 }

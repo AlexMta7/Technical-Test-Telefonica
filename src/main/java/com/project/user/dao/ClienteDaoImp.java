@@ -121,4 +121,28 @@ public class ClienteDaoImp implements ClienteDao{
         Direcciones direcciones= entityManager.find(Direcciones.class,id);
         entityManager.remove(direcciones);
     }
+
+    @Override
+    public List<Clientes> getClient(String name) {
+        String query="From Clientes WHERE nombre = " + name ;
+        List<Clientes> resultado = entityManager.createQuery(query).getResultList();
+
+        return resultado;
+    }
+
+    @Override
+    public List<Documentos> getClientByID(Long id) {
+        String query="From Documentos WHERE id_client = " + id ;
+        List<Documentos> resultado = entityManager.createQuery(query).getResultList();
+
+        return resultado;
+    }
+
+    @Override
+    public List<Direcciones> getDirClientByID(Long id) {
+        String query="From Direcciones WHERE id_client = " + id ;
+        List<Direcciones> resultado = entityManager.createQuery(query).getResultList();
+
+        return resultado;
+    }
 }
