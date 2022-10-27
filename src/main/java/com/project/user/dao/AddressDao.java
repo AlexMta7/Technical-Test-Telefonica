@@ -16,7 +16,5 @@ public interface AddressDao {
     addressModel updateAddress(addressModel address);
 
     void deleteAddress(Long id);
-
-    void deleteAddressByEmail(String email);
     
 }

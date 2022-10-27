@@ -17,7 +17,6 @@ public class AddressDaoImp implements AddressDao {
     
     @PersistenceContext
     private EntityManager entityManager;
-    private JpaRepository jpaRepository;
 
     @Override
     public List<addressModel> getAddresses() {
@@ -46,14 +45,7 @@ public class AddressDaoImp implements AddressDao {
         addressModel address = entityManager.find(addressModel.class, id);
         entityManager.remove(address);
     }
-
-    // @Override
-    // public String deleteAddressByEmail(String email) {
-    //     addressModel address = entityManager.find(addressModel.class, email);
-    //     entityManager.remove(address);
-    //     return "Oki";
-    // }
-
+    
     // @Override
     // public String deleteAddressByEmail(String email) {
     //     String query = "DELETE FROM addressModel WHERE client_id = :email";
@@ -61,9 +53,5 @@ public class AddressDaoImp implements AddressDao {
     //     return "Oki";
     // }
 
-    @Query(value = "DELETE FROM addressModel WHERE client_id = :email", nativeQuery = true)
-    @Override
-    public void deleteAddressByEmail(String email) {
-    }
     
 }

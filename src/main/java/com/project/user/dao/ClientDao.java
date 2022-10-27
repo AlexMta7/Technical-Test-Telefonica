@@ -16,6 +16,4 @@ public interface ClientDao {
     clientModel updateClient(clientModel client);
 
     List<clientModel> getClient(Long id);
-
-    List<clientModel> getClientsReport();
 }

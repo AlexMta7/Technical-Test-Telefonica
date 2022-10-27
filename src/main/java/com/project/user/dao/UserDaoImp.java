@@ -41,9 +41,7 @@ public class UserDaoImp implements UserDao{
     @Override
     public boolean verifyUser(userModel user) {
         String query = "FROM userModel WHERE email = :email";
-        List<userModel> list = entityManager.createQuery(query)
-                .setParameter("email", user.getEmail())
-                .getResultList();
+        List<userModel> list = entityManager.createQuery(query).setParameter("email", user.getEmail()).getResultList();
         return !list.isEmpty();
     }
 
