@@ -23,18 +23,23 @@ async function getDataToDownload() {
     console.log(documentos);
     console.log(direcciones);
     
-    const datos_fusionados = Object.assign(clientes,documentos,direcciones) ;
-    const data = datos_fusionados;
+    // const datos_fusionados = Object.assign(clientes,documentos,direcciones) ;
+    // const data = datos_fusionados;
     
-    const csv = jsonToCsv(data);
+    const csvClientes = jsonToCsv(clientes);
+    const csvDocumentos = jsonToCsv(documentos);
+    const csvDirecciones = jsonToCsv(direcciones);
   
-    downloadData(csv);
+    //(archivo,nombre para descargar)
+    downloadData(csvClientes,'clientes');
+    downloadData(csvDocumentos,'documentos_de_clientes');
+    downloadData(csvDirecciones,'direcciones_de_clientes');
     //console.log(csv);
 }
     
-function downloadData(data) {
+function downloadData(data,name) {
     var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
-saveAs(blob, "hello world.csv");
+saveAs(blob, "reporte_"+name+".csv");
 }
 
 function jsonToCsv(items) {

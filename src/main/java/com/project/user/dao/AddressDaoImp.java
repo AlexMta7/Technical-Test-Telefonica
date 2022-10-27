@@ -3,6 +3,7 @@ package com.project.user.dao;
 import com.project.user.models.addressModel;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,11 +54,16 @@ public class AddressDaoImp implements AddressDao {
     //     return "Oki";
     // }
 
+    // @Override
+    // public String deleteAddressByEmail(String email) {
+    //     String query = "DELETE FROM addressModel WHERE client_id = :email";
+    //     entityManager.createQuery(query).setParameter("email", email);
+    //     return "Oki";
+    // }
+
+    @Query(value = "DELETE FROM addressModel WHERE client_id = :email", nativeQuery = true)
     @Override
-    public String deleteAddressByEmail(String email) {
-        String query = "DELETE FROM addressModel WHERE client_id = :email";
-        entityManager.createQuery(query).setParameter("email", email);
-        return "Oki";
+    public void deleteAddressByEmail(String email) {
     }
     
 }

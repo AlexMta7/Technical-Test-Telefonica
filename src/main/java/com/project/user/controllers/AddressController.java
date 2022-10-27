@@ -2,6 +2,7 @@ package com.project.user.controllers;
 
 import com.project.user.dao.AddressDao;
 import com.project.user.models.addressModel;
+import com.project.user.services.AddressServices;
 
 import java.util.*;
 
@@ -13,6 +14,9 @@ public class AddressController {
     
     @Autowired
     private AddressDao addressDao;
+
+    @Autowired
+    private AddressServices addressServices;
 
     @RequestMapping(value = "api/address", method = RequestMethod.GET)
     public List<addressModel> getDocs() {
@@ -45,7 +49,7 @@ public class AddressController {
     /*Eliminar por email para que al momento de eliminar un cliente con email x, se elimine todo el documento/direcione relacionado*/
     @RequestMapping(value = "api/address/delete/{email}", method = RequestMethod.DELETE)
     public String deleteAddressByEmail(@PathVariable String email){
-        addressDao.deleteAddressByEmail(email);
+        addressServices.deleteByEmail(email);
         return "OK";
     }
 

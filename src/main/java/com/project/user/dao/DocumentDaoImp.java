@@ -1,6 +1,8 @@
 package com.project.user.dao;
 
 import com.project.user.models.documentModel;
+
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,6 +43,8 @@ public class DocumentDaoImp implements DocumentDao{
         documentModel document = entityManager.find(documentModel.class,id);
         entityManager.remove(document);
     }
+
+    
 
     
 }

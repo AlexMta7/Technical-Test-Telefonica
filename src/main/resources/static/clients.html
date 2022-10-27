@@ -341,11 +341,11 @@
                               Add Client
                             </button>
                             <!--/ Button trigger modal de ingreso de clientes-->
-                            <!-- Button trigger modal de ingreso de clientes-->
+                            <!-- Button para descargar datos del cliente-->
                             <button type="button" id="btnDownloadData" onclick="getDataToDownload()" class="btn btn-info">
                               Download Info
                             </button>
-                            <!--/ Button trigger modal de ingreso de clientes-->
+                            <!--/ Button para descargar datos del cliente-->
     
                             <!-- Modal de ingreso de clientes -->
                             <form onsubmit="updateClient()">
@@ -491,10 +491,8 @@
                                           <li><input id="dpInsertDoc5" class="dropdown-item" onclick="changeDDInsertDoc(document.getElementById('dpInsertDoc5').value)" placeholder="Type an option"></input></li>
                                           </ul>
                                           <input type="text" id="txtDocumentInsert" class="form-control" value="" aria-label="Text input with dropdown button">
-                                          <button class="btn btn-outline-primary tf-icons bx bx-send"  onclick="addDocument()" type="button" aria-expanded="false">
+                                          <button class="btn btn-outline-primary tf-icons bx bx-save bx-sm"  onclick="addDocument()" type="button" aria-expanded="false">
                                           </button>
-                                          <!-- <button class="btn btn-outline-danger tf-icons bx bx-trash-alt"  onclick="deleteDoc('+docs.id+')" type="button" aria-expanded="false">
-                                          </button> -->
                                         </div>
                                         <!--/ Input  -->
                                       </div>
@@ -518,10 +516,8 @@
                                           <li><input id="dpInsertAddress5" class="dropdown-item" onclick="changeDDInsertAddress(document.getElementById('dpInsertAddress5').value)" placeholder="Type an option"></input></li>
                                           </ul>
                                           <input type="text" id="txtAddressInsert" class="form-control" value="" aria-label="Text input with dropdown button">
-                                          <button class="btn btn-outline-primary tf-icons bx bx-send"  onclick="addAddress()" type="button" aria-expanded="false">
+                                          <button class="btn btn-outline-primary tf-icons bx bx-save bx-sm"  onclick="addAddress()" type="button" aria-expanded="false">
                                           </button>
-                                          <!-- <button class="btn btn-outline-danger tf-icons bx bx-trash-alt"  onclick="deleteDoc('+docs.id+')" type="button" aria-expanded="false">
-                                          </button> -->
                                         </div>
                                         <!--/ Input  -->
                                       </div>

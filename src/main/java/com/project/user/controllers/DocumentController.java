@@ -1,6 +1,7 @@
 package com.project.user.controllers;
 
 import com.project.user.models.documentModel;
+import com.project.user.services.DocumentServices;
 
 import java.util.*;
 
@@ -14,6 +15,9 @@ public class DocumentController {
     
     @Autowired
     private DocumentDao documentDao;
+
+    @Autowired
+    private DocumentServices documentServices;
 
     @RequestMapping(value = "api/docs", method = RequestMethod.GET)
     public List<documentModel> getDocs() {
@@ -38,7 +42,14 @@ public class DocumentController {
     }
     
     @RequestMapping(value = "api/docs/{id}", method = RequestMethod.DELETE)
-    public void deleteDoc(@PathVariable Long id){
+    public void deleteDoc(@PathVariable Long id) {
         documentDao.deleteDoc(id);
+    }
+    
+    /*Eliminar por email para que al momento de eliminar un cliente con email x, se elimine todo el documento/direcione relacionado*/
+    @RequestMapping(value = "api/docs/delete/{email}", method = RequestMethod.DELETE)
+    public String deleteDocumentByEmail(@PathVariable String email){
+        documentServices.deleteByEmail(email);
+        return "OK";
     }
 }
