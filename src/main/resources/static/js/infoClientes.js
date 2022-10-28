@@ -23,20 +23,28 @@ async function cargarInfoDocs(){
       });
       const docs = await request.json();
 
-      let listHtml = '';
+      if(docs == ""){
+              let clienteHtml = '<tr><td></td><td>SIN</td><td>DATOS</td><td>DISPONIBLES</td><td></td></tr>';
 
-      //Se listan los datos para mostrarlos en forma ordenada en la tabla correspondiente
-      for(let doc of docs){
-       let btnDelete = '<button type="button" onclick="eliminarDoc(' + doc.id + ')" class="btn btn-icon btn-danger" title="Eliminar Documento"><span class="tf-icons bx bx-trash"></span></button>';
-       let btnMod = '<button type="button" onclick="getInfoDoc(' + doc.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollableDoc" title="Modificar Documento"><span class="tf-icons bx bx-pencil"></span></button>';
+                //Se crean las filas para los datos extraidos de la base de datos
+                document.querySelector('#infoCliente tbody').outerHTML = clienteHtml;
+      }else{
 
-       let docHtml = '<tr><td>'+ doc.id +'</td><td>' + doc.id_client + '</td><td>' + doc.document_name + '</td><td>'
-       + doc.document +  '</td><td>' + btnDelete + ' ' + btnMod + '</td></tr>';
-        listHtml += docHtml;
+          let listHtml = '';
+
+          //Se listan los datos para mostrarlos en forma ordenada en la tabla correspondiente
+          for(let doc of docs){
+           let btnDelete = '<button type="button" onclick="eliminarDoc(' + doc.id + ')" class="btn btn-icon btn-danger" title="Eliminar Documento"><span class="tf-icons bx bx-trash"></span></button>';
+           let btnMod = '<button type="button" onclick="getInfoDoc(' + doc.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollableDoc" title="Modificar Documento"><span class="tf-icons bx bx-pencil"></span></button>';
+
+           let docHtml = '<tr><td>'+ doc.id +'</td><td>' + doc.id_client + '</td><td>' + doc.document_name + '</td><td>'
+           + doc.document +  '</td><td>' + btnDelete + ' ' + btnMod + '</td></tr>';
+            listHtml += docHtml;
+          }
+
+          //Se crean las filas para los datos extraidos de la base de datos
+          document.querySelector('#infoCliente tbody').outerHTML = listHtml;
       }
-
-      //Se crean las filas para los datos extraidos de la base de datos
-      document.querySelector('#infoCliente tbody').outerHTML = listHtml;
 }
 
 
@@ -51,20 +59,27 @@ async function cargarInfoAddress(){
       });
       const addressC = await request.json();
 
-      let listHtml = '';
+      if(addressC == ""){
+            let docHtml = '<tr><td></td><td>SIN</td><td>DATOS</td><td>DISPONIBLES</td><td></td></tr>';
 
-      //Se listan los datos para mostrarlos en forma ordenada en la tabla correspondiente
-      for(let ac of addressC){
-       let btnDelete = '<a href="#" onclick="eliminarAdr(' + ac.id + ')" class="btn btn-icon btn-danger" title="Eliminar Dirección"><span class="tf-icons bx bx-trash"></span></a>';
-       let btnMod = '<button type="button" onclick="getInfoDirec(' + ac.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollableDir" title="Modificar Dirección"><span class="tf-icons bx bx-pencil"></span></button>';
+              //Se crean las filas para los datos extraidos de la base de datos
+              document.querySelector('#infoAddress tbody').outerHTML = docHtml;
+      }else{
+          let listHtml = '';
 
-       let docHtml = '<tr><td>' + ac.id + '</td><td>'  + ac.id_client + '</td><td>'+ ac.name_address + '</td><td>' + ac.address +  '</td><td>'
-        + btnDelete + ' ' + btnMod + '</td></tr>';
-        listHtml += docHtml;
+          //Se listan los datos para mostrarlos en forma ordenada en la tabla correspondiente
+          for(let ac of addressC){
+           let btnDelete = '<a href="#" onclick="eliminarAdr(' + ac.id + ')" class="btn btn-icon btn-danger" title="Eliminar Dirección"><span class="tf-icons bx bx-trash"></span></a>';
+           let btnMod = '<button type="button" onclick="getInfoDirec(' + ac.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollableDir" title="Modificar Dirección"><span class="tf-icons bx bx-pencil"></span></button>';
+
+           let docHtml = '<tr><td>' + ac.id + '</td><td>'  + ac.id_client + '</td><td>'+ ac.name_address + '</td><td>' + ac.address +  '</td><td>'
+            + btnDelete + ' ' + btnMod + '</td></tr>';
+            listHtml += docHtml;
+          }
+
+          //Se crean las filas para los datos extraidos de la base de datos
+          document.querySelector('#infoAddress tbody').outerHTML = listHtml;
       }
-
-      //Se crean las filas para los datos extraidos de la base de datos
-      document.querySelector('#infoAddress tbody').outerHTML = listHtml;
 }
 
 //Función para mostrar la información de documentos del cliente en el Modal para poder Editarla

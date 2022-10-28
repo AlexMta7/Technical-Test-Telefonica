@@ -23,22 +23,30 @@ async function cargarUsuarios(){
       });
       const usuarios = await request.json();
 
-      let listadoHtml = '';
 
-      //Se listan los datos para mostrarlos en forma ordenada en la tabla correspondiente
-      for(let usu of usuarios){
-       let botonEliminar = '<a href="#" onclick="eliminarUsuario(' + usu.id_usu + ')" class="btn btn-icon btn-danger"><span class="tf-icons bx bx-trash"></span></a>';
-       let botonModificar = '<button onclick="getInfoUsuario(' + usu.id_usu + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollable"><span class="tf-icons bx bx-pencil"></span></button>';
+      if(usuarios == ""){
+          let usuarioHtml = '<tr><td></td><td></td><td>SIN</td><td>DATOS</td><td>DISPONIBLES</td><td></td></tr>';
 
-       let usuarioHtml = '<tr><td>'+ usu.id_usu +'</td><td>' + usu.nom_usu + '</td><td>' + usu.ln_usu + '</td><td>'
-       + usu.email_usu + '</td><td>'
-       + usu.car_usu + '</td><td>' + botonEliminar + ' ' + botonModificar +'</td></tr>'
+            //Se crean las filas para los datos extraidos de la base de datos
+            document.querySelector('#users tbody').outerHTML = usuarioHtml;
+      }else{
+        let listadoHtml = '';
 
-        listadoHtml += usuarioHtml;
+              //Se listan los datos para mostrarlos en forma ordenada en la tabla correspondiente
+              for(let usu of usuarios){
+               let botonEliminar = '<a href="#" onclick="eliminarUsuario(' + usu.id_usu + ')" class="btn btn-icon btn-danger"><span class="tf-icons bx bx-trash"></span></a>';
+               let botonModificar = '<button onclick="getInfoUsuario(' + usu.id_usu + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollable"><span class="tf-icons bx bx-pencil"></span></button>';
+
+               let usuarioHtml = '<tr><td>'+ usu.id_usu +'</td><td>' + usu.nom_usu + '</td><td>' + usu.ln_usu + '</td><td>'
+               + usu.email_usu + '</td><td>'
+               + usu.car_usu + '</td><td>' + botonEliminar + ' ' + botonModificar +'</td></tr>'
+
+                listadoHtml += usuarioHtml;
+              }
+
+              //Se crean las filas para los datos extraidos de la base de datos
+              document.querySelector('#users tbody').outerHTML = listadoHtml;
       }
-
-      //Se crean las filas para los datos extraidos de la base de datos
-      document.querySelector('#users tbody').outerHTML = listadoHtml;
 }
 
 //Función para mostrar la información del usuario en el Modal para poder Editarla

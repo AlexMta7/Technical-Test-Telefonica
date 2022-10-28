@@ -23,30 +23,30 @@ async function cargarClientes(){
       });
       const clientes = await request.json();
 
-      //console.log(clientes);
+      if(clientes == ""){
+        let clienteHtml = '<tr><td></td><td></td><td>SIN</td><td>DATOS</td><td>DISPONIBLES</td><td></td></tr>';
 
-      let listadoHtml = '';
+          //Se crean las filas para los datos extraidos de la base de datos
+          document.querySelector('#clientes tbody').outerHTML = clienteHtml;
+      }else{
+        let listadoHtml = '';
 
-      //Se listan los datos para mostrarlos en forma ordenada en la tabla correspondiente
-      for(let cliente of clientes){
-       let btnEliminar = '<a href="#" onclick="eliminarCliente(' + cliente.id + ')" class="btn btn-icon btn-danger" title="Eliminar"><span class="tf-icons bx bx-trash"></span></a>';
-       let btnModificar = '<button type="button" onclick="getInfoCliente(' + cliente.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollable" title="Modificar"><span class="tf-icons bx bx-pencil"></span></button>';
-       let btnAddDocs = '<button type="button" onclick="getIdCliente(' + cliente.id + ')" class="btn btn-icon btn-primary" title="Agregar Documentos" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEnd" aria-controls="offcanvasEnd"><span class="tf-icons bx bx-id-card"></span></button>';
-       let btnAddAddr = '<button type="button" onclick="getIdCliente(' + cliente.id + ')" class="btn btn-icon btn-secondary" title="Agregar Direcciones" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEnd1" aria-controls="offcanvasEnd"><span class="tf-icons bx bx-home"></span></button>';
+              //Se listan los datos para mostrarlos en forma ordenada en la tabla correspondiente
+              for(let cliente of clientes){
+               let btnEliminar = '<a href="#" onclick="eliminarCliente(' + cliente.id + ')" class="btn btn-icon btn-danger" title="Eliminar"><span class="tf-icons bx bx-trash"></span></a>';
+               let btnModificar = '<button type="button" onclick="getInfoCliente(' + cliente.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollable" title="Modificar"><span class="tf-icons bx bx-pencil"></span></button>';
+               let btnAddDocs = '<button type="button" onclick="getIdCliente(' + cliente.id + ')" class="btn btn-icon btn-primary" title="Agregar Documentos" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEnd" aria-controls="offcanvasEnd"><span class="tf-icons bx bx-id-card"></span></button>';
+               let btnAddAddr = '<button type="button" onclick="getIdCliente(' + cliente.id + ')" class="btn btn-icon btn-secondary" title="Agregar Direcciones" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEnd1" aria-controls="offcanvasEnd"><span class="tf-icons bx bx-home"></span></button>';
 
-       //let btnDocs = '<button type="button" onclick="#" class="btn btn-icon btn-primary" title="Ver Documentos" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEnd1" aria-controls="offcanvasEnd"><span class="tf-icons bx bx-id-card"></span></button>';
-       //let btnAddr = '<button type="button" onclick="#" class="btn btn-icon btn-primary" title="Ver Direcciones" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEnd1" aria-controls="offcanvasEnd"><span class="tf-icons bx bx-home"></span></button>';
+               let clienteHtml = '<tr><td>'+ cliente.id +'</td><td>' + cliente.nombre + '</td><td>' + cliente.apellido + '</td><td>'
+               + cliente.genero + '</td><td>' + cliente.email + '</td><td>'
+               + btnAddDocs + ' ' + btnAddAddr + ' ' + btnEliminar + ' ' + btnModificar + '</td></tr>';
+                listadoHtml += clienteHtml;
+              }
 
-       //let telefonoTexto = (cliente.telefono == null || cliente.telefono == '') ? '-' : cliente.telefono;
-
-       let clienteHtml = '<tr><td>'+ cliente.id +'</td><td>' + cliente.nombre + '</td><td>' + cliente.apellido + '</td><td>'
-       + cliente.genero + '</td><td>' + cliente.email + '</td><td>'
-       + btnAddDocs + ' ' + btnAddAddr + ' ' + btnEliminar + ' ' + btnModificar + '</td></tr>';
-        listadoHtml += clienteHtml;
+              //Se crean las filas para los datos extraidos de la base de datos
+              document.querySelector('#clientes tbody').outerHTML = listadoHtml;
       }
-
-      //Se crean las filas para los datos extraidos de la base de datos
-      document.querySelector('#clientes tbody').outerHTML = listadoHtml;
 }
 
 //Función para eliminar registro de cliente por medio del Id

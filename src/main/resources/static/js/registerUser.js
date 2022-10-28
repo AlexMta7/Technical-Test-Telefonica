@@ -24,5 +24,5 @@ async function registrarUsuario(){
                   });
 
         alert("Usuario Ingresado con Éxito");
-        location.reload();
+        location.href = "user.html";
 }
