@@ -18,9 +18,6 @@ public class Documentos {
     @Getter @Setter @Column(name="cliente_id")
     private Long id_client;
 
-    @Getter @Setter @Column(name="nombre_cliente")
-    private String name_client;
-
     @Getter @Setter @Column(name="nombre_documento")
     private String document_name;
 
