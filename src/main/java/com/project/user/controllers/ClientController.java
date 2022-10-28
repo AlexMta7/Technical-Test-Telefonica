@@ -45,11 +45,11 @@ public class ClientController {
         return "OK";
 
         // if(!clientDao.verifyClient(client)) {
-        //     clientDao.updateClient(client);
-        //     return "OK";
+        // clientDao.updateClient(client);
+        // return "OK";
         // }
         // else {
-        //     return "FAIL";
+        // return "FAIL";
         // }
     }
 }

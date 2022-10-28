@@ -5,71 +5,71 @@ $(document).ready(function () {
   //actualizarEmailUsuario()
 });
 
-  //Para devolver los Header
-    function getHeaders(){
-        return {
-                     'Accept': 'application/json',
-                     'Content-Type': 'application/json',
-                     //'Authorization':localStorage.token
-                   };
-    }
+//Para devolver los Header
+function getHeaders() {
+  return {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    //'Authorization':localStorage.token
+  };
+}
 
 async function getClient(id) {
-      const request = await fetch('api/clients/'+id, {
-         method: 'GET',
-         headers: getHeaders()
-       });
-       const cliente = await request.json();
-     
+  const request = await fetch('api/clients/' + id, {
+    method: 'GET',
+    headers: getHeaders()
+  });
+  const cliente = await request.json();
+
   console.log(cliente);
-  document.getElementById("saveModal").innerHTML = "Update"; 
+  document.getElementById("saveModal").innerHTML = "Update";
   document.getElementById("lblModalClient").innerHTML = "Update Client";
 
-  for(client of cliente){
+  for (client of cliente) {
     document.getElementById("txtModalId").value = client.id;
     document.getElementById("txtModalName").value = client.name;
     document.getElementById("txtModalLastname").value = client.lastname;
     document.getElementById("txtModalEmail").value = client.email;
-    document.getElementById("txtModalService").value =   client.service;
+    document.getElementById("txtModalService").value = client.service;
   }
 }
 
 
-async function getClients(){
- const request = await fetch('api/clients', {
+async function getClients() {
+  const request = await fetch('api/clients', {
     method: 'GET',
     headers: getHeaders()
   });
   const clientes = await request.json();
 
-console.log(clientes);
-    let listHtml='';
-    for (let client of clientes){
-        let updateButton =  '<button type="button" id="updateButton" onclick="getClient('+client.id+')" class="btn btn-icon btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">'
-                         +  '   <span class="tf-icons bx bx-edit"></span>'
-                         +  '</button>';
-        let deleteButton =  '<button type="button" id="deleteButton" onclick="deleteClient('+client.id+')" class="btn btn-icon btn-outline-danger">'
-                         +  '   <span class="tf-icons bx bx-trash-alt"></span>'
-        + '</button>';
-        let findButton =  '<button type="button" id="findButton" onclick="getDocuments(\''+client.email+'\');getAddresses(\''+client.email+'\')" class="btn btn-icon btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalLong">'
-                         +  '   <span class="tf-icons bx bx-search-alt"></span>'
-        + '</button>';
-      
-        let documentButton =  '<button type="button" id="documentButton" onclick="insertDocumentAtEmail(\''+client.email+'\');insertAddressAtEmail(\''+client.email+'\')" class="btn btn-icon btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalIngresoDoc">'
-        +  '   <span class="tf-icons bx bx-file"></span>'
-        +  '</button>';
+  console.log(clientes);
+  let listHtml = '';
+  for (let client of clientes) {
+    let updateButton = '<button type="button" id="updateButton" onclick="getClient(' + client.id + ')" class="btn btn-icon btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">'
+      + '   <span class="tf-icons bx bx-edit"></span>'
+      + '</button>';
+    let deleteButton = '<button type="button" id="deleteButton" onclick="deleteClient(' + client.id + ');deleteDocumentAddress(\'' + client.email +'\')" class="btn btn-icon btn-outline-danger">'
+      + '   <span class="tf-icons bx bx-trash-alt"></span>'
+      + '</button>';
+    let findButton = '<button type="button" id="findButton" onclick="getDocuments(\'' + client.email + '\');getAddresses(\'' + client.email + '\')" class="btn btn-icon btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalLong">'
+      + '   <span class="tf-icons bx bx-search-alt"></span>'
+      + '</button>';
 
-        let clientHtml = '   <tr> '
-                     +  '  <td>'+client.id+'</td>'
-                     +  '  <td><strong>'+client.name+ ' ' +client.lastname+ '</strong></td>'
-                     +  '  <td>'+client.email+'</td> '
-                     +  '  <td>'+client.service+'</td>'
-                     +  '  <td>'+updateButton+' '+findButton+' '+documentButton+' '+deleteButton+'</td>'
-                     +  '</tr>';
-        listHtml += clientHtml;
-    }
+    let documentButton = '<button type="button" id="documentButton" onclick="insertDocumentAtEmail(\'' + client.email + '\');insertAddressAtEmail(\'' + client.email + '\')" class="btn btn-icon btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalIngresoDoc">'
+      + '   <span class="tf-icons bx bx-file"></span>'
+      + '</button>';
 
-    document.querySelector('#table_user tbody').outerHTML = listHtml;
+    let clientHtml = '   <tr> '
+      + '  <td>' + client.id + '</td>'
+      + '  <td><strong>' + client.name + ' ' + client.lastname + '</strong></td>'
+      + '  <td>' + client.email + '</td> '
+      + '  <td>' + client.service + '</td>'
+      + '  <td>' + updateButton + ' ' + findButton + ' ' + documentButton + ' ' + deleteButton + '</td>'
+      + '</tr>';
+    listHtml += clientHtml;
+  }
+
+  document.querySelector('#table_user tbody').outerHTML = listHtml;
 }
 
 
