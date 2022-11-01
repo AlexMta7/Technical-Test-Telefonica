@@ -145,4 +145,10 @@ public class ClienteDaoImp implements ClienteDao{
 
         return resultado;
     }
+
+    @Override
+    public List<Clientes> getClientByName(String name) {
+        String query = "FROM Clientes WHERE nombre = :name";
+        return entityManager.createQuery(query).setParameter("name",name).getResultList();
+    }
 }

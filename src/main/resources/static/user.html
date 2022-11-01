@@ -139,28 +139,20 @@
         <!-- Layout container -->
         <div class="layout-page">
             <!-- Navbar -->
-            <nav
-                    class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-                    id="layout-navbar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
                 <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
                     <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
                         <i class="bx bx-menu bx-sm"></i>
                     </a>
                 </div>
-
-                <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-                    <!-- Search -->
-                    <div class="navbar-nav align-items-center">
-                        <div class="nav-item d-flex align-items-center">
-                            <i class="bx bx-search fs-4 lh-0"></i>
-                            <input
-                                    type="text"
-                                    class="form-control border-0 shadow-none"
-                                    placeholder="Buscar Usuario..."
-                                    aria-label="Buscar Usuario..."/>
-                        </div>
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <form class="d-flex" onsubmit="return false">
+                            <input class="form-control me-2" type="search" id="txtSearchUser" placeholder="Nombre Usuario..." aria-label="Search" title="Buscar Usuario" />
+                            <button class="btn btn-outline-primary" onclick="searchUserByName()" type="button" title="Buscar Usuario"><i class='bx bx-search'></i></button>
+                        </form>
+                        <button class="btn btn-outline-primary" onclick="location.reload()" type="button" title="Recargar"><i class='bx bx-rotate-left'></i></button>
                     </div>
-                    <!-- /Search -->
                 </div>
             </nav>
 

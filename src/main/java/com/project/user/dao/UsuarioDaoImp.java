@@ -46,4 +46,10 @@ public class UsuarioDaoImp implements UsuarioDao {
     public void registro(Usuarios usuario) {
         entityManager.merge(usuario);
     }
+
+    @Override
+    public List<Usuarios> getUserByName(String name) {
+        String query = "FROM Usuarios WHERE nom_usu = :name";
+        return entityManager.createQuery(query).setParameter("name",name).getResultList();
+    }
 }

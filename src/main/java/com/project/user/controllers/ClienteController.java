@@ -127,4 +127,10 @@ public class ClienteController {
 
         return clienteDao.getDirClientByID(id);
     }
+
+    @RequestMapping(value = "api/search/client/{name}", method = RequestMethod.GET )
+    public List<Clientes> getClientByName(@PathVariable String name){
+
+        return clienteDao.getClientByName(name);
+    }
 }

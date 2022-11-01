@@ -197,7 +197,7 @@ async function getDocsClientByID(id){
     if(client == ""){
         console.log("ERROR");
 
-        let docHtml1 = '<tr><td></td><td> USUARIO </td><td>SIN</td><td> DOCUMENTOS </td><td></td></tr>';
+        let docHtml1 = '<tr><td></td><td> CLIENTE </td><td>SIN</td><td> DOCUMENTOS </td><td></td></tr>';
 
                           //Se crean las filas para los datos extraidos de la base de datos
                           document.querySelector('#infoCliente tbody').outerHTML = docHtml1;
@@ -232,7 +232,7 @@ async function getDirClientByID(id){
     if(dir_client == ""){
         console.log("ERROR");
 
-        let docHtml2 = '<tr><td></td><td> USUARIO </td><td>SIN</td><td> DIRECCIONES </td><td></td></tr>';
+        let docHtml2 = '<tr><td></td><td> CLIENTE </td><td>SIN</td><td> DIRECCIONES </td><td></td></tr>';
 
                           //Se crean las filas para los datos extraidos de la base de datos
                           document.querySelector('#infoAddress tbody').outerHTML = docHtml2;

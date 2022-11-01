@@ -106,3 +106,49 @@ async function eliminarUsuario(id){
     alert("Registro con id: " + id + " eliminado exitosamente");
     location.reload();
 }
+
+/** BÚSQUEDA DE USUARIO POR NOMBRE **/
+
+async function getUserByName(name){
+
+    const request = await fetch('api/search/usuarios/' + name, {
+        method: 'GET',
+        headers: getHeaders()
+  });
+    const user_info = await request.json();
+
+    if(user_info == ""){
+              let usuarioHtml = '<tr><td></td><td></td><td>NO</td><td>EXISTE</td><td>REGISTRO</td><td></td></tr>';
+
+                //Se crean las filas para los datos extraidos de la base de datos
+                document.querySelector('#users tbody').outerHTML = usuarioHtml;
+          }else{
+            let listadoHtml = '';
+
+                  //Se listan los datos para mostrarlos en forma ordenada en la tabla correspondiente
+                  for(let usu of user_info){
+                   let botonEliminar = '<a href="#" onclick="eliminarUsuario(' + usu.id_usu + ')" class="btn btn-icon btn-danger"><span class="tf-icons bx bx-trash"></span></a>';
+                   let botonModificar = '<button onclick="getInfoUsuario(' + usu.id_usu + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollable"><span class="tf-icons bx bx-pencil"></span></button>';
+
+                   let usuarioHtml = '<tr><td>'+ usu.id_usu +'</td><td>' + usu.nom_usu + '</td><td>' + usu.ln_usu + '</td><td>'
+                   + usu.email_usu + '</td><td>'
+                   + usu.car_usu + '</td><td>' + botonEliminar + ' ' + botonModificar +'</td></tr>'
+
+                    listadoHtml += usuarioHtml;
+                  }
+
+                  //Se crean las filas para los datos extraidos de la base de datos
+                  document.querySelector('#users tbody').outerHTML = listadoHtml;
+          }
+
+}
+
+async function searchUserByName(){
+
+    var val = document.getElementById("txtSearchUser").value;
+
+    var str = val.toString();
+
+    getUserByName(str);
+
+}

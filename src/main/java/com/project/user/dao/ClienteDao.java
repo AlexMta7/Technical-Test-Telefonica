@@ -44,4 +44,6 @@ public interface ClienteDao {
     List<Documentos> getClientByID(Long id);
 
     List<Direcciones> getDirClientByID(Long id);
+
+    List<Clientes> getClientByName(String name);
 }

@@ -116,23 +116,48 @@ async function editarCliente(){
               });
 }
 
-async function getClient(name){
+/** BÚSQUEDA DE CLIENTE POR NOMBRE **/
 
-    var na = name.toString();
+async function getClientByName(name){
 
-    const request = await fetch('api/client/' + na, {
-                method: 'GET',
-                headers: getHeaders()
-              });
-              const client = await request.json();
+    const request = await fetch('api/search/client/' + name, {
+        method: 'GET',
+        headers: getHeaders()
+  });
+    const client_info = await request.json();
 
-    console.log(client);
+    if(client_info == ""){
+            let docHtml2 = '<tr><td></td><td>NO</td><td>EXISTE</td><td>REGISTRO</td><td></td><td></td></tr>';
+
+                              //Se crean las filas para los datos extraidos de la base de datos
+                              document.querySelector('#clientes tbody').outerHTML = docHtml2;
+        }else{
+            let listHtml2 = '';
+
+              //Se listan los datos para mostrarlos en forma ordenada en la tabla correspondiente
+              for(let cli of client_info){
+               let btnEliminar = '<a href="#" onclick="eliminarCliente(' + cli.id + ')" class="btn btn-icon btn-danger" title="Eliminar"><span class="tf-icons bx bx-trash"></span></a>';
+               let btnModificar = '<button type="button" onclick="getInfoCliente(' + cli.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollable" title="Modificar"><span class="tf-icons bx bx-pencil"></span></button>';
+               let btnAddDocs = '<button type="button" onclick="getIdCliente(' + cli.id + ')" class="btn btn-icon btn-primary" title="Agregar Documentos" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEnd" aria-controls="offcanvasEnd"><span class="tf-icons bx bx-id-card"></span></button>';
+               let btnAddAddr = '<button type="button" onclick="getIdCliente(' + cli.id + ')" class="btn btn-icon btn-secondary" title="Agregar Direcciones" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEnd1" aria-controls="offcanvasEnd"><span class="tf-icons bx bx-home"></span></button>';
+
+               let clienteHtml = '<tr><td>'+ cli.id +'</td><td>' + cli.nombre + '</td><td>' + cli.apellido + '</td><td>'
+               + cli.genero + '</td><td>' + cli.email + '</td><td>'
+               + btnAddDocs + ' ' + btnAddAddr + ' ' + btnEliminar + ' ' + btnModificar + '</td></tr>';
+               listHtml2 += clienteHtml;
+              }
+
+              //Se crean las filas para los datos extraidos de la base de datos
+              document.querySelector('#clientes tbody').outerHTML = listHtml2;
+        }
 }
 
-async function searchClient(){
+async function searchClientByName(){
 
     var val = document.getElementById("txtSearch").value;
 
-    getClient(val);
+    var str = val.toString();
+
+    getClientByName(str);
 
 }

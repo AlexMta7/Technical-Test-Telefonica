@@ -15,4 +15,6 @@ public interface UsuarioDao {
     void eliminar(Long id);
 
     void registro(Usuarios usuario);
+
+    List<Usuarios> getUserByName(String name);
 }

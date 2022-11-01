@@ -1,6 +1,7 @@
 package com.project.user.controllers;
 
 import com.project.user.dao.UsuarioDao;
+import com.project.user.models.Clientes;
 import com.project.user.models.Usuarios;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -37,5 +38,11 @@ public class UsuarioController {
     @RequestMapping(value = "api/usuarios", method = RequestMethod.POST)
     public void registrarUsuario(@RequestBody Usuarios usuario){
         usuarioDao.registro(usuario);
+    }
+
+    @RequestMapping(value = "api/search/usuarios/{name}", method = RequestMethod.GET )
+    public List<Usuarios> getUserByName(@PathVariable String name){
+
+        return usuarioDao.getUserByName(name);
     }
 }
