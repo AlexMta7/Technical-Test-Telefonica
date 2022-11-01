@@ -25,9 +25,9 @@ public class AddressDaoImp implements AddressDao {
     }
 
     @Override
-    public List<addressModel> getAddress(String email) {
-        String query = "FROM addressModel WHERE client_id = :email";
-        return entityManager.createQuery(query).setParameter("email",email).getResultList();
+    public List<addressModel> getAddress(Long id) {
+        String query = "FROM addressModel WHERE client_id = :id";
+        return entityManager.createQuery(query).setParameter("id",id).getResultList();
     }
 
     @Override

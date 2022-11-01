@@ -10,12 +10,12 @@ import lombok.*;
 public class addressModel {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "add_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @Column(name = "add_client_id")
-    private String client_id;
+    private Long client_id;
 
     @Column(name = "add_type")
     private String type;

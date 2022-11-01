@@ -2,9 +2,9 @@ $(document).ready(function () {
     //   //Al iniciar la pagina llama al metodo
   });
 
-  async function getAddresses(email) { 
+  async function getAddresses(id) { 
     console.log();
-      const request = await fetch('api/address/'+email, {
+      const request = await fetch('api/address/'+id, {
          method: 'GET',
          headers: getHeaders()
       });

@@ -9,7 +9,7 @@ import lombok.*;
 @ToString @EqualsAndHashCode
 public class clientModel {
     @Id
-    @Column(name = "id")
+    @Column(name = "cli_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

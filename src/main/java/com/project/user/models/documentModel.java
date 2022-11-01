@@ -10,7 +10,7 @@ import lombok.*;
 public class documentModel {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "doc_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

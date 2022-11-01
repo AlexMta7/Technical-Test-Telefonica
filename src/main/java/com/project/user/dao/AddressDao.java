@@ -9,7 +9,7 @@ public interface AddressDao {
 
     List<addressModel> getAddresses();
 
-    List<addressModel> getAddress(String email);
+    List<addressModel> getAddress(Long id);
 
     addressModel addAddress(addressModel address);
 

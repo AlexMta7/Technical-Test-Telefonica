@@ -23,9 +23,9 @@ public class AddressController {
         return addressDao.getAddresses();
     }
 
-    @RequestMapping(value = "api/address/{email}", method = RequestMethod.GET)
-    public List<addressModel> getAddress(@PathVariable String email) {
-        return addressDao.getAddress(email);
+    @RequestMapping(value = "api/address/{id}", method = RequestMethod.GET)
+    public List<addressModel> getAddress(@PathVariable Long id) {
+        return addressDao.getAddress(id);
     }
     
     @RequestMapping(value = "api/address", method = RequestMethod.POST)
