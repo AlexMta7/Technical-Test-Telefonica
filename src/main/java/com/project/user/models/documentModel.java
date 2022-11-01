@@ -15,7 +15,7 @@ public class documentModel {
     private Long id;
 
     @Column(name = "doc_client_id")
-    private String client_id;
+    private Long client_id;
 
     @Column(name = "doc_type")
     private String type;

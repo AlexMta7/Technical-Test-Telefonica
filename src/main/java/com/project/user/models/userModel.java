@@ -5,7 +5,9 @@ import lombok.*;
 
 @Entity
 @Table(name = "users")
-@Getter @Setter
+@Getter
+@Setter
+@ToString @EqualsAndHashCode
 public class userModel {
 
     @Id
