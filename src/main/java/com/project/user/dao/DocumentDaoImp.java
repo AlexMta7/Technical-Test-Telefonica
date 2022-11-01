@@ -22,9 +22,9 @@ public class DocumentDaoImp implements DocumentDao{
     }
 
     @Override
-    public List<documentModel> getDoc(String email) {
-        String query = "FROM documentModel WHERE client_id = :email";
-        return entityManager.createQuery(query).setParameter("email",email).getResultList();
+    public List<documentModel> getDoc(Long id) {
+        String query = "FROM documentModel WHERE client_id = :id";
+        return entityManager.createQuery(query).setParameter("id",id).getResultList();
     }
 
     @Override

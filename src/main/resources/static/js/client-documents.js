@@ -22,9 +22,9 @@ $(document).ready(function () {
 // }
 // }
 
-async function getDocuments(email) { 
+async function getDocuments(id) { 
   console.log();
-    const request = await fetch('api/docs/'+email, {
+    const request = await fetch('api/docs/'+id, {
        method: 'GET',
        headers: getHeaders()
     });
@@ -41,7 +41,7 @@ async function getDocuments(email) {
   let cont6 = 5;
   let cont7 = 6;
 
-  document.getElementById("modalLongTitle").innerHTML = email;
+  document.getElementById("modalLongTitle").innerHTML = id;
 
   for (let docs of documents) {
     cont++;
@@ -55,8 +55,8 @@ async function getDocuments(email) {
 
     let data = '<div class="input-group col mb-3">'
            + '<input id="txtSecretID'+cont+'" class="dropdown-item" value="' + docs.id + '" disabled hidden></input>'
-           +'<input id="txtSecretEmail" class="dropdown-item" value="'+email+'"  disabled hidden></input>'
-           + '<button class="btn btn-outline-primary dropdown-toggle" value="'+docs.type+'" id="btnDropDown'+cont+'" type="button" data-bs-toggle="dropdown" aria-expanded="false">'
+           +'<input id="txtSecretClientId" class="dropdown-item" value="'+id+'"  disabled hidden></input>'
+           + '<button class="btn btn-primary dropdown-toggle" value="'+docs.type+'" id="btnDropDown'+cont+'" type="button" data-bs-toggle="dropdown" aria-expanded="false">'
            + ''+docs.type+''
            + '</button>'
            + '<ul class="dropdown-menu" id="dropDown'+cont+'" style="">'
@@ -70,9 +70,9 @@ async function getDocuments(email) {
            + '<li><input id="dpType'+cont6+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont6+'\').value,'+cont+')" placeholder="Type an option"></input></li>'
            + '</ul>'
            + '<input type="text" id="txtDocument'+cont+'" class="form-control" value="'+docs.document+'" aria-label="Text input with dropdown button">'
-           + '<button class="btn btn-outline-primary tf-icons bx bxs-edit"  onclick="updateDoc('+docs.id+','+cont+')" type="button" aria-expanded="false">'
+           + '<button class="btn btn-primary tf-icons bx bxs-edit"  onclick="updateDoc('+docs.id+','+cont+')" type="button" aria-expanded="false">'
       + '</button>'
-      + '<button class="btn btn-outline-danger tf-icons bx bx-trash-alt"  onclick="deleteDoc('+docs.id+')" type="button" aria-expanded="false">'
+      + '<button class="btn btn-danger tf-icons bx bx-trash-alt"  onclick="deleteDoc('+docs.id+')" type="button" aria-expanded="false">'
            + '</button>'
            + '</div>';
     inputHtml += data;
@@ -81,32 +81,11 @@ async function getDocuments(email) {
     document.querySelector('#input_docs div div').outerHTML = inputHtml;
 }
 
-// function addButton() {
-//   let data = '<div class="input-group col mb-3">'
-//            + '<button class="btn btn-outline-primary dropdown-toggle" value="" id="btnDropDown" type="button" data-bs-toggle="dropdown" aria-expanded="false">'
-          
-//            + '</button>'
-//            + '<ul class="dropdown-menu" id="dropDown" style="">'
-//            + '<li><a id="dpType" class="dropdown-item" onclick="changeDP(document.getElementById(dpType).innerHTML)">DUI</a></li>'
-//            + '<li><a id="dpType" class="dropdown-item" onclick="changeDP(document.getElementById(dpType).innerHTML)">NIT</a></li>'
-//            + '<li><a id="dpType" class="dropdown-item" onclick="changeDP(document.getElementById(dpType).innerHTML)">ISSS</a></li>'
-//            + '<li><a id="dpType" class="dropdown-item" onclick="changeDP(document.getElementById(dpType).innerHTML)">Passport</a></li>'
-//            + '<li>'
-//            + '<hr class="dropdown-divider">'
-//            + '</li>'
-//            + '<li><input id="dpType5" class="dropdown-item" onclick="changeDP(document.getElementById("dpType5").value)" placeholder="Type an option"></input></li>'
-//            + '</ul>'
-//     + '<input type="text" class="form-control" value="" aria-label="Text input with dropdown button">'
-//     + '</div>';
-//     document.querySelector('#input_docs div div').outerHTML = data;
-  
-// }
-
 /*Agrega un documento pasando como parametro un email*/
 async function addDocument() {
   let doc = {};
   doc.id = '';
-  doc.client_id = document.getElementById('txtInsertDocSecretEmail').value;
+  doc.client_id = document.getElementById('txtInsertDocSecretClientId').value;
   doc.type = document.getElementById('btnDropDownInsertDoc').innerHTML;
   doc.document = document.getElementById('txtDocumentInsert').value;
 
@@ -128,16 +107,16 @@ else{
 }
 }
 
-function insertDocumentAtEmail(email) {
-  document.getElementById('txtInsertDocSecretEmail').value = email;
-  document.getElementById("modalLongTitle2").innerHTML = email;
+function insertDocumentAtId(id) {
+  document.getElementById('txtInsertDocSecretClientId').value = id;
+  //document.getElementById("modalLongTitle2").innerHTML = email;
 }
 
 async function updateDoc(id,cont) {
 
   let docs = {};
   docs.id = id
-  docs.client_id = document.getElementById("txtSecretEmail").value;
+  docs.client_id = document.getElementById("txtSecretClientId").value;
   docs.document = document.getElementById("txtDocument"+cont+"").value;
   docs.type = document.getElementById("btnDropDown"+cont+"").innerHTML;
 

@@ -24,9 +24,9 @@ public class DocumentController {
         return documentDao.getDocs();
     }
 
-    @RequestMapping(value = "api/docs/{email}", method = RequestMethod.GET)
-    public List<documentModel> getDoc(@PathVariable String email) {
-        return documentDao.getDoc(email);
+    @RequestMapping(value = "api/docs/{id}", method = RequestMethod.GET)
+    public List<documentModel> getDoc(@PathVariable Long id) {
+        return documentDao.getDoc(id);
     }
     
     @RequestMapping(value = "api/docs", method = RequestMethod.POST)

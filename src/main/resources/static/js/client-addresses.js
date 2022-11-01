@@ -21,7 +21,8 @@ $(document).ready(function () {
     let cont6 = 5;
     let cont7 = 6;
   
-    //document.getElementById("modalLongTitle").innerHTML = email;
+    document.getElementById("modalLongTitle").innerHTML = document.querySelector('#table_user tbody tr strong').outerHTML + ', id: '+ id;
+
   
     for (let addre of addresses) {
       cont++;
@@ -35,8 +36,8 @@ $(document).ready(function () {
   
       let data = '<div class="input-group col mb-3">'
              + '<input id="txtSecretIDAddress'+cont+'" class="dropdown-item" value="' + addre.id + '" disabled hidden></input>'
-             +'<input id="txtSecretEmail" class="dropdown-item" value="'+email+'"  disabled hidden></input>'
-             + '<button class="btn btn-outline-primary dropdown-toggle" value="'+addre.type+'" id="btnDropDownAddress'+cont+'" type="button" data-bs-toggle="dropdown" aria-expanded="false">'
+             +'<input id="txtSecretClientId" class="dropdown-item" value="'+id+'"  disabled hidden></input>'
+             + '<button class="btn btn-primary dropdown-toggle" value="'+addre.type+'" id="btnDropDownAddress'+cont+'" type="button" data-bs-toggle="dropdown" aria-expanded="false">'
              + ''+addre.type+''
              + '</button>'
              + '<ul class="dropdown-menu" id="dropDownAddress'+cont+'" style="">'
@@ -50,9 +51,9 @@ $(document).ready(function () {
              + '<li><input id="dpTypeAddress'+cont6+'" class="dropdown-item" onclick="changeDDAddress(document.getElementById(\'dpTypeAddress'+cont6+'\').value,'+cont+')" placeholder="Type an option"></input></li>'
              + '</ul>'
              + '<input type="text" id="txtAddress'+cont+'" class="form-control" value="'+addre.address+'" aria-label="Text input with dropdown button">'
-             + '<button class="btn btn-outline-primary tf-icons bx bxs-edit"  onclick="updateAddress('+addre.id+','+cont+')" type="button" aria-expanded="false">'
+             + '<button class="btn btn-primary tf-icons bx bxs-edit"  onclick="updateAddress('+addre.id+','+cont+')" type="button" aria-expanded="false">'
         + '</button>'
-        + '<button class="btn btn-outline-danger tf-icons bx bx-trash-alt"  onclick="deleteAddress('+addre.id+')" type="button" aria-expanded="false">'
+        + '<button class="btn btn-danger tf-icons bx bx-trash-alt"  onclick="deleteAddress('+addre.id+')" type="button" aria-expanded="false">'
              + '</button>'
              + '</div>';
       inputHtml += data;
@@ -64,7 +65,7 @@ $(document).ready(function () {
 async function addAddress() {
     let address = {};
     address.id = '';
-    address.client_id = document.getElementById('txtInsertAddressSecretEmail').value;
+    address.client_id = document.getElementById('txtInsertAddressSecretClientId').value;
     address.type = document.getElementById('btnDropDownInsertAddress').innerHTML;
     address.address = document.getElementById('txtAddressInsert').value;
   
@@ -89,7 +90,7 @@ async function addAddress() {
 
     let address = {};
     address.id = id
-    address.client_id = document.getElementById("txtSecretEmail").value;
+    address.client_id = document.getElementById("txtSecretClientId").value;
     address.type = document.getElementById("btnDropDownAddress"+cont+"").innerHTML;
     address.address = document.getElementById("txtAddress"+cont+"").value;
     
@@ -121,9 +122,9 @@ async function deleteAddress(id){
   alert("Address deleted");
 }
 
-  function insertAddressAtEmail(email) {
-    document.getElementById('txtInsertAddressSecretEmail').value = email;
-    document.getElementById("modalLongTitle2").innerHTML = email;
+  function insertAddressAtId(id) {
+    document.getElementById('txtInsertAddressSecretClientId').value = id;
+    document.getElementById("modalLongTitle2").innerHTML = document.querySelector('#table_user tbody tr strong').outerHTML + ', id: '+ id;
   }
 
 function changeDDAddress(name,numId) {

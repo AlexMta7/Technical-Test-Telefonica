@@ -8,7 +8,7 @@ public interface DocumentDao {
 
     List<documentModel> getDocs();
 
-    List<documentModel> getDoc(String email);
+    List<documentModel> getDoc(Long email);
 
     documentModel addDocs(documentModel document);
 
