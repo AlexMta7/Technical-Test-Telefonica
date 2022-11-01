@@ -14,7 +14,6 @@ async function getDataToDownload() {
         method: 'GET',
         headers: getHeaders()
     });
-    
 
     const clientes = await requestClients.json();
     const documentos = await requestDocuments.json();
@@ -22,18 +21,37 @@ async function getDataToDownload() {
     console.log(clientes);
     console.log(documentos);
     console.log(direcciones);
-    
+
+    if (clientes == "") {
+        console.log("No hay datos de clientes");
+        return;
+    }
+    else {
+        const csvClientes = jsonToCsv(clientes);
+        downloadData(csvClientes, 'clientes');  
+        
+        if (documentos == "") {
+            console.log("No hay datos de documentos");
+        }
+        else {
+            const csvDocumentos = jsonToCsv(documentos);
+            downloadData(csvDocumentos,'documentos_de_clientes');    
+        }
+
+        if (direcciones == "") {
+            console.log("No hay datos de direcciones");
+            return;
+        }
+        else {
+            const csvDirecciones = jsonToCsv(direcciones);
+            downloadData(csvDirecciones,'direcciones_de_clientes');    
+        }
+    }  
     // const datos_fusionados = Object.assign(clientes,documentos,direcciones) ;
     // const data = datos_fusionados;
     
-    const csvClientes = jsonToCsv(clientes);
-    const csvDocumentos = jsonToCsv(documentos);
-    const csvDirecciones = jsonToCsv(direcciones);
   
     //(archivo,nombre para descargar)
-    downloadData(csvClientes,'clientes');
-    downloadData(csvDocumentos,'documentos_de_clientes');
-    downloadData(csvDirecciones,'direcciones_de_clientes');
     //console.log(csv);
 }
     

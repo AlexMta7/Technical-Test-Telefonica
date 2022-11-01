@@ -33,52 +33,62 @@ async function getDocuments(id) {
    
   console.log(documents);
   let inputHtml = '';
-  let cont = 0;
-  let cont2 = 1;
-  let cont3 = 2;
-  let cont4 = 3;
-  let cont5 = 4;
-  let cont6 = 5;
-  let cont7 = 6;
 
-  document.getElementById("modalLongTitle").innerHTML = id;
+  document.getElementById("modalLongTitle").innerHTML = document.querySelector('#table_user tbody tr strong').outerHTML + ', id: ' + id;
 
-  for (let docs of documents) {
-    cont++;
-    cont2+=6;
-    cont3+=6;
-    cont4+=6;
-    cont5+=6;
-    cont6+=6;
-    cont7+=6;
-    console.log(cont);
-
+  if (documents == '') {
     let data = '<div class="input-group col mb-3">'
-           + '<input id="txtSecretID'+cont+'" class="dropdown-item" value="' + docs.id + '" disabled hidden></input>'
-           +'<input id="txtSecretClientId" class="dropdown-item" value="'+id+'"  disabled hidden></input>'
-           + '<button class="btn btn-primary dropdown-toggle" value="'+docs.type+'" id="btnDropDown'+cont+'" type="button" data-bs-toggle="dropdown" aria-expanded="false">'
-           + ''+docs.type+''
-           + '</button>'
-           + '<ul class="dropdown-menu" id="dropDown'+cont+'" style="">'
-           + '<li><a id="dpType'+cont2+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont2+'\').innerHTML,'+cont+')">DUI</a></li>'
-           + '<li><a id="dpType'+cont3+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont3+'\').innerHTML,'+cont+')">NIT</a></li>'
-           + '<li><a id="dpType'+cont4+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont4+'\').innerHTML,'+cont+')">ISSS</a></li>'
-           + '<li><a id="dpType'+cont5+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont5+'\').innerHTML,'+cont+')">Passport</a></li>'
-           + '<li>'
-           + '<hr class="dropdown-divider">'
-           + '</li>'
-           + '<li><input id="dpType'+cont6+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont6+'\').value,'+cont+')" placeholder="Type an option"></input></li>'
-           + '</ul>'
-           + '<input type="text" id="txtDocument'+cont+'" class="form-control" value="'+docs.document+'" aria-label="Text input with dropdown button">'
-           + '<button class="btn btn-primary tf-icons bx bxs-edit"  onclick="updateDoc('+docs.id+','+cont+')" type="button" aria-expanded="false">'
-      + '</button>'
-      + '<button class="btn btn-danger tf-icons bx bx-trash-alt"  onclick="deleteDoc('+docs.id+')" type="button" aria-expanded="false">'
-           + '</button>'
+           + '<input value="No data available" disabled></input>'
            + '</div>';
     inputHtml += data;
-    
-  }
     document.querySelector('#input_docs div div').outerHTML = inputHtml;
+  }
+  else {
+    let cont = 0;
+    let cont2 = 1;
+    let cont3 = 2;
+    let cont4 = 3;
+    let cont5 = 4;
+    let cont6 = 5;
+    let cont7 = 6;
+
+    for (let docs of documents) {
+      cont++;
+      cont2+=6;
+      cont3+=6;
+      cont4+=6;
+      cont5+=6;
+      cont6+=6;
+      cont7+=6;
+      console.log(cont);
+  
+      let data = '<div class="input-group col mb-3">'
+             + '<input id="txtSecretID'+cont+'" class="dropdown-item" value="' + docs.id + '" disabled hidden></input>'
+             +'<input id="txtSecretClientId" class="dropdown-item" value="'+id+'"  disabled hidden></input>'
+             + '<button class="btn btn-primary dropdown-toggle" value="'+docs.type+'" id="btnDropDown'+cont+'" type="button" data-bs-toggle="dropdown" aria-expanded="false">'
+             + ''+docs.type+''
+             + '</button>'
+             + '<ul class="dropdown-menu" id="dropDown'+cont+'" style="">'
+             + '<li><a id="dpType'+cont2+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont2+'\').innerHTML,'+cont+')">DUI</a></li>'
+             + '<li><a id="dpType'+cont3+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont3+'\').innerHTML,'+cont+')">NIT</a></li>'
+             + '<li><a id="dpType'+cont4+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont4+'\').innerHTML,'+cont+')">ISSS</a></li>'
+             + '<li><a id="dpType'+cont5+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont5+'\').innerHTML,'+cont+')">Passport</a></li>'
+             + '<li>'
+             + '<hr class="dropdown-divider">'
+             + '</li>'
+             + '<li><input id="dpType'+cont6+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont6+'\').value,'+cont+')" placeholder="Type an option"></input></li>'
+             + '</ul>'
+             + '<input type="text" id="txtDocument'+cont+'" class="form-control" value="'+docs.document+'" aria-label="Text input with dropdown button">'
+             + '<button class="btn btn-primary tf-icons bx bxs-edit"  onclick="updateDoc('+docs.id+','+cont+')" type="button" aria-expanded="false">'
+        + '</button>'
+        + '<button class="btn btn-danger tf-icons bx bx-trash-alt"  onclick="deleteDoc('+docs.id+')" type="button" aria-expanded="false">'
+             + '</button>'
+             + '</div>';
+      inputHtml += data;
+      
+    }
+      document.querySelector('#input_docs div div').outerHTML = inputHtml;
+  }
 }
 
 /*Agrega un documento pasando como parametro un email*/

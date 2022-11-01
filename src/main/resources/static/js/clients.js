@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
   //Al iniciar la pagina llama al metodo
-  getClients()
+  //getClients()
   //actualizarEmailUsuario()
 });
 
