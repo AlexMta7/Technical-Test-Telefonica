@@ -44,7 +44,15 @@ async function getClients() {
 
   console.log(clientes);
   if (clientes == '') {
-    let noData = 'There\'s no data yet';
+    let clientHtml = '   <tr> '
+      + '  <td>----</td>'
+      + '  <td><strong>----</strong></td>'
+      + '  <td>----</td> '
+      + '  <td>----</td>'
+      + '  <td>----</td>'
+      + '</tr>'
+      + '<div>No data available</div>';
+    let noData = clientHtml;
     document.querySelector('#table_user tbody').outerHTML = noData;
   }
   else {

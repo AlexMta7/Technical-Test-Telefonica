@@ -20,27 +20,40 @@ async function getUsers() {
     headers: getHeaders()
   });
   const usuarios = await request.json();
-
   console.log(usuarios);
-  let listHtml = '';
-  for (let user of usuarios) {
-    let updateButton = '<button type="button" id="updateButton" onclick="getUser(' + user.id + ')" class="btn btn-icon btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">'
-      + '   <span class="tf-icons bx bx-edit"></span>'
-      + '</button>';
-    let deleteButton = '<button type="button" onclick="deleteUser(' + user.id + ')" class="btn btn-icon btn-outline-danger">'
-      + '   <span class="tf-icons bx bx-trash-alt"></span>'
-      + '</button>';
-    let userHtml = '   <tr> '
-      + '  <td>' + user.id + '</td>'
-      + '  <td><strong>' + user.name + ' ' + user.lastname + '</strong></td>'
-      + '  <td>' + user.email + '</td> '
-      + '  <td>' + user.type + '</td>'
-      + '  <td>' + updateButton + ' ' + deleteButton + '</td>'
-      + '</tr>';
-    listHtml += userHtml;
-  }
 
-  document.querySelector('#table_user tbody').outerHTML = listHtml;
+  let listHtml = '';
+  if (usuarios == '') {
+    let userHtml = '   <tr> '
+      + '  <td>---</td>'
+      + '  <td><strong>---</strong></td>'
+      + '  <td>---</td> '
+      + '  <td>---</td>'
+      + '  <td>---</td>'
+      + '</tr>'
+      + '<div>No data available</div>';
+    listHtml += userHtml;
+    document.querySelector('#table_user tbody').outerHTML = listHtml;
+  }
+  else {
+    for (let user of usuarios) {
+      let updateButton = '<button type="button" id="updateButton" onclick="getUser(' + user.id + ')" class="btn btn-icon btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">'
+        + '   <span class="tf-icons bx bx-edit"></span>'
+        + '</button>';
+      let deleteButton = '<button type="button" onclick="deleteUser(' + user.id + ')" class="btn btn-icon btn-outline-danger">'
+        + '   <span class="tf-icons bx bx-trash-alt"></span>'
+        + '</button>';
+      let userHtml = '   <tr> '
+        + '  <td>' + user.id + '</td>'
+        + '  <td><strong>' + user.name + ' ' + user.lastname + '</strong></td>'
+        + '  <td>' + user.email + '</td> '
+        + '  <td>' + user.type + '</td>'
+        + '  <td>' + updateButton + ' ' + deleteButton + '</td>'
+        + '</tr>';
+      listHtml += userHtml;
+    }
+    document.querySelector('#table_user tbody').outerHTML = listHtml;
+  }
 }
 
 async function getUser(id) {
