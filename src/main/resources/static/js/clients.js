@@ -53,7 +53,7 @@ async function getClients() {
       let updateButton = '<button type="button" id="updateButton" onclick="getClient(' + client.id + ')" class="btn btn-icon btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">'
         + '   <span class="tf-icons bx bx-edit"></span>'
         + '</button>';
-      let deleteButton = '<button type="button" id="deleteButton" onclick="deleteClient(' + client.id + ');deleteDocumentAddress(\'' + client.email + '\')" class="btn btn-icon btn-danger">'
+      let deleteButton = '<button type="button" id="deleteButton" onclick="deleteClient(' + client.id + ')" class="btn btn-icon btn-danger">'
         + '   <span class="tf-icons bx bx-trash-alt"></span>'
         + '</button>';
       let findButton = '<button type="button" id="findButton" onclick="getDocuments(\'' + client.id + '\');getAddresses(\'' + client.id + '\')" class="btn btn-icon btn-success" data-bs-toggle="modal" data-bs-target="#modalLong">'

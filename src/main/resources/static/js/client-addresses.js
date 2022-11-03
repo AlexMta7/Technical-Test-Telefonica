@@ -18,8 +18,8 @@ async function getAddresses(id) {
 
   if (addresses == '') {
     let data = '<div class="input-group col mb-3">'
-           + '<input value="No data available" disabled></input>'
-           + '</div>';
+      + '<input value="No data available" disabled></input>'
+      + '</div>';
     inputHtml += data;
     document.querySelector('#input_address div').outerHTML = inputHtml;
   }
@@ -31,7 +31,7 @@ async function getAddresses(id) {
     let cont5 = 4;
     let cont6 = 5;
     let cont7 = 6;
-    
+
     for (let addre of addresses) {
       cont++;
       cont2 += 6;
@@ -41,7 +41,7 @@ async function getAddresses(id) {
       cont6 += 6;
       cont7 += 6;
       console.log(cont);
-  
+
       let data = '<div class="input-group col mb-3">'
         + '<input id="txtSecretIDAddress' + cont + '" class="dropdown-item" value="' + addre.id + '" disabled hidden></input>'
         + '<input id="txtSecretClientId" class="dropdown-item" value="' + id + '"  disabled hidden></input>'
@@ -65,7 +65,7 @@ async function getAddresses(id) {
         + '</button>'
         + '</div>';
       inputHtml += data;
-  
+
     }
     document.querySelector('#input_address div').outerHTML = inputHtml;
   }

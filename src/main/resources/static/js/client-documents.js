@@ -10,7 +10,7 @@ $(document).ready(function () {
 //        headers: getHeaders()
 //      });
 //      const documents = await request.json();
-   
+
 // console.log(documents);
 // document.getElementById("saveModal").innerHTML = "Update";  
 
@@ -22,15 +22,15 @@ $(document).ready(function () {
 // }
 // }
 
-async function getDocuments(id) { 
+async function getDocuments(id) {
   console.log();
-    const request = await fetch('api/docs/'+id, {
-       method: 'GET',
-       headers: getHeaders()
-    });
-  
-     const documents = await request.json();
-   
+  const request = await fetch('api/docs/' + id, {
+    method: 'GET',
+    headers: getHeaders()
+  });
+
+  const documents = await request.json();
+
   console.log(documents);
   let inputHtml = '';
 
@@ -38,8 +38,8 @@ async function getDocuments(id) {
 
   if (documents == '') {
     let data = '<div class="input-group col mb-3">'
-           + '<input value="No data available" disabled></input>'
-           + '</div>';
+      + '<input value="No data available" disabled></input>'
+      + '</div>';
     inputHtml += data;
     document.querySelector('#input_docs div div').outerHTML = inputHtml;
   }
@@ -54,40 +54,40 @@ async function getDocuments(id) {
 
     for (let docs of documents) {
       cont++;
-      cont2+=6;
-      cont3+=6;
-      cont4+=6;
-      cont5+=6;
-      cont6+=6;
-      cont7+=6;
+      cont2 += 6;
+      cont3 += 6;
+      cont4 += 6;
+      cont5 += 6;
+      cont6 += 6;
+      cont7 += 6;
       console.log(cont);
-  
+
       let data = '<div class="input-group col mb-3">'
-             + '<input id="txtSecretID'+cont+'" class="dropdown-item" value="' + docs.id + '" disabled hidden></input>'
-             +'<input id="txtSecretClientId" class="dropdown-item" value="'+id+'"  disabled hidden></input>'
-             + '<button class="btn btn-primary dropdown-toggle" value="'+docs.type+'" id="btnDropDown'+cont+'" type="button" data-bs-toggle="dropdown" aria-expanded="false">'
-             + ''+docs.type+''
-             + '</button>'
-             + '<ul class="dropdown-menu" id="dropDown'+cont+'" style="">'
-             + '<li><a id="dpType'+cont2+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont2+'\').innerHTML,'+cont+')">DUI</a></li>'
-             + '<li><a id="dpType'+cont3+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont3+'\').innerHTML,'+cont+')">NIT</a></li>'
-             + '<li><a id="dpType'+cont4+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont4+'\').innerHTML,'+cont+')">ISSS</a></li>'
-             + '<li><a id="dpType'+cont5+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont5+'\').innerHTML,'+cont+')">Passport</a></li>'
-             + '<li>'
-             + '<hr class="dropdown-divider">'
-             + '</li>'
-             + '<li><input id="dpType'+cont6+'" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType'+cont6+'\').value,'+cont+')" placeholder="Type an option"></input></li>'
-             + '</ul>'
-             + '<input type="text" id="txtDocument'+cont+'" class="form-control" value="'+docs.document+'" aria-label="Text input with dropdown button">'
-             + '<button class="btn btn-primary tf-icons bx bxs-edit"  onclick="updateDoc('+docs.id+','+cont+')" type="button" aria-expanded="false">'
+        + '<input id="txtSecretID' + cont + '" class="dropdown-item" value="' + docs.id + '" disabled hidden></input>'
+        + '<input id="txtSecretClientId" class="dropdown-item" value="' + id + '"  disabled hidden></input>'
+        + '<button class="btn btn-primary dropdown-toggle" value="' + docs.type + '" id="btnDropDown' + cont + '" type="button" data-bs-toggle="dropdown" aria-expanded="false">'
+        + '' + docs.type + ''
         + '</button>'
-        + '<button class="btn btn-danger tf-icons bx bx-trash-alt"  onclick="deleteDoc('+docs.id+')" type="button" aria-expanded="false">'
-             + '</button>'
-             + '</div>';
+        + '<ul class="dropdown-menu" id="dropDown' + cont + '" style="">'
+        + '<li><a id="dpType' + cont2 + '" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType' + cont2 + '\').innerHTML,' + cont + ')">DUI</a></li>'
+        + '<li><a id="dpType' + cont3 + '" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType' + cont3 + '\').innerHTML,' + cont + ')">NIT</a></li>'
+        + '<li><a id="dpType' + cont4 + '" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType' + cont4 + '\').innerHTML,' + cont + ')">ISSS</a></li>'
+        + '<li><a id="dpType' + cont5 + '" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType' + cont5 + '\').innerHTML,' + cont + ')">Passport</a></li>'
+        + '<li>'
+        + '<hr class="dropdown-divider">'
+        + '</li>'
+        + '<li><input id="dpType' + cont6 + '" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType' + cont6 + '\').value,' + cont + ')" placeholder="Type an option"></input></li>'
+        + '</ul>'
+        + '<input type="text" id="txtDocument' + cont + '" class="form-control" value="' + docs.document + '" aria-label="Text input with dropdown button">'
+        + '<button class="btn btn-primary tf-icons bx bxs-edit"  onclick="updateDoc(' + docs.id + ',' + cont + ')" type="button" aria-expanded="false">'
+        + '</button>'
+        + '<button class="btn btn-danger tf-icons bx bx-trash-alt"  onclick="deleteDoc(' + docs.id + ')" type="button" aria-expanded="false">'
+        + '</button>'
+        + '</div>';
       inputHtml += data;
-      
+
     }
-      document.querySelector('#input_docs div div').outerHTML = inputHtml;
+    document.querySelector('#input_docs div div').outerHTML = inputHtml;
   }
 }
 
@@ -99,22 +99,22 @@ async function addDocument() {
   doc.type = document.getElementById('btnDropDownInsertDoc').innerHTML;
   doc.document = document.getElementById('txtDocumentInsert').value;
 
-const request = await fetch('api/docs', {
-  method: 'POST',
-  headers: getHeaders(),
-  body: JSON.stringify(doc)
-});
-const response = await request.text();
-console.log(response);
-if (response == 'OK'){
-  alert("Document added successfully");
-  document.getElementById('btnDropDownInsertDoc').innerHTML = "<i class='bx bx-file-blank'></i>";
-  document.getElementById('txtDocumentInsert').value = "";
-  //location.reload();
-}
-else{
-     alert("Couldn't add document");
-}
+  const request = await fetch('api/docs', {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(doc)
+  });
+  const response = await request.text();
+  console.log(response);
+  if (response == 'OK') {
+    alert("Document added successfully");
+    document.getElementById('btnDropDownInsertDoc').innerHTML = "<i class='bx bx-file-blank'></i>";
+    document.getElementById('txtDocumentInsert').value = "";
+    //location.reload();
+  }
+  else {
+    alert("Couldn't add document");
+  }
 }
 
 function insertDocumentAtId(id) {
@@ -122,17 +122,17 @@ function insertDocumentAtId(id) {
   //document.getElementById("modalLongTitle2").innerHTML = email;
 }
 
-async function updateDoc(id,cont) {
+async function updateDoc(id, cont) {
 
   let docs = {};
   docs.id = id
   docs.client_id = document.getElementById("txtSecretClientId").value;
-  docs.document = document.getElementById("txtDocument"+cont+"").value;
-  docs.type = document.getElementById("btnDropDown"+cont+"").innerHTML;
+  docs.document = document.getElementById("txtDocument" + cont + "").value;
+  docs.type = document.getElementById("btnDropDown" + cont + "").innerHTML;
 
   console.log();
   const request = await fetch('api/docs/', {
-     method: 'PUT',
+    method: 'PUT',
     headers: getHeaders(),
     body: JSON.stringify(docs)
   });
@@ -143,25 +143,25 @@ async function updateDoc(id,cont) {
 }
 
 
-async function deleteDoc(id){
+async function deleteDoc(id) {
 
-  if(!confirm('Do you want to delete document?')){
-          //Con return se corta el flujo de la función
-          return;
-      }
+  if (!confirm('Do you want to delete document?')) {
+    //Con return se corta el flujo de la función
+    return;
+  }
 
   const request = await fetch('api/docs/' + id, {
-      method: 'DELETE',
-      headers: getHeaders()
-    });
-      location.reload();
+    method: 'DELETE',
+    headers: getHeaders()
+  });
+  location.reload();
 
   alert("Document deleted");
 }
 
 /*Cambia el estado del boton cuando muestra los resultados de los documentos*/
-function changeDP(name,numId) {
-    document.getElementById('btnDropDown'+numId+'').innerHTML = name;
+function changeDP(name, numId) {
+  document.getElementById('btnDropDown' + numId + '').innerHTML = name;
 }
 
 /*Cambia el estado del boton para agregar documentos*/
