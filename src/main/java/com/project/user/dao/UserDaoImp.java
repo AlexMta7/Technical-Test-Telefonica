@@ -1,6 +1,10 @@
 package com.project.user.dao;
 
 import com.project.user.models.userModel;
+
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,5 +53,28 @@ public class UserDaoImp implements UserDao{
     public List<userModel> getUser(Long id) {
         String query = "FROM userModel WHERE id = :id";
         return entityManager.createQuery(query).setParameter("id", id).getResultList();
+    }
+
+    @Override
+    public boolean verifyCredentials(userModel user) {
+        String query = "FROM userModel WHERE email = :email";
+        List<userModel> list = entityManager.createQuery(query).setParameter("email", user.getEmail()).getResultList();
+
+        if (list.isEmpty()) {
+            return false;
+        }
+        
+         //Gets the password
+         String hashedPassword = list.get(0).getPassword();
+
+         //TO VERIFY THE PASSWORD
+         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+ 
+         //Compares a Hash with a password. returns a boolean
+         if(argon2.verify(hashedPassword, user.getPassword())){
+             return true;
+         }
+
+        return false;
     }
 }

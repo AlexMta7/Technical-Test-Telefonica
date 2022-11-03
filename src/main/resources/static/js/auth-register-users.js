@@ -1,7 +1,7 @@
 
-$(document).ready(function() {
+$(document).ready(function () {
     //Al iniciar la pagina llama al metodo
-  //actualizarEmailUsuario()
+    //actualizarEmailUsuario()
 });
 
 //Para devolver los Header
@@ -21,34 +21,27 @@ async function addUser() {
     user.password = document.getElementById("txtPassword").value;
 
     let repeatPassword = document.getElementById("txtRepeatPassword").value;
-
-    // if (user.name == "" && user.lastname == "" && user.email == "" && user.password == "" && repeatPassword == "") {
-    //     //alert("No puede ingresar un dato vació");
-    //     //location.reload();
-    //     return;
-    // }
-    // else {
-    //     user.type = "NO_ADMIN";
-    // }
+    user.type = "NO_ADMIN";
 
     if (repeatPassword != user.password) {
         alert("Las contraseñas no coinciden.")
         return;
     }
-
-    const request = await fetch('api/users', {
-        method: 'POST',
-        headers: getHeaders(),
-        body: JSON.stringify(user)
-    });
-    const response = await request.text();
-    console.log(response);
-    if (response == 'OK') {
-        alert("User added successfully.");
-        location.reload();
-    }
     else {
-        alert("User already exist.");
+        const request = await fetch('api/users', {
+            method: 'POST',
+            headers: getHeaders(),
+            body: JSON.stringify(user)
+        });
+        const response = await request.text();
+        console.log(response);
+        if (response == 'OK') {
+            alert("User added successfully.");
+            location.reload();
+        }
+        else {
+            alert("User already exist.");
+        }
     }
 }
 

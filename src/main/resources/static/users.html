@@ -350,7 +350,7 @@
                   </button> -->
 
                   <!-- Modal -->
-                  <form onsubmit="updateUser()">
+                  <div>
                     <div class="modal fade" id="modalCenter" tabindex="-1" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -397,12 +397,12 @@
                           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                             Close
                           </button>
-                          <button type="submit" id="saveModal" class="btn btn-primary">Save changes</button>
+                          <button onclick="updateUser()" id="saveModal" class="btn btn-primary">Save changes</button>
                         </div>
                       </div>
                     </div>
                     </div>
-                  </form>
+                  </div>
               </div>
 
                 <div class="table-responsive text-nowrap">
