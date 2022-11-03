@@ -149,8 +149,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <form class="d-flex" name="myForm" id="myForm" onsubmit="return false">
                     <input class="form-control me-2" type="search" name="txtSearch" id="txtSearch" placeholder="Nombre Cliente..." aria-label="Search" title="Buscar Cliente" onkeyup="validar()" onblur="validar()" />
-                    <div id="message" style="position: absolute; left: 10px; top: 50px; color: white; background-color: Red; z-index: 10" hidden>
-                      Introduzca solo letras (A-Z) o (a-z).
+                    <div id="message" style="position: absolute; left: 10px; top: 50px; color: Red; text-decoration: underline red; z-index: 10" hidden>
+                      Introduzca Solo Letras
                     </div>
                     <button class="btn btn-outline-primary" onclick="searchClientByName()" type="button" title="Buscar"><i class='bx bx-search'></i></button>
                   </form>
@@ -173,7 +173,7 @@
                   <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                  <form>
+                  <form name="formADoc" id="formADoc">
                     <div class="row g-2">
                       <div class="col mb-3">
                         <label for="txtIdC" class="form-label">Id</label>
@@ -185,7 +185,7 @@
                       <div class="col mb-3">
                         <label class="form-label" for="txtTypeD">Tipo de Documento</label>
                         <select id="txtTypeD" class="form-select">
-                          <option>Seleccione una opción</option>
+                          <option value="">Seleccione una opción</option>
                           <option value="DUI">DUI</option>
                           <option value="NIT">NIT</option>
                           <option value="PASAPORTE">PASAPORTE</option>
@@ -198,7 +198,7 @@
                     <div class="row g-2">
                       <div class="col mb-3">
                         <label for="txtNumDoc" class="form-label">Número Documento</label>
-                        <input type="text" class="form-control" id="txtNumDoc" placeholder="Número Documento">
+                        <input type="text" class="form-control" name="txtNumDoc" id="txtNumDoc" placeholder="Número Documento" title="Ingrese Número Documento"  onkeyup="validarDoc()" onblur="validarDoc()" >
                       </div>
                     </div>
                   </form>
@@ -219,7 +219,7 @@
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
               </div>
               <div class="offcanvas-body">
-                <form>
+                <form name="formADir" id="formADir">
                   <div class="row g-2">
                     <div class="col mb-3">
                       <label for="txtIdCl" class="form-label">Id</label>
@@ -231,7 +231,7 @@
                     <div class="col mb-3">
                       <label class="form-label" for="txtNameD">Tipo Dirección</label>
                       <select id="txtNameD" class="form-select">
-                        <option>Seleccione una opción</option>
+                        <option value="">Seleccione una opción</option>
                         <option value="PRINCIPAL">PRINCIPAL</option>
                         <option value="SECUNDARIA">SECUNDARIA</option>
                         <option value="OTRA DIRECCIÓN">OTRA</option>
@@ -242,7 +242,7 @@
                   <div class="row g-2">
                     <div class="col mb-3">
                       <label for="txtAddress" class="form-label">Dirección</label>
-                      <input type="text" class="form-control" id="txtAddress" placeholder="Dirección">
+                      <input type="text" class="form-control" name="txtAddress" id="txtAddress" placeholder="Dirección">
                     </div>
                   </div>
                 </form>
@@ -356,7 +356,7 @@
                   <div class="col mb-3">
                     <label class="form-label" for="txtGender">Género</label>
                     <select id="txtGender" class="form-select">
-                      <option>Seleccione una opción</option>
+                      <option value="">Seleccione una opción</option>
                       <option value="Masculino">Masculino</option>
                       <option value="Femenino">Femenino</option>
                       <option value="Sin Especificar">No Especificar</option>

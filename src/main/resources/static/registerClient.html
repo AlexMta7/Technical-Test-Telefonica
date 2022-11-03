@@ -151,27 +151,27 @@
                                         <h5 class="mb-0">Completar Campos del Formulario </h5>
                                     </div>
                                     <div class="card-body">
-                                        <form>
+                                        <form name="formRC" id="formRC">
                                             <div class="row g-2">
                                                 <div class="col mb-0">
                                                     <label class="form-label" for="txtName">Nombres Cliente</label>
-                                                    <input type="text" class="form-control" id="txtName" placeholder="Ingresar Nombres" />
+                                                    <input type="text" class="form-control" name="txtName" id="txtName" placeholder="Ingresar Nombres" title="Ingresar Nombres" required/>
                                                 </div>
                                                 <div class="col mb-0">
                                                     <label class="form-label" for="txtLastName">Apellidos Cliente</label>
-                                                    <input type="text" class="form-control" id="txtLastName" placeholder="Ingresar Apellidos" />
+                                                    <input type="text" class="form-control" name="txtLastName" id="txtLastName" placeholder="Ingresar Apellidos" title="Ingresar Apellidos" required/>
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="row g-2">
                                                 <div class="col mb-0">
                                                     <label class="form-label" for="txtEmail">Email</label>
-                                                    <input type="text" id="txtEmail" class="form-control" placeholder="Ingrese Email"/>
+                                                    <input type="text" name="txtEmail" id="txtEmail" class="form-control" placeholder="Ingrese Email" required/>
                                                 </div>
                                                 <div class="col mb-0">
                                                     <label class="form-label" for="txtGender">Género</label>
                                                     <select id="txtGender" class="form-select">
-                                                        <option>Seleccione una opción</option>
+                                                        <option value="">Seleccione una opción</option>
                                                         <option value="Masculino">Masculino</option>
                                                         <option value="Femenino">Femenino</option>
                                                         <option value="Sin Especificar">No Especificar</option>

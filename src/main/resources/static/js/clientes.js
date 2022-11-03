@@ -101,19 +101,24 @@ async function getIdCliente(id){
 //Función para editar la información del cliente seleccionado
 //Funcionando al 100%
 async function editarCliente(){
-    let datosCliente = {};
+    if(document.getElementById("txtLastName").value == "" || document.getElementById("txtName").value == "" || document.getElementById("txtGender").value == ""
+    || document.getElementById("txtEmail").value == ""){
+        alert("Todos los Datos son Requeridos");
+    }else{
+        let datosCliente = {};
 
-    datosCliente.id = document.getElementById("txtId").value;
-    datosCliente.apellido = document.getElementById("txtLastName").value;
-    datosCliente.nombre = document.getElementById("txtName").value;
-    datosCliente.genero = document.getElementById("txtGender").value;
-    datosCliente.email = document.getElementById("txtEmail").value;
+        datosCliente.id = document.getElementById("txtId").value;
+        datosCliente.apellido = document.getElementById("txtLastName").value;
+        datosCliente.nombre = document.getElementById("txtName").value;
+        datosCliente.genero = document.getElementById("txtGender").value;
+        datosCliente.email = document.getElementById("txtEmail").value;
 
-    const request = await fetch('api/cliente/', {
-                method: 'PUT',
-                headers: getHeaders(),
-                body: JSON.stringify(datosCliente)
-              });
+        const request = await fetch('api/cliente/', {
+                    method: 'PUT',
+                    headers: getHeaders(),
+                    body: JSON.stringify(datosCliente)
+          });
+    }
 }
 
 /** BÚSQUEDA DE CLIENTE POR NOMBRE **/

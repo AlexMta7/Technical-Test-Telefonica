@@ -72,23 +72,28 @@ async function getInfoUsuario (id){
 //Función para editar la información del usuario seleccionado
 //Funcionando al 100%
 async function editarUsuario(){
-    let datosUsuario = {};
+    if(document.getElementById("txtLastName").value == "" || document.getElementById("txtName").value == "" || document.getElementById("txtType").value == ""
+    || document.getElementById("txtPassword").value == "" || document.getElementById("txtEmail").value == ""){
+        alert("Todos los Datos son Requeridos. No fueron actualizados los datos");
+    }else{
+        let datosUsuario = {};
 
-    datosUsuario.id_usu = document.getElementById("txtId").value;
-    datosUsuario.ln_usu = document.getElementById("txtLastName").value;
-    datosUsuario.nom_usu = document.getElementById("txtName").value;
-    datosUsuario.car_usu = document.getElementById("txtType").value;
-    datosUsuario.pass_usu = document.getElementById("txtPassword").value;
-    datosUsuario.email_usu = document.getElementById("txtEmail").value;
+        datosUsuario.id_usu = document.getElementById("txtId").value;
+        datosUsuario.ln_usu = document.getElementById("txtLastName").value;
+        datosUsuario.nom_usu = document.getElementById("txtName").value;
+        datosUsuario.car_usu = document.getElementById("txtType").value;
+        datosUsuario.pass_usu = document.getElementById("txtPassword").value;
+        datosUsuario.email_usu = document.getElementById("txtEmail").value;
 
-    const request = await fetch('api/usuarios/', {
-                method: 'PUT',
-                headers: getHeaders(),
-                body: JSON.stringify(datosUsuario)
-              });
+        const request = await fetch('api/usuarios/', {
+                    method: 'PUT',
+                    headers: getHeaders(),
+                    body: JSON.stringify(datosUsuario)
+                  });
 
-    alert("Información Actualizada con Éxito");
-    location.reload();
+        alert("Información Actualizada con Éxito");
+        location.reload();
+    }
 }
 
 //Función para eliminar registro de usuario por medio del Id

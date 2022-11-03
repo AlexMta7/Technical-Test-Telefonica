@@ -47,7 +47,7 @@
       } else {
         // verde: si es valido
         input.style.borderColor = 'palegreen'; // 'palegreen' se ve mejor que 'green' en mi opinion
-        // ocultamos mensaje;
+        // ocultamos mensaje
         message.hidden = true;
       }
 
