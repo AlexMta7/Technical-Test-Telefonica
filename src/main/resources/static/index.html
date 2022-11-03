@@ -147,8 +147,11 @@
             </div>
               <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <form class="d-flex" onsubmit="return false">
-                    <input class="form-control me-2" type="search" id="txtSearch" placeholder="Nombre Cliente..." aria-label="Search" title="Buscar Cliente" />
+                  <form class="d-flex" name="myForm" id="myForm" onsubmit="return false">
+                    <input class="form-control me-2" type="search" name="txtSearch" id="txtSearch" placeholder="Nombre Cliente..." aria-label="Search" title="Buscar Cliente" onkeyup="validar()" onblur="validar()" />
+                    <div id="message" style="position: absolute; left: 10px; top: 50px; color: white; background-color: Red; z-index: 10" hidden>
+                      Introduzca solo letras (A-Z) o (a-z).
+                    </div>
                     <button class="btn btn-outline-primary" onclick="searchClientByName()" type="button" title="Buscar"><i class='bx bx-search'></i></button>
                   </form>
                   <button class="btn btn-outline-primary" onclick="location.reload()" type="button" title="Recargar"><i class='bx bx-rotate-left'></i></button>
@@ -295,16 +298,7 @@
     <!-- / Layout wrapper -->
 
     <!-- Notificación Toast para modificación Exitosa -->
-    <div
-            class="bs-toast toast toast-placement-ex m-2"
-            role="alert"
-            aria-live="assertive"
-            aria-atomic="true"
-            data-delay="2000"
-            type="button"
-            data-bs-dismiss="toast"
-
-    >
+    <div class="bs-toast toast toast-placement-ex m-2" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000" type="button" data-bs-dismiss="toast">
       <div class="toast-header">
         <i class='bx bx-check me-2'></i>
         <div class="me-auto fw-semibold">Sistema de Clientes</div>
@@ -399,6 +393,7 @@
     <script src="/assets/vendor/libs/popper/popper.js"></script>
     <script src="/assets/vendor/js/bootstrap.js"></script>
     <script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="/js/restrictions.js"></script>
     <script src="/js/saver.js"></script>
     <script src="/js/downloadData.js"></script>
     <script src="/js/clientes.js"></script>

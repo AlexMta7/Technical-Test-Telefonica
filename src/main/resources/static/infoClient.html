@@ -118,8 +118,8 @@
                     <!-- Search -->
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <form class="d-flex" onsubmit="return false">
-                                <input class="form-control me-2" type="search" id="txtSearchID" placeholder="ID Cliente..." aria-label="Search" title="Buscar Cliente" />
+                            <form class="d-flex" name="formSearch" id="formSearch" onsubmit="return false">
+                                <input class="form-control me-2" type="search" name="txtSearchID" id="txtSearchID" placeholder="ID Cliente..." aria-label="Search" title="Buscar Cliente" maxlength="8"/>
                                 <button class="btn btn-outline-primary" onclick="searchClientByID()" type="button" title="Buscar"><i class='bx bx-search'></i></button>
                             </form>
                             <button class="btn btn-outline-primary" onclick="location.reload()" type="button" title="Recargar"><i class='bx bx-rotate-left'></i></button>
@@ -367,6 +367,7 @@
 <script src="/assets/vendor/libs/popper/popper.js"></script>
 <script src="/assets/vendor/js/bootstrap.js"></script>
 <script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="/js/restrictionsInfo.js"></script>
 <script src="/js/registerClient.js"></script>
 <script src="/js/infoClientes.js"></script>
 <script src="/js/saver.js"></script>
