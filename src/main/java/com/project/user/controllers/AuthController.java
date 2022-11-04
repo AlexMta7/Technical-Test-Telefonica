@@ -22,12 +22,13 @@ public class AuthController {
     @RequestMapping(value = "api/login", method = RequestMethod.POST)
     public String login(@RequestBody userModel user){
         //Verifica las credenciales del usuario devolviendo un usuario
-        userModel loggedUser = userDao.getUserByCredentials(user);
-        if (loggedUser != null){
-            String tokenJwt = jwtUtil.create(String.valueOf(loggedUser.getId()), loggedUser.getEmail());
-            return tokenJwt;
-        }
-        return "FAIL";
+            userModel loggedUser = userDao.getUserByCredentials(user);
+            if (loggedUser != null) {
+                String tokenJwt = jwtUtil.create(String.valueOf(loggedUser.getId()), loggedUser.getEmail());
+                return tokenJwt;
+            }
+            return "FAIL";
+       
     }
 
     // VERIFICACIÓN DE CREDENCIALES SIN JWT

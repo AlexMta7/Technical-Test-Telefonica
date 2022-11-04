@@ -18,6 +18,11 @@ async function login() {
   user.email = document.getElementById("txtEmail").value;
   user.password = document.getElementById("txtPassword").value;
 
+  if (user.email == '' || user.password == '') {
+    alert("Llena todos los campos");
+    return;
+  }
+
   const request = await fetch('api/login', {
     method: 'POST',
     headers: getHeaders(),
@@ -25,14 +30,29 @@ async function login() {
   });
   const response = await request.text();
   console.log(response);
-  if (response == 'OK') {
+
+
+  if (response != 'FAIL') {
     alert("Login successfully.");
-    window.location.href="clients.html"
+    localStorage.token = response;
+    localStorage.email = user.email;
+    window.location.href = "clients.html"
   }
   else if (response == 'FAIL') {
     alert("Email or Password invalid");
   }
-  else if(response == 'User Doesn\'t Exist'){
-    alert(response);
-  }
+
+
+  // if (response != 'FAIL') {
+  //   alert("Login successfully.");
+  //   localStorage.token = response;
+  //   localStorage.email = user.email;
+  //   window.location.href="clients.html"
+  // }
+  // else if (response == 'FAIL') {
+  //   alert("Email or Password invalid");
+  // }
+  // else if(response == 'User Doesn\'t Exist'){
+  //   alert(response);
+  // }
 }
