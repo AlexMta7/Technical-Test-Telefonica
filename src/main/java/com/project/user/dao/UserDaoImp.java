@@ -77,4 +77,27 @@ public class UserDaoImp implements UserDao{
 
         return false;
     }
+
+    @Override
+    public userModel getUserByCredentials(userModel user) {
+        String query = "FROM userModel WHERE email = :email";
+        List<userModel> list = entityManager.createQuery(query).setParameter("email", user.getEmail()).getResultList();
+
+        if (list.isEmpty()) {
+            return null;
+        }
+        
+         //Gets the password
+         String hashedPassword = list.get(0).getPassword();
+
+         //TO VERIFY THE PASSWORD
+         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+ 
+         //Compares a Hash with a password. returns a boolean
+         if(argon2.verify(hashedPassword, user.getPassword())){
+             return list.get(0);
+         }
+
+        return null;
+    }
 }

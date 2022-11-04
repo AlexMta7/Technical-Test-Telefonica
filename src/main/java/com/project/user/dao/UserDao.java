@@ -18,4 +18,6 @@ public interface UserDao {
     userModel updateUser(userModel user);
 
     boolean verifyCredentials(userModel user);
+
+    userModel getUserByCredentials(userModel user);
 }
