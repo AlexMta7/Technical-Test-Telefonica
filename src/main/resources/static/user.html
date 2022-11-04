@@ -147,8 +147,11 @@
                 </div>
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <form class="d-flex" onsubmit="return false">
-                            <input class="form-control me-2" type="search" id="txtSearchUser" placeholder="Nombre Usuario..." aria-label="Search" title="Buscar Usuario" />
+                        <form class="d-flex" name="formUser" id="formUser" onsubmit="return false">
+                            <input class="form-control me-2" type="search" name="txtSearchUser" id="txtSearchUser" placeholder="Nombre Usuario..." aria-label="Search" title="Buscar Usuario" onkeyup="validar()" onblur="validar()"  />
+                            <div id="messageU" style="position: absolute; left: 10px; top: 50px; color: Red; text-decoration: underline red; z-index: 10" hidden>
+                                Introduzca Solo Letras
+                            </div>
                             <button class="btn btn-outline-primary" onclick="searchUserByName()" type="button" title="Buscar Usuario"><i class='bx bx-search'></i></button>
                         </form>
                         <button class="btn btn-outline-primary" onclick="location.reload()" type="button" title="Recargar"><i class='bx bx-rotate-left'></i></button>
@@ -265,6 +268,7 @@
 <script src="/assets/vendor/js/bootstrap.js"></script>
 <script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="/js/user.js"></script>
+<script src="/js/restrictionsUSer.js"></script>
 
 <script src="/assets/vendor/js/menu.js"></script>
 <!-- endbuild -->

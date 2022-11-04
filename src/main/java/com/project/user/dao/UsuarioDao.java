@@ -17,4 +17,6 @@ public interface UsuarioDao {
     void registro(Usuarios usuario);
 
     List<Usuarios> getUserByName(String name);
+
+    Usuarios obtenerUsuarioPorCredenciales(Usuarios usuario);
 }

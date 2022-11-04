@@ -1,6 +1,8 @@
 package com.project.user.dao;
 
 import com.project.user.models.Usuarios;
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,5 +53,26 @@ public class UsuarioDaoImp implements UsuarioDao {
     public List<Usuarios> getUserByName(String name) {
         String query = "FROM Usuarios WHERE nom_usu = :name";
         return entityManager.createQuery(query).setParameter("name",name).getResultList();
+    }
+
+    @Override
+    public Usuarios obtenerUsuarioPorCredenciales(Usuarios usuario) {
+        String query = "FROM Usuarios WHERE email_usu = :email";
+        List<Usuarios> lista = entityManager.createQuery(query)
+                .setParameter("email",usuario.getEmail_usu())
+                .getResultList();
+
+        if (lista.isEmpty()){
+            return null;
+        }
+
+        String passwordHashed = lista.get(0).getPass_usu();
+
+        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+        if (argon2.verify(passwordHashed, usuario.getPass_usu())){
+            return lista.get(0);
+        }
+
+        return null;
     }
 }

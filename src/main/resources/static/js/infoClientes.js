@@ -8,7 +8,7 @@ function getHeaders(){
        return {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            //'Authorization': localStorage.token
+            'Authorization': localStorage.token
         };
 }
 
@@ -256,9 +256,14 @@ async function getDirClientByID(id){
 
 async function searchClientByID(){
 
-    var val = document.getElementById("txtSearchID").value;
+    if(document.getElementById("txtSearchID").value == ""){
+        alert("Ingrese El ID Del Cliente A Buscar");
+    }else{
+        var val = document.getElementById("txtSearchID").value;
 
-    getDocsClientByID(val);
-    getDirClientByID(val);
+        getDocsClientByID(val);
+        getDirClientByID(val);
+    }
+
 
 }

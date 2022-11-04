@@ -8,7 +8,7 @@ function getHeaders(){
        return {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            //'Authorization': localStorage.token
+            'Authorization': localStorage.token
         };
 }
 
@@ -63,7 +63,7 @@ async function getInfoUsuario (id){
             document.getElementById("txtName").value = usua.nom_usu;
             document.getElementById("txtLastName").value = usua.ln_usu;
             document.getElementById("txtType").value = usua.car_usu;
-            document.getElementById("txtPassword").value = usua.pass_usu;
+            //document.getElementById("txtPassword").value = usua.pass_usu;
             document.getElementById("txtEmail").value = usua.email_usu;
             document.getElementById("txtId").value = usua.id_usu;
         }
@@ -150,10 +150,13 @@ async function getUserByName(name){
 
 async function searchUserByName(){
 
-    var val = document.getElementById("txtSearchUser").value;
+    if(document.getElementById("txtSearchUser").value == ""){
+        alert("Ingrese El Nombre Del Usuario A Buscar");
+    }else{
+        var val = document.getElementById("txtSearchUser").value;
 
-    var str = val.toString();
+        var str = val.toString();
 
-    getUserByName(str);
-
+        getUserByName(str);
+    }
 }

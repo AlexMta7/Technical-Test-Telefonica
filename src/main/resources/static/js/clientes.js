@@ -8,7 +8,7 @@ function getHeaders(){
        return {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            //'Authorization': localStorage.token
+            'Authorization': localStorage.token
         };
 }
 
@@ -22,6 +22,8 @@ async function cargarClientes(){
         headers: getHeaders()
       });
       const clientes = await request.json();
+
+      console.log(clientes);
 
       if(clientes == ""){
         let clienteHtml = '<tr><td></td><td></td><td>SIN</td><td>DATOS</td><td>DISPONIBLES</td><td></td></tr>';
@@ -159,10 +161,15 @@ async function getClientByName(name){
 
 async function searchClientByName(){
 
-    var val = document.getElementById("txtSearch").value;
+    if(document.getElementById("txtSearch").value == ""){
+        alert("Ingrese El Nombre Cliente A Buscar");
 
-    var str = val.toString();
+    }else{
+        var val = document.getElementById("txtSearch").value;
 
-    getClientByName(str);
+        var str = val.toString();
+
+        getClientByName(str);
+    }
 
 }

@@ -1,9 +1,11 @@
 package com.project.user.controllers;
 
 import com.project.user.dao.ClienteDao;
+import com.project.user.dao.UsuarioDao;
 import com.project.user.models.Clientes;
 import com.project.user.models.Direcciones;
 import com.project.user.models.Documentos;
+import com.project.user.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +18,22 @@ public class ClienteController {
     @Autowired
     private ClienteDao clienteDao;
 
+    @Autowired
+    private UsuarioDao usuarioDao;
+
+    @Autowired
+    private JWTUtil jwtUtil;
+
+    private boolean validarToken(String token){
+
+        String usuarioId = jwtUtil.getKey(token);
+        return usuarioId != null;
+    }
     @RequestMapping(value = "api/clientes")
-    public List<Clientes> getClientes(){
+    public List<Clientes> getClientes(@RequestHeader(value = "Authorization") String token){
+        if (!validarToken(token)){
+            return null;
+        }
 
         return clienteDao.getClientes();
     }
@@ -42,11 +58,17 @@ public class ClienteController {
 
     @RequestMapping(value = "api/cliente", method = RequestMethod.PUT)
     public void editarCliente(@RequestBody Clientes cliente){
+
         clienteDao.editar(cliente);
     }
 
     @RequestMapping(value = "api/clientes", method = RequestMethod.POST)
-    public void registrarCliente(@RequestBody Clientes cliente){
+    public void registrarCliente(@RequestHeader(value = "Authorization") String token, @RequestBody Clientes cliente){
+
+        if (!validarToken(token)){
+            return;
+        }
+
         clienteDao.registro(cliente);
     }
 
@@ -63,13 +85,21 @@ public class ClienteController {
     }
 
     @RequestMapping(value = "api/docs/clients")
-    public List<Documentos> getDocs(){
+    public List<Documentos> getDocs(@RequestHeader(value = "Authorization") String token){
+
+        if (!validarToken(token)){
+            return null;
+        }
 
         return clienteDao.getDocs();
     }
 
     @RequestMapping(value = "api/address/clients")
-    public List<Direcciones> getDir(){
+    public List<Direcciones> getDir(@RequestHeader(value = "Authorization") String token){
+
+        if (!validarToken(token)){
+            return null;
+        }
 
         return clienteDao.getDir();
     }
@@ -84,11 +114,16 @@ public class ClienteController {
 
     @RequestMapping(value = "api/docs/client", method = RequestMethod.PUT)
     public void editarDocCli(@RequestBody Documentos documentos){
+
         clienteDao.editarDoc(documentos);
     }
 
     @RequestMapping(value = "api/direc/client/{id}", method = RequestMethod.GET )
-    public List<Direcciones> getInfoDirec(@PathVariable Long id){
+    public List<Direcciones> getInfoDirec(@RequestHeader(value = "Authorization") String token, @PathVariable Long id){
+
+        if (!validarToken(token)){
+            return null;
+        }
 
         return clienteDao.getInfoDirec(id);
     }
@@ -100,36 +135,46 @@ public class ClienteController {
 
     @RequestMapping(value = "api/docs/client/{id}", method = RequestMethod.DELETE)
     public void eliminarDoc(@PathVariable Long id){
-
         clienteDao.eliminarDoc(id);
     }
 
     @RequestMapping(value = "api/direc/client/{id}", method = RequestMethod.DELETE)
     public void eliminarDirec(@PathVariable Long id){
-
         clienteDao.eliminarDirec(id);
     }
 
     @RequestMapping(value = "api/client/{name}", method = RequestMethod.GET )
-    public List<Clientes> getClient(@PathVariable String name){
+    public List<Clientes> getClient(@RequestHeader(value = "Authorization") String token, @PathVariable String name){
+        if (!validarToken(token)){
+            return null;
+        }
 
         return clienteDao.getClient(name);
     }
 
     @RequestMapping(value = "api/search/docs/client/{id}", method = RequestMethod.GET )
-    public List<Documentos> getClientByID(@PathVariable Long id){
+    public List<Documentos> getClientByID(@RequestHeader(value = "Authorization") String token, @PathVariable Long id){
+        if (!validarToken(token)){
+            return null;
+        }
 
         return clienteDao.getClientByID(id);
     }
 
     @RequestMapping(value = "api/search/dirs/client/{id}", method = RequestMethod.GET )
-    public List<Direcciones> getDirClientByID(@PathVariable Long id){
+    public List<Direcciones> getDirClientByID(@RequestHeader(value = "Authorization") String token, @PathVariable Long id){
+        if (!validarToken(token)){
+            return null;
+        }
 
         return clienteDao.getDirClientByID(id);
     }
 
     @RequestMapping(value = "api/search/client/{name}", method = RequestMethod.GET )
-    public List<Clientes> getClientByName(@PathVariable String name){
+    public List<Clientes> getClientByName(@RequestHeader(value = "Authorization") String token, @PathVariable String name){
+        if (!validarToken(token)){
+            return null;
+        }
 
         return clienteDao.getClientByName(name);
     }
