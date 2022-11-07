@@ -3,6 +3,8 @@ package com.project.user.controllers;
 
 import com.project.user.dao.ClientDao;
 import com.project.user.models.clientModel;
+import com.project.user.utils.JWTUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +15,16 @@ public class ClientController {
     @Autowired
     private ClientDao clientDao;
 
+    @Autowired
+    private JWTUtil jwtUtil;
+
     @RequestMapping(value = "api/clients", method = RequestMethod.GET)
-    public List<clientModel> getClients() {
+    public List<clientModel> getClients(@RequestHeader(value = "Authorization") String token) {
+
+        if(!validateToken(token)){
+            return null;
+        }
+
         return clientDao.getClients();
     }
     
@@ -51,5 +61,10 @@ public class ClientController {
         // else {
         // return "FAIL";
         // }
+    }
+
+    private boolean validateToken(String token) {
+        String userID = jwtUtil.getKey(token);
+        return userID != null;
     }
 }

@@ -157,7 +157,7 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="auth-login-user.html" class="menu-link" target="_blank">
+                  <a onclick="logout()" href="auth-login-user.html" class="menu-link" target="_blank">
                     <div data-i18n="Basic">Login</div>
                   </a>
                 </li>
@@ -222,8 +222,8 @@
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
               <!-- Search -->
               <div class="navbar-nav align-items-center">
-                <div id="lblEmail" class="nav-item d-flex align-items-center">
-                  <strong>correo@xxx.com</strong>
+                <div class="nav-item d-flex align-items-center">
+                  <strong id="lblEmail"></strong>
                 </div>
               </div>
               <!-- /Search -->
@@ -268,7 +268,7 @@
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
-                    <li>
+                    <!-- <li>
                       <a class="dropdown-item" href="#">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
@@ -279,12 +279,12 @@
                         <i class="bx bx-cog me-2"></i>
                         <span class="align-middle">Settings</span>
                       </a>
-                    </li>
+                    </li> -->
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="auth-login-user.html">
+                      <a class="dropdown-item" onclick="logout()" href="auth-login-user.html">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
                       </a>
@@ -436,6 +436,8 @@
 
     <!-- Page JS -->
     <script src="js/users.js"></script>
+    <script src="js/auth-login-user.js"></script>
+
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

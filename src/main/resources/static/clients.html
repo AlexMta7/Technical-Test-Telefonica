@@ -103,7 +103,7 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="auth-login-user.html" class="menu-link" target="_blank">
+                            <a onclick="logout()" href="auth-login-user.html" class="menu-link" target="_blank">
                                 <div data-i18n="Basic">Login</div>
                             </a>
                         </li>
@@ -168,8 +168,8 @@
                 <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
                     <!-- Search -->
                     <div class="navbar-nav align-items-center">
-                        <div id="lblEmail" class="nav-item d-flex align-items-center">
-                          <strong>correo@xxx.com</strong>
+                        <div class="nav-item d-flex align-items-center">
+                          <strong id="lblEmail"></strong>
                         </div>
                     </div>
                     <!-- /Search -->
@@ -214,7 +214,7 @@
                                 <li>
                                     <div class="dropdown-divider"></div>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a class="dropdown-item" href="#">
                                         <i class="bx bx-user me-2"></i>
                                         <span class="align-middle">My Profile</span>
@@ -225,7 +225,7 @@
                                         <i class="bx bx-cog me-2"></i>
                                         <span class="align-middle">Settings</span>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li>
                                     <div class="dropdown-divider"></div>
                                 </li>
@@ -272,7 +272,7 @@
                             <!--/ Button para descargar datos del cliente-->
     
                             <!-- Modal de ingreso de clientes -->
-                            <form onsubmit="updateClient()">
+                            <div>
                               <div class="modal fade" id="modalCenter" tabindex="-1" style="display: none;" aria-hidden="true">
                               <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
@@ -312,12 +312,12 @@
                                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                       Close
                                     </button>
-                                    <button type="submit" id="saveModal" class="btn btn-primary">Save changes</button>
+                                    <button onclick="updateClient()" id="saveModal" class="btn btn-primary">Save changes</button>
                                   </div>
                                 </div>
                               </div>
                               </div>
-                            </form>
+                            </div>
                             <!--/ Modal de ingreso de clientes -->
                         </div>
 
@@ -351,7 +351,8 @@
                                 <div class="modal-content" >
                                   <div class="modal-header">
                                     <h5 class="modal-title" id="modalLongTitle">Modal title</h5>
-                                    <button type="button" onclick="cleanModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <h5 class="modal-title" id="modalLongTitleID">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
                                   <div class="modal-body">
                                     <div class="row" id="input_docs">
@@ -391,7 +392,7 @@
                                 <div class="modal-content" >
                                   <div class="modal-header">
                                     <h5 class="modal-title" id="modalLongTitle2">Modal title</h5>
-                                    <button type="button" onclick="" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" onclick="cleanModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
                                   <div class="modal-body">
                                     <div class="row">
@@ -401,8 +402,8 @@
                                         <div class="input-group col mb-3">
                                           <!-- <input id="txtInsertSecretID" class="dropdown-item" value="" disabled hidden></input> -->
                                           <input id="txtInsertDocSecretClientId" class="dropdown-item" disabled hidden></input>
-                                          <button class="btn btn-outline-primary dropdown-toggle" value="" id="btnDropDownInsertDoc" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class='bx bx-file-blank'></i>
+                                          <button class="btn btn-primary dropdown-toggle" value="" id="btnDropDownInsertDoc" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class='bx bx-file-blank bx-sm'></i>
                                           </button>
                                           <ul class="dropdown-menu" id="dropDownInsert">
                                           <li><a id="dpInsertDoc1" class="dropdown-item" onclick="changeDDInsertDoc(document.getElementById('dpInsertDoc1').innerHTML)">DUI</a></li>
@@ -426,8 +427,8 @@
                                         <div class="input-group col mb-3">
                                           <!-- <input id="txtInsertSecretID" class="dropdown-item" value="" disabled hidden></input> -->
                                           <input id="txtInsertAddressSecretClientId" class="dropdown-item" disabled hidden></input>
-                                          <button class="btn btn-outline-primary dropdown-toggle" value="" id="btnDropDownInsertAddress" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class='bx bx-file-blank'></i>
+                                          <button class="btn btn-primary dropdown-toggle" value="" id="btnDropDownInsertAddress" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class='bx bx-file-blank bx-sm'></i>
                                           </button>
                                           <ul class="dropdown-menu" id="dropDownInsertAddress">
                                           <li><a id="dpInsertAddress1" class="dropdown-item" onclick="changeDDInsertAddress(document.getElementById('dpInsertAddress1').innerHTML)">Casa</a></li>
@@ -509,6 +510,7 @@
 <script src="js/client-addresses.js"></script>
 <script src="js/FileSaver.js"></script>
 <script src="js/download-data.js"></script>
+<script src="js/auth-login-user.js"></script>
 <script src="js/client-delete-documents-addresses.js"></script>
 <!-- <script type="text/javascript">
     var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});

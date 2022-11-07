@@ -2,15 +2,19 @@
 $(document).ready(function () {
   //Al iniciar la pagina llama al metodo
   //getClients()
-  //actualizarEmailUsuario()
+  emailUser()
 });
+
+function emailUser() {
+  document.getElementById("lblEmail").innerHTML = localStorage.email
+}
 
 //Para devolver los Header
 function getHeaders() {
   return {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    //'Authorization':localStorage.token
+    'Authorization': localStorage.token
   };
 }
 
@@ -86,30 +90,6 @@ async function getClients() {
   }
 }
 
-
-async function addClient() {
-  let client = {};
-  client.name = document.getElementById("txtModalName").value;
-  client.lastname = document.getElementById("txtModalLastname").value;
-  client.email = document.getElementById("txtModalEmail").value;
-  client.service = document.getElementById("txtModalService").value;
-
-  const request = await fetch('api/clients', {
-    method: 'POST',
-    headers: getHeaders(),
-    body: JSON.stringify(client)
-  });
-  const response = await request.text();
-  console.log(response);
-  if (response == 'OK') {
-    alert("Client added successfully");
-    location.reload();
-  }
-  else {
-    alert("Cliente already exist");
-  }
-}
-
 async function updateClient() {
   let client = {};
   let method = "";
@@ -156,7 +136,7 @@ async function updateClient() {
 
 async function deleteClient(id) {
 
-  if (!confirm('¿Desea eliminar el cliente?')) {
+  if (!confirm('Do you want to delete client?')) {
     //Con return se corta el flujo de la función
     return;
   }

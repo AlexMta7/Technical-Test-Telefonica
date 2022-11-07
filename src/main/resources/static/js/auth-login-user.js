@@ -9,7 +9,7 @@ function getHeaders() {
   return {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    //'Authorization':localStorage.token
+    'Authorization': localStorage.token
   };
 }
 
@@ -19,7 +19,7 @@ async function login() {
   user.password = document.getElementById("txtPassword").value;
 
   if (user.email == '' || user.password == '') {
-    alert("Llena todos los campos");
+    alert("Fill all the inputs");
     return;
   }
 
@@ -55,4 +55,9 @@ async function login() {
   // else if(response == 'User Doesn\'t Exist'){
   //   alert(response);
   // }
+}
+
+function logout() {
+  localStorage.token = '';
+  localStorage.email = '';
 }

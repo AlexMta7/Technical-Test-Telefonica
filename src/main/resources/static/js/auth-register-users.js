@@ -24,7 +24,7 @@ async function addUser() {
     user.type = "NO_ADMIN";
 
     if (repeatPassword != user.password) {
-        alert("Las contraseñas no coinciden.")
+        alert("Passwords don't match.")
         return;
     }
     else {

@@ -14,7 +14,9 @@ async function getAddresses(id) {
   console.log(addresses);
   let inputHtml = '';
 
-  document.getElementById("modalLongTitle").innerHTML = document.querySelector('#table_user tbody tr strong').outerHTML + ', id: ' + id;
+  document.getElementById("modalLongTitle").innerHTML = document.querySelector('#table_user tbody tr strong').outerHTML + ', id: ';
+  document.getElementById("modalLongTitleID").innerHTML = id;
+
 
   if (addresses == '') {
     let data = '<div class="input-group col mb-3">'
@@ -78,6 +80,11 @@ async function addAddress() {
   address.type = document.getElementById('btnDropDownInsertAddress').innerHTML;
   address.address = document.getElementById('txtAddressInsert').value;
 
+  if (document.getElementById("btnDropDownInsertAddress").value == "") {
+    alert("Please select a valid type of Address");
+    return;
+  }
+
   const request = await fetch('api/address', {
     method: 'POST',
     headers: getHeaders(),
@@ -87,7 +94,8 @@ async function addAddress() {
   console.log(response);
   if (response == 'OK') {
     alert("Address added successfully");
-    document.getElementById('btnDropDownInsertAddress').innerHTML = "<i class='bx bx-file-blank'></i>";
+    document.getElementById('btnDropDownInsertAddress').innerHTML = "<i class='bx bx-file-blank bx-sm'></i>";
+    document.getElementById("btnDropDownInsertAddress").value = "";
     document.getElementById('txtAddressInsert').value = "";
   }
   else {
@@ -117,7 +125,7 @@ async function updateAddress(id, cont) {
 
 async function deleteAddress(id) {
 
-  if (!confirm('Do you want to delete the addres?')) {
+  if (!confirm('Do you want to delete the address?')) {
     //Con return se corta el flujo de la función
     return;
   }
@@ -126,9 +134,13 @@ async function deleteAddress(id) {
     method: 'DELETE',
     headers: getHeaders()
   });
-  location.reload();
-
+  document.querySelector('#input_address').outerHTML = '<div class="col mb-3" id="input_address">'
+    + '<label  class="form-label" > Direcciones</label> '
+    + '<div></div >'
+    + '</div> ';
   alert("Address deleted");
+  let UserId = document.getElementById("modalLongTitleID").innerHTML;
+  getAddresses(UserId);
 }
 
 function insertAddressAtId(id) {
@@ -141,5 +153,6 @@ function changeDDAddress(name, numId) {
 }
 
 function changeDDInsertAddress(name) {
+  document.getElementById('btnDropDownInsertAddress').value = name;
   document.getElementById('btnDropDownInsertAddress').innerHTML = name;
 }

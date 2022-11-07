@@ -2,15 +2,19 @@
 $(document).ready(function () {
   //Al iniciar la pagina llama al metodo
   getUsers()
-  //actualizarEmailUsuario()
+  emailUser()
 });
+
+function emailUser() {
+  document.getElementById("lblEmail").innerHTML = localStorage.email
+}
 
 //Para devolver los Header
 function getHeaders() {
   return {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    //'Authorization':localStorage.token
+    'Authorization':localStorage.token
   };
 }
 

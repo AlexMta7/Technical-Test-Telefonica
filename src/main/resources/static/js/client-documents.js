@@ -4,24 +4,6 @@ $(document).ready(function () {
   // getDocuments();
 });
 
-// async function getClient(id) {
-//     const request = await fetch('api/clients/'+id, {
-//        method: 'GET',
-//        headers: getHeaders()
-//      });
-//      const documents = await request.json();
-
-// console.log(documents);
-// document.getElementById("saveModal").innerHTML = "Update";  
-
-// for(docs of documents){
-//   document.getElementById("txtModalId").value = docs.id;
-//   document.getElementById("txtModalName").value = docs.cliente_id;
-//   document.getElementById("txtModalLastname").value = docs.type;
-//   document.getElementById("txtModalEmail").value = docs.document;
-// }
-// }
-
 async function getDocuments(id) {
   console.log();
   const request = await fetch('api/docs/' + id, {
@@ -34,7 +16,8 @@ async function getDocuments(id) {
   console.log(documents);
   let inputHtml = '';
 
-  document.getElementById("modalLongTitle").innerHTML = document.querySelector('#table_user tbody tr strong').outerHTML + ', id: ' + id;
+  document.getElementById("modalLongTitle").innerHTML = document.querySelector('#table_user tbody tr strong').outerHTML + ', id: ';
+  document.getElementById("modalLongTitleID").innerHTML = id;
 
   if (documents == '') {
     let data = '<div class="input-group col mb-3">'
@@ -99,6 +82,17 @@ async function addDocument() {
   doc.type = document.getElementById('btnDropDownInsertDoc').innerHTML;
   doc.document = document.getElementById('txtDocumentInsert').value;
 
+  if (document.getElementById("btnDropDownInsertDoc").value == "") {
+    alert("Please select a valid type of document");
+    return;
+  }
+
+  if (document.getElementById('txtDocumentInsert').value == "") {
+    alert("Please insert a valid document");
+    return;
+  }
+
+
   const request = await fetch('api/docs', {
     method: 'POST',
     headers: getHeaders(),
@@ -108,7 +102,8 @@ async function addDocument() {
   console.log(response);
   if (response == 'OK') {
     alert("Document added successfully");
-    document.getElementById('btnDropDownInsertDoc').innerHTML = "<i class='bx bx-file-blank'></i>";
+    document.getElementById('btnDropDownInsertDoc').innerHTML = "<i class='bx bx-file-blank bx-sm'></i>";
+    document.getElementById("btnDropDownInsertDoc").value = "";
     document.getElementById('txtDocumentInsert').value = "";
     //location.reload();
   }
@@ -119,7 +114,7 @@ async function addDocument() {
 
 function insertDocumentAtId(id) {
   document.getElementById('txtInsertDocSecretClientId').value = id;
-  //document.getElementById("modalLongTitle2").innerHTML = email;
+  document.getElementById("modalLongTitle2").innerHTML = document.querySelector('#table_user tbody tr strong').outerHTML + ', id: ' + id;
 }
 
 async function updateDoc(id, cont) {
@@ -154,9 +149,10 @@ async function deleteDoc(id) {
     method: 'DELETE',
     headers: getHeaders()
   });
-  location.reload();
-
+  document.querySelector('#input_docs div').outerHTML = '<div class="col mb-3"><label class="form-label">Documentos</label><div></div></div>';
   alert("Document deleted");
+  let UserId = document.getElementById("modalLongTitleID").innerHTML;
+  getDocuments(UserId);
 }
 
 /*Cambia el estado del boton cuando muestra los resultados de los documentos*/
@@ -166,6 +162,7 @@ function changeDP(name, numId) {
 
 /*Cambia el estado del boton para agregar documentos*/
 function changeDDInsertDoc(name) {
+  document.getElementById('btnDropDownInsertDoc').value = name;
   document.getElementById('btnDropDownInsertDoc').innerHTML = name;
 }
 

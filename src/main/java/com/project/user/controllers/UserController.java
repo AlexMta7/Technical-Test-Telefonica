@@ -2,6 +2,7 @@ package com.project.user.controllers;
 
 import com.project.user.dao.UserDao;
 import com.project.user.models.userModel;
+import com.project.user.utils.JWTUtil;
 
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
@@ -16,13 +17,20 @@ public class UserController {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private JWTUtil jwtUtil;
+
     @RequestMapping(value = "api/users/{id}", method = RequestMethod.GET)
     public List<userModel> getUser(@PathVariable Long id) {
         return userDao.getUser(id);
     }
 
     @RequestMapping(value = "api/users", method = RequestMethod.GET)
-    public List<userModel> getUsers(){
+    public List<userModel> getUsers(@RequestHeader(value = "Authorization") String token) {
+        
+        if(!validateToken(token)){
+            return null;
+        }
         return userDao.getUsers();
     }
 
@@ -48,13 +56,18 @@ public class UserController {
     @RequestMapping(value = "api/users", method = RequestMethod.PUT)
     public String updateUser(@RequestBody userModel user) {
         userDao.updateUser(user);
-            return "OK";
+        return "OK";
         // if (userDao.verifyUser(user)) {
         //     userDao.updateUser(user);
         //     return "OK";
         // } else {
         //     return "FAIL";
         // }
+    }
+
+    private boolean validateToken(String token) {
+        String userID = jwtUtil.getKey(token);
+        return userID != null;
     }
 
 
