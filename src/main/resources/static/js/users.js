@@ -14,7 +14,7 @@ function getHeaders() {
   return {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization':localStorage.token
+    'Authorization': localStorage.token
   };
 }
 
@@ -86,7 +86,7 @@ async function getUser(id) {
 
 async function deleteUser(id) {
 
-  if (!confirm('¿Desea eliminar el usuario?')) {
+  if (!confirm('Do you want to delete the user?')) {
     //Con return se corta el flujo de la función
     return;
   }

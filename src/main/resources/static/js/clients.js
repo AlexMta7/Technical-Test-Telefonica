@@ -18,6 +18,7 @@ function getHeaders() {
   };
 }
 
+// Obtiene un solo cliente
 async function getClient(id) {
   const request = await fetch('api/clients/' + id, {
     method: 'GET',
@@ -38,7 +39,7 @@ async function getClient(id) {
   }
 }
 
-
+// Obtiene a todos los clientes
 async function getClients() {
   const request = await fetch('api/clients', {
     method: 'GET',
@@ -90,6 +91,7 @@ async function getClients() {
   }
 }
 
+// Actualiza o agrega un cliente dependiendo del botón que se seleccione
 async function updateClient() {
   let client = {};
   let method = "";
@@ -161,3 +163,5 @@ function modifyModalAdd() {
   document.getElementById("txtModalEmail").value = "";
   document.getElementById("txtModalService").value = "";
 }
+
+
