@@ -1,4 +1,4 @@
-package com.project.user.controllers;
+package com.project.user.controllers.rest;
 
 import com.project.user.models.documentModel;
 import com.project.user.services.DocumentServices;
