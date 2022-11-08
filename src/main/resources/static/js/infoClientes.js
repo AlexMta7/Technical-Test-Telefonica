@@ -241,8 +241,8 @@ async function getDirClientByID(id){
 
                   //Se listan los datos para mostrarlos en forma ordenada en la tabla correspondiente
                   for(let di of dir_client){
-                   let btnDelete = '<button type="button" onclick="eliminarDoc(' + di.id + ')" class="btn btn-icon btn-danger" title="Eliminar Documento"><span class="tf-icons bx bx-trash"></span></button>';
-                   let btnMod = '<button type="button" onclick="getInfoDoc(' + di.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollableDoc" title="Modificar Documento"><span class="tf-icons bx bx-pencil"></span></button>';
+                   let btnDelete = '<button type="button" onclick="eliminarAdr(' + di.id + ')" class="btn btn-icon btn-danger" title="Eliminar Documento"><span class="tf-icons bx bx-trash"></span></button>';
+                   let btnMod = '<button type="button" onclick="getInfoDirec(' + di.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollableDir" title="Modificar Dirección"><span class="tf-icons bx bx-pencil"></span></button>';
 
                    let docHtml2 = '<tr><td>'+ di.id +'</td><td>' + di.id_client + '</td><td>' + di.name_address + '</td><td>'
                    + di.address +  '</td><td>' + btnDelete + ' ' + btnMod + '</td></tr>';
