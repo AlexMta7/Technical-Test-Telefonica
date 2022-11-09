@@ -19,4 +19,9 @@ public class UserViewController {
     public String register() {
         return "auth-register-user";
     }
+
+    @GetMapping("/clients")
+    public String clients() {
+        return "clients";
+    }
 }
