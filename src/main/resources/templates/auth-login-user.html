@@ -115,12 +115,12 @@
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
                 </div>
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="remember-me" />
                     <label class="form-check-label" for="remember-me"> Remember Me </label>
                   </div>
-                </div>
+                </div> -->
                 <div class="mb-3">
                   <button class="btn btn-primary d-grid w-100" onclick="login()">Sign in</button>
                 </div>
@@ -128,7 +128,7 @@
 
               <p class="text-center">
                 <span>New on our platform?</span>
-                <a href="auth-register-user.html">
+                <a th:href="@{/register}">
                   <span>Create an account</span>
                 </a>
               </p>
@@ -157,7 +157,7 @@
     <script src="assets/js/main.js"></script>
 
     <!-- Page JS -->
-    <script src="js/auth-login-user.js"></script>
+    <script th:src="@{/js/auth-login-user.js}"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

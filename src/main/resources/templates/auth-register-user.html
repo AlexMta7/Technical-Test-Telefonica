@@ -127,8 +127,6 @@
                             <div class="d-flex justify-content-between">
                               <label class="form-label">Password</label>
                               <a href="auth-forgot-password-basic.html">
-                                <small>Forgot Password?</small>
-                              </a>
                             </div>
                             <div class="input-group input-group-merge">
                               <input type="password" id="txtPassword" class="form-control"
@@ -161,7 +159,7 @@
 
               <p class="text-center">
                 <span>Already have an account?</span>
-                <a href="auth-login-user.html">
+                <a th:href="@{/login}">
                   <span>Sign in instead</span>
                 </a>
               </p>
@@ -190,7 +188,7 @@
     <script src="assets/js/main.js"></script>
 
     <!-- Page JS -->
-    <script src="js/auth-register-user.js"></script>
+    <script th:src="@{/js/auth-register-user.js}"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

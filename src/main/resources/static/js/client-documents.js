@@ -16,6 +16,7 @@ async function getDocuments(id) {
   console.log(documents);
   let inputHtml = '';
 
+  document.querySelector('#input_docs div').outerHTML = '<div class="col mb-3"><label class="form-label">Documentos</label><div></div></div>';
   document.getElementById("modalLongTitle").innerHTML = document.querySelector('#table_user tbody tr strong').outerHTML + ', id: ';
   document.getElementById("modalLongTitleID").innerHTML = id;
 
@@ -105,7 +106,6 @@ async function addDocument() {
     document.getElementById('btnDropDownInsertDoc').innerHTML = "<i class='bx bx-file-blank bx-sm'></i>";
     document.getElementById("btnDropDownInsertDoc").value = "";
     document.getElementById('txtDocumentInsert').value = "";
-    //location.reload();
   }
   else {
     alert("Couldn't add document");

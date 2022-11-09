@@ -103,12 +103,12 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a onclick="logout()" href="auth-login-user.html" class="menu-link" target="_blank">
+                            <a th:href="@{/login}" onclick="logout()" class="menu-link" >
                                 <div data-i18n="Basic">Login</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="auth-register-user.html" class="menu-link" target="_blank">
+                            <a th:href="@{/register}" onclick="logout()" class="menu-link" >
                                 <div data-i18n="Basic">Register</div>
                             </a>
                         </li>
@@ -120,14 +120,14 @@
 
                 <!-- Tables -->
                 <li class="menu-item">
-                    <a href="users.html" class="menu-link">
+                    <a th:href="@{/users}" class="menu-link">
                         <i class="menu-icon tf-icons bx bxs-user-detail"></i>
                         <div data-i18n="Tables">Users</div>
                     </a>
                 </li>
 
                 <li class="menu-item active">
-                    <a href="clients.html" class="menu-link">
+                    <a th:href="@{/clients}" class="menu-link">
                         <i class="menu-icon tf-icons bx bxs-user-detail"></i>
                         <div data-i18n="Tables">Clients</div>
                     </a>
@@ -230,7 +230,7 @@
                                     <div class="dropdown-divider"></div>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="auth-login-user.html">
+                                    <a class="dropdown-item" th:href="@{/login}" onclick="logout()">
                                         <i class="bx bx-power-off me-2"></i>
                                         <span class="align-middle">Log Out</span>
                                     </a>
@@ -264,6 +264,7 @@
                               Add Client
                             </button>
                             <!--/ Button trigger modal de ingreso de clientes-->
+                            
                             <!-- Button para descargar datos del cliente-->
                             <button type="button" id="btnDownloadData" onclick="getDataToDownload()" class="btn btn-info">
                               <i class='bx bxs-download' ></i>
@@ -377,7 +378,7 @@
                                     </div>
                                     <div class="row">
                                       <div class="col align-self-center">
-                                        <button type="button" onclick="cleanModal()" class="btn btn-primary">Done</button>
+                                        <button type="button" data-bs-dismiss="modal" class="btn btn-primary">Done</button>
                                       </div>
                                     </div>
                                   </div>
@@ -392,7 +393,7 @@
                                 <div class="modal-content" >
                                   <div class="modal-header">
                                     <h5 class="modal-title" id="modalLongTitle2">Modal title</h5>
-                                    <button type="button" onclick="cleanModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
                                   <div class="modal-body">
                                     <div class="row">
@@ -456,7 +457,7 @@
                                     </div>
                                     <div class="row">
                                       <div class="col align-self-center">
-                                        <button type="button" onclick="" data-bs-dismiss="modal" class="btn btn-primary">Done</button>
+                                        <button type="button" data-bs-dismiss="modal" class="btn btn-primary">Done</button>
                                       </div>
                                     </div>
                                   </div>
@@ -505,17 +506,13 @@
 <script src="assets/js/main.js"></script>
 
 <!-- Page JS -->
-<script src="js/clients.js"></script>
-<script src="js/client-documents.js"></script>
-<script src="js/client-addresses.js"></script>
-<script src="js/FileSaver.js"></script>
-<script src="js/download-data.js"></script>
-<script src="js/auth-login-user.js"></script>
-<script src="js/client-delete-documents-addresses.js"></script>
-<!-- <script type="text/javascript">
-    var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
-    saveAs(blob, "hello world.txt");
-</script> -->
+<script th:src="@{/js/clients.js}"></script>
+<script th:src="@{/js/client-documents.js}"></script>
+<script th:src="@{/js/client-addresses.js}"></script>
+<script th:src="@{/js/FileSaver.js}"></script>
+<script th:src="@{/js/download-data.js}"></script>
+<script th:src="@{/js/auth-login-user.js}"></script>
+<script th:src="@{/js/client-delete-documents-addresses.js}"></script>
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>

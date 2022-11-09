@@ -36,7 +36,7 @@ async function login() {
     alert("Login successfully.");
     localStorage.token = response;
     localStorage.email = user.email;
-    window.location.href = "clients.html"
+    window.location.href = "/clients"
   }
   else if (response == 'FAIL') {
     alert("Email or Password invalid");

@@ -14,6 +14,10 @@ async function getAddresses(id) {
   console.log(addresses);
   let inputHtml = '';
 
+  document.querySelector('#input_address').outerHTML = '<div class="col mb-3" id="input_address">'
+    + '<label  class="form-label" > Direcciones</label> '
+    + '<div></div >'
+    + '</div> ';
   document.getElementById("modalLongTitle").innerHTML = document.querySelector('#table_user tbody tr strong').outerHTML + ', id: ';
   document.getElementById("modalLongTitleID").innerHTML = id;
 
@@ -82,6 +86,11 @@ async function addAddress() {
 
   if (document.getElementById("btnDropDownInsertAddress").value == "") {
     alert("Please select a valid type of Address");
+    return;
+  }
+
+  if (document.getElementById('txtAddressInsert').value == "") {
+    alert("Please insert a valid address");
     return;
   }
 
