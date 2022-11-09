@@ -23,6 +23,11 @@ async function addUser() {
     let repeatPassword = document.getElementById("txtRepeatPassword").value;
     user.type = "NO_ADMIN";
 
+    if (user.name == "" || user.lastname == "" || user.email == "" || user.password == "") {
+        alert("Fill all the inputs");
+        return;
+    }
+
     if (repeatPassword != user.password) {
         alert("Passwords don't match.")
         return;
