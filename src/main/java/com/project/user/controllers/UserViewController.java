@@ -14,4 +14,9 @@ public class UserViewController {
     public String login() {
         return "auth-login-user";
     }
+
+    @GetMapping("/register")
+    public String register() {
+        return "auth-register-user";
+    }
 }
