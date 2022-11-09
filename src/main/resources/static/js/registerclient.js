@@ -22,7 +22,7 @@ async function registrarCliente(){
             datoCliente.email = document.getElementById("txtEmail").value;
             datoCliente.genero = document.getElementById("txtGender").value;
 
-            const request = await fetch('api/clientes/', {
+            const request = await fetch('api/clients/', {
                     method: 'POST',
                     headers: getHeaders(),
                     body: JSON.stringify(datoCliente)
@@ -49,7 +49,7 @@ async function addDocuments(){
         datoDocument.document_name = document.getElementById("txtTypeD").value;
         datoDocument.document = document.getElementById("txtNumDoc").value;
 
-        const request = await fetch('api/documentos', {
+        const request = await fetch('api/documents', {
                     method: 'POST',
                     headers: getHeaders(),
                     body: JSON.stringify(datoDocument)
@@ -74,7 +74,7 @@ async function addAddress(){
         datoAddress.name_address = document.getElementById("txtNameD").value;
         datoAddress.address = document.getElementById("txtAddress").value;
 
-        const request = await fetch('api/direcciones', {
+        const request = await fetch('api/addresses', {
                  method: 'POST',
                  headers: getHeaders(),
                  body: JSON.stringify(datoAddress)

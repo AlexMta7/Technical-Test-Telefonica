@@ -119,7 +119,7 @@ async function editarDoc(){
 //Función para mostrar la información de direcciones del cliente en el Modal para poder Editarla
 //Funcionando al 100%
 async function getInfoDirec(id){
-    const request = await fetch('api/direc/client/' + id, {
+    const request = await fetch('api/address/client/' + id, {
             method: 'GET',
             headers: getHeaders()
           });
@@ -143,7 +143,7 @@ async function editarDire(){
     datoEditDir.name_address = document.getElementById("txtNameDi").value;
     datoEditDir.address = document.getElementById("txtAddr").value;
 
-    const request = await fetch('api/dire/client', {
+    const request = await fetch('api/address/client', {
                 method: 'PUT',
                 headers: getHeaders(),
                 body: JSON.stringify(datoEditDir)
@@ -175,7 +175,7 @@ async function eliminarAdr(id){
             return;
         }
 
-    const request = await fetch('api/direc/client/' + id, {
+    const request = await fetch('api/address/client/' + id, {
             method: 'DELETE',
             headers: getHeaders()
           });
@@ -221,7 +221,7 @@ async function getDocsClientByID(id){
 
 async function getDirClientByID(id){
 
-    const request = await fetch('api/search/dirs/client/' + id, {
+    const request = await fetch('api/search/address/client/' + id, {
                 method: 'GET',
                 headers: getHeaders()
               });
@@ -264,6 +264,4 @@ async function searchClientByID(){
         getDocsClientByID(val);
         getDirClientByID(val);
     }
-
-
 }

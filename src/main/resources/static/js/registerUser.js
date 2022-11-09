@@ -26,7 +26,7 @@ async function registrarUsuario(){
              datoUsuario.pass_usu = document.getElementById("txtPassword").value;
              datoUsuario.car_usu = document.getElementById("txtType").value;
 
-             const request = await fetch('api/usuarios/', {
+             const request = await fetch('api/users/', {
                          method: 'POST',
                          headers: getHeaders(),
                          body: JSON.stringify(datoUsuario)

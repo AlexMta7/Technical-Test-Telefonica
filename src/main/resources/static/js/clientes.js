@@ -17,7 +17,7 @@ function getHeaders(){
 */
 //Funcionando al 100%
 async function cargarClientes(){
-      const request = await fetch('api/clientes', {
+      const request = await fetch('api/clients', {
         method: 'GET',
         headers: getHeaders()
       });
@@ -59,7 +59,7 @@ async function eliminarCliente(id){
         return;
     }
 
-    const request = await fetch('api/clientes/' + id, {
+    const request = await fetch('api/clients/' + id, {
             method: 'DELETE',
             headers: getHeaders()
           });
@@ -70,7 +70,7 @@ async function eliminarCliente(id){
 //Función para mostrar la información del cliente en el Modal para poder Editarla
 //Funcionando al 100%
 async function getInfoCliente (id){
-    const request = await fetch('api/clientes/' + id, {
+    const request = await fetch('api/clients/' + id, {
             method: 'GET',
             headers: getHeaders()
           });
@@ -88,7 +88,7 @@ async function getInfoCliente (id){
 //Función para mostrar el id del cliente en el formulario para poder ingresar los documentos de identificacion
 //Funcionando al 100%
 async function getIdCliente(id){
-    const request = await fetch('api/cliente/' + id, {
+    const request = await fetch('api/clients/' + id, {
                 method: 'GET',
                 headers: getHeaders()
               });
@@ -115,7 +115,9 @@ async function editarCliente(){
         datosCliente.genero = document.getElementById("txtGender").value;
         datosCliente.email = document.getElementById("txtEmail").value;
 
-        const request = await fetch('api/cliente/', {
+        console.log(datosCliente);
+
+        const request = await fetch('api/client/', {
                     method: 'PUT',
                     headers: getHeaders(),
                     body: JSON.stringify(datosCliente)

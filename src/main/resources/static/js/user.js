@@ -17,7 +17,7 @@ function getHeaders(){
 */
 //Funcionando al 100%
 async function cargarUsuarios(){
-      const request = await fetch('api/usuarios', {
+      const request = await fetch('api/users', {
         method: 'GET',
         headers: getHeaders()
       });
@@ -52,7 +52,7 @@ async function cargarUsuarios(){
 //Función para mostrar la información del usuario en el Modal para poder Editarla
 //Funcionando al 100%
 async function getInfoUsuario (id){
-    const request = await fetch('api/usuarios/' + id, {
+    const request = await fetch('api/user/' + id, {
             method: 'GET',
             headers: getHeaders()
           });
@@ -85,7 +85,7 @@ async function editarUsuario(){
         datosUsuario.pass_usu = document.getElementById("txtPassword").value;
         datosUsuario.email_usu = document.getElementById("txtEmail").value;
 
-        const request = await fetch('api/usuarios/', {
+        const request = await fetch('api/users/', {
                     method: 'PUT',
                     headers: getHeaders(),
                     body: JSON.stringify(datosUsuario)
@@ -104,7 +104,7 @@ async function eliminarUsuario(id){
         return;
     }
 
-    const request = await fetch('api/usuarios/' + id, {
+    const request = await fetch('api/users/' + id, {
             method: 'DELETE',
             headers: getHeaders()
           });
@@ -116,7 +116,7 @@ async function eliminarUsuario(id){
 
 async function getUserByName(name){
 
-    const request = await fetch('api/search/usuarios/' + name, {
+    const request = await fetch('api/search/users/' + name, {
         method: 'GET',
         headers: getHeaders()
   });

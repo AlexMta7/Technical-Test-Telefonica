@@ -7,7 +7,7 @@ function getHeaders(){
 }
 
 async function clientData(){
-      const request = await fetch('api/clientes', {
+      const request = await fetch('api/clients', {
         method: 'GET',
         headers: getHeaders()
       });

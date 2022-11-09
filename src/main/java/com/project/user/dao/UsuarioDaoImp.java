@@ -55,6 +55,8 @@ public class UsuarioDaoImp implements UsuarioDao {
         return entityManager.createQuery(query).setParameter("name",name).getResultList();
     }
 
+    //Función para obtener la información del usuario y comparar con la información proporcionada
+    //para el inicio de sesión
     @Override
     public Usuarios obtenerUsuarioPorCredenciales(Usuarios usuario) {
         String query = "FROM Usuarios WHERE email_usu = :email";
