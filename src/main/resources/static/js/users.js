@@ -23,6 +23,7 @@ async function getUsers() {
     method: 'GET',
     headers: getHeaders()
   });
+  
   const usuarios = await request.json();
   console.log(usuarios);
 
@@ -65,6 +66,7 @@ async function getUser(id) {
     method: 'GET',
     headers: getHeaders()
   });
+
   const usuario = await request.json();
 
   console.log(usuario);
@@ -96,6 +98,7 @@ async function deleteUser(id) {
     headers: getHeaders()
   });
   location.reload();
+  alert("User Deleted");
 }
 
 async function updateUser() {
@@ -106,7 +109,6 @@ async function updateUser() {
   user.email = document.getElementById("txtModalEmail").value;
   user.type = document.getElementById("selectModalType").value;
   user.password = document.getElementById("txtModalSecret").value;
-
 
   const request = await fetch('api/users', {
     method: 'PUT',
