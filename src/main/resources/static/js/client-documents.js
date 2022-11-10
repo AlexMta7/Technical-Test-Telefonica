@@ -1,6 +1,5 @@
 
 $(document).ready(function () {
-  //   //Al iniciar la pagina llama al metodo
   // getDocuments();
 });
 
@@ -20,6 +19,7 @@ async function getDocuments(id) {
   document.getElementById("modalLongTitle").innerHTML = document.querySelector('#table_user tbody tr strong').outerHTML + ', id: ';
   document.getElementById("modalLongTitleID").innerHTML = id;
 
+  // Si no hay datos
   if (documents == '') {
     let data = '<div class="input-group col mb-3">'
       + '<input value="No data available" disabled></input>'
@@ -93,13 +93,14 @@ async function addDocument() {
     return;
   }
 
-
   const request = await fetch('api/docs', {
     method: 'POST',
     headers: getHeaders(),
     body: JSON.stringify(doc)
   });
+
   const response = await request.text();
+ 
   console.log(response);
   if (response == 'OK') {
     alert("Document added successfully");
@@ -118,7 +119,6 @@ function insertDocumentAtId(id) {
 }
 
 async function updateDoc(id, cont) {
-
   let docs = {};
   docs.id = id
   docs.client_id = document.getElementById("txtSecretClientId").value;
@@ -133,10 +133,10 @@ async function updateDoc(id, cont) {
   });
 
   const response = await request.text();
+
   console.log(response);
   alert("Document updated");
 }
-
 
 async function deleteDoc(id) {
 
@@ -149,6 +149,7 @@ async function deleteDoc(id) {
     method: 'DELETE',
     headers: getHeaders()
   });
+
   document.querySelector('#input_docs div').outerHTML = '<div class="col mb-3"><label class="form-label">Documentos</label><div></div></div>';
   alert("Document deleted");
   let UserId = document.getElementById("modalLongTitleID").innerHTML;

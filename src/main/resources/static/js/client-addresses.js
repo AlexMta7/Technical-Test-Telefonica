@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  //   //Al iniciar la pagina llama al metodo
 });
 
 async function getAddresses(id) {
@@ -22,6 +21,7 @@ async function getAddresses(id) {
   document.getElementById("modalLongTitleID").innerHTML = id;
 
 
+  //Si no hay datos
   if (addresses == '') {
     let data = '<div class="input-group col mb-3">'
       + '<input value="No data available" disabled></input>'
@@ -99,7 +99,9 @@ async function addAddress() {
     headers: getHeaders(),
     body: JSON.stringify(address)
   });
+
   const response = await request.text();
+
   console.log(response);
   if (response == 'OK') {
     alert("Address added successfully");
@@ -113,7 +115,6 @@ async function addAddress() {
 }
 
 async function updateAddress(id, cont) {
-
   let address = {};
   address.id = id
   address.client_id = document.getElementById("txtSecretClientId").value;
@@ -128,6 +129,7 @@ async function updateAddress(id, cont) {
   });
 
   const response = await request.text();
+  
   console.log(response);
   alert("Address updated");
 }
