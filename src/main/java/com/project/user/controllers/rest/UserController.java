@@ -78,7 +78,11 @@ public class UserController {
 
     // Obtiene los datos de un usuario
     @RequestMapping(value = "api/users/{id}", method = RequestMethod.GET)
-    public List<userModel> getUser(@PathVariable Long id) {
+    public List<userModel> getUser(@PathVariable Long id, @RequestHeader(value = "Authorization") String token) {
+        if (!validateToken(token)) {
+            return null;
+        }
+
         return userDao.getUser(id);
     }
 
