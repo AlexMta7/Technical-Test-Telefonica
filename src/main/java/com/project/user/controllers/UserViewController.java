@@ -11,6 +11,11 @@ public class UserViewController {
     // return "error";
     // }
 
+    @GetMapping("/")
+    public String index() {
+        return "auth-login-user";
+    }
+
     @GetMapping("/users")
     public String user() {
         return "users";
