@@ -19,4 +19,6 @@ public interface UsuarioDao {
     List<Usuarios> getUserByName(String name);
 
     Usuarios obtenerUsuarioPorCredenciales(Usuarios usuario);
+
+    List<Usuarios> getUserByEmail(String email);
 }

@@ -2,6 +2,7 @@
 $(document).ready(function() {
   cargarClientes();
   //$('#clientes').DataTable();
+  getUserInfo(localStorage.email);
 });
 
 function getHeaders(){
@@ -10,6 +11,26 @@ function getHeaders(){
             'Content-Type': 'application/json',
             'Authorization': localStorage.token
         };
+}
+
+
+// Búsqueda de información del Usuario Logueado por medio del correo por el cual
+// inicio sesión
+async function getUserInfo(email){
+      const request = await fetch('api/search/user/' + email, {
+        method: 'GET',
+        headers: getHeaders()
+      });
+      const user = await request.json();
+
+      if(user == ""){
+          document.getElementById("userName").innerHTML = "Usuario No Logueado";
+      }else{
+              for(let U of user){
+                document.getElementById("userName").innerHTML = U.nom_usu + " " + U.ln_usu;
+                document.getElementById("typeUser").innerHTML = U.car_usu;
+              }
+      }
 }
 
 /*Funcion que solicita los datos guardados de los clientes

@@ -1,7 +1,18 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
     //On ready
+
 });
+
+
+function getHeaders(){
+       return {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.token
+        };
+}
+
 
 async function iniciarSesion(){
       let datos = {};

@@ -66,4 +66,9 @@ public class UsuarioController {
     public List<Usuarios> getUserByName(@PathVariable String name){
         return usuarioDao.getUserByName(name);
     }
+
+    @RequestMapping(value = "api/search/user/{email}", method = RequestMethod.GET )
+    public List<Usuarios> getUserByEmail(@PathVariable String email){
+        return usuarioDao.getUserByEmail(email);
+    }
 }

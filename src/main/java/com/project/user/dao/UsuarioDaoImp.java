@@ -77,4 +77,10 @@ public class UsuarioDaoImp implements UsuarioDao {
 
         return null;
     }
+
+    @Override
+    public List<Usuarios> getUserByEmail(String email) {
+        String query = "FROM Usuarios WHERE email_usu = :email";
+        return entityManager.createQuery(query).setParameter("email",email).getResultList();
+    }
 }
