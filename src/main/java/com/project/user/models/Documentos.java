@@ -15,12 +15,12 @@ public class Documentos {
     @Getter @Setter @Column(name = "id")
     private Long id;
 
-    @Getter @Setter @Column(name="cliente_id")
+    @Getter @Setter @Column(name="client_id")
     private Long id_client;
 
-    @Getter @Setter @Column(name="nombre_documento")
+    @Getter @Setter @Column(name="name_document")
     private String document_name;
 
-    @Getter @Setter @Column(name="documento")
+    @Getter @Setter @Column(name="document")
     private String document;
 }

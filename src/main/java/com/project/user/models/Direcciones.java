@@ -15,12 +15,12 @@ public class Direcciones {
     @Getter @Setter @Column(name = "id")
     private Long id;
 
-    @Getter @Setter @Column(name="cliente_id")
+    @Getter @Setter @Column(name="client_id")
     private Long id_client;
 
-    @Getter @Setter @Column(name="tipo_direccion")
+    @Getter @Setter @Column(name="type_address")
     private String name_address;
 
-    @Getter @Setter @Column(name="direccion")
+    @Getter @Setter @Column(name="address")
     private String address;
 }

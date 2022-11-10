@@ -120,7 +120,7 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <form class="d-flex" name="formSearch" id="formSearch" onsubmit="return false">
                                 <input class="form-control me-2" type="search" name="txtSearchID" id="txtSearchID" placeholder="ID Cliente..." aria-label="Search" title="Buscar Cliente"/>
-                                <div id="message1" style="position: absolute; left: 10px; top: 50px; color: Red; text-decoration: underline red; z-index: 10" hidden>
+                                <div id="message1" style="position: absolute; left: 30px; top: 55px; color: Red; text-decoration: underline red; z-index: 10" hidden>
                                     Introduzca Solo Números.
                                 </div>
                                 <button class="btn btn-outline-primary" onclick="searchClientByID()" type="button" title="Buscar"><i class='bx bx-search'></i></button>
@@ -271,7 +271,7 @@
             </div>
             <div class="modal-body">
                 <div class="alert">
-                    <form>
+                    <form name="formEditDoc">
                         <div class="row g-2">
                             <div class="col mb-0">
                                 <label for="txtId" class="form-label">Id</label>
@@ -290,21 +290,25 @@
                                     <option>Seleccione una opción</option>
                                     <option value="DUI">DUI</option>
                                     <option value="NIT">NIT</option>
-                                    <option value="PASAPORTE">PASAPORTE</option>
+                                    <option value="PASAPORTE NACIONAL">PASAPORTE NACIONAL</option>
+                                    <option value="PASAPORTE EXTRANJERO">PASAPORTE EXTRANJERO</option>
                                     <option value="SEGURO">SEGURO</option>
                                     <option value="OTRO TIPO DOCUMENTO">OTRO</option>
                                 </select>
                             </div>
                             <div class="col mb-0">
                                 <label for="txtDocument" class="form-label">Número Documento</label>
-                                <input type="text" class="form-control" id="txtDocument" placeholder="Número Documento">
+                                <input type="text" class="form-control" name="txtDocument" id="txtDocument" placeholder="Número Documento" title="Ingrese Número Documento" onkeyup="validar()" onblur="validar()" >
+                                <div id="messageEditDoc" style="position: relative; left: 10px; top: 10px; color: Red; text-decoration: underline red; z-index: 10" hidden>
+                                    Formato no correcto
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                <button type="button" onclick="location.reload()" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     Cerrar
                 </button>
                 <button type="button" id="showToastPlacement1" data-bs-dismiss="modal" class="btn btn-primary">Modificar</button>
@@ -356,7 +360,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                <button type="button" onclick="location.reload()" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     Cerrar
                 </button>
                 <button type="button" id="showToastPlacement2" data-bs-dismiss="modal" class="btn btn-primary">Modificar</button>

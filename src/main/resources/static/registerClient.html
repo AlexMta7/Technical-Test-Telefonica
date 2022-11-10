@@ -156,17 +156,26 @@
                                                 <div class="col mb-0">
                                                     <label class="form-label" for="txtName">Nombres Cliente</label>
                                                     <input type="text" class="form-control" name="txtName" id="txtName" placeholder="Ingresar Nombres" title="Ingresar Nombres" required/>
+                                                    <div id="messageAddNC" style="position: relative; left: 10px; top: 10px; color: Red; text-decoration: underline red; z-index: 10" hidden>
+                                                        Solo Se Admiten Letras
+                                                    </div>
                                                 </div>
                                                 <div class="col mb-0">
                                                     <label class="form-label" for="txtLastName">Apellidos Cliente</label>
                                                     <input type="text" class="form-control" name="txtLastName" id="txtLastName" placeholder="Ingresar Apellidos" title="Ingresar Apellidos" required/>
+                                                    <div id="messageAddLC" style="position: relative; left: 10px; top: 10px; color: Red; text-decoration: underline red; z-index: 10" hidden>
+                                                        Solo Se Admiten Letras
+                                                    </div>
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="row g-2">
                                                 <div class="col mb-0">
                                                     <label class="form-label" for="txtEmail">Email</label>
-                                                    <input type="text" name="txtEmail" id="txtEmail" class="form-control" placeholder="Ingrese Email" required/>
+                                                    <input type="text" name="txtEmail" id="txtEmail" class="form-control" placeholder="Ingrese Email" onkeyup="validEmail()" onblur="validEmail()" required/>
+                                                    <div id="messageAddCC" style="position: relative; left: 10px; top: 10px; color: Red; text-decoration: underline red; z-index: 10" hidden>
+                                                        Formato no correcto
+                                                    </div>
                                                 </div>
                                                 <div class="col mb-0">
                                                     <label class="form-label" for="txtGender">Género</label>
@@ -219,6 +228,7 @@
 <script src="../assets/vendor/js/bootstrap.js"></script>
 <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="/js/registerclient.js"></script>
+<script src="/js/restrictionsAC.js"></script>
 
 <script src="../assets/vendor/js/menu.js"></script>
 <!-- endbuild -->

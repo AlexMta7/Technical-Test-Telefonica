@@ -72,7 +72,7 @@
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
             <div class="app-brand demo">
                 <a href="registerUser.html" class="app-brand-link">
-                    <h4 class="card-title text-primary">
+                    <h5 class="card-title text-primary">
                     <img src="/assets/img/icons/brands/movistar.jpg" width="25" height="25" alt="Movistar">
                     INGRESO DATOS USUARIOS</h5>
                 </a>
@@ -151,22 +151,31 @@
                                     <h5 class="mb-0">Completar Campos del Formulario </h5>
                                 </div>
                                 <div class="card-body">
-                                    <form>
+                                    <form name="formAU" id="formAU">
                                         <div class="row g-2">
                                             <div class="col mb-0">
                                                 <label class="form-label" for="txtName">Nombres Usuario</label>
-                                                <input type="text" class="form-control" id="txtName" placeholder="Ingresar Nombres" />
+                                                <input type="text" class="form-control" name="txtName" id="txtName" placeholder="Ingresar Nombres" />
+                                                <div id="messageAddNU" style="position: relative; left: 10px; top: 10px; color: Red; text-decoration: underline red; z-index: 10" hidden>
+                                                    Solo Se Admiten Letras
+                                                </div>
                                             </div>
                                             <div class="col mb-0">
                                                 <label class="form-label" for="txtLastName">Apellidos Usuario</label>
-                                                <input type="text" class="form-control" id="txtLastName" placeholder="Ingresar Apellidos" />
+                                                <input type="text" class="form-control" name="txtLastName" id="txtLastName" placeholder="Ingresar Apellidos" />
+                                                <div id="messageAddLU" style="position: relative; left: 10px; top: 10px; color: Red; text-decoration: underline red; z-index: 10" hidden>
+                                                    Solo Se Admiten Letras
+                                                </div>
                                             </div>
                                         </div>
                                         <br>
                                         <div class="row g-2">
                                             <div class="col mb-0">
                                                 <label class="form-label" for="txtEmail">Email</label>
-                                                <input type="text" id="txtEmail" class="form-control" placeholder="Ingrese Email"/>
+                                                <input type="text" name="txtEmail" id="txtEmail" class="form-control" placeholder="Ingrese Email" onkeyup="validEmail()" onblur="validEmail()" />
+                                                <div id="messageAddCU" style="position: relative; left: 10px; top: 10px; color: Red; text-decoration: underline red; z-index: 10" hidden>
+                                                    Formato no correcto
+                                                </div>
                                             </div>
                                             <div class="col mb-0">
                                                 <label class="form-label" for="txtType">Cargo</label>
@@ -182,11 +191,14 @@
                                         <div class="row g-2">
                                             <div class="col mb-0">
                                                 <label class="form-label" for="txtPassword">Password</label>
-                                                <input type="password" id="txtPassword" class="form-control" placeholder="Ingrese Password"/>
+                                                <input type="password" name="txtPassword" id="txtPassword" class="form-control" placeholder="Ingrese Password"/>
+                                                <div id="messageAddPU" style="position: relative; left: 10px; top: 10px; color: Red; text-decoration: underline red; z-index: 10" hidden>
+                                                    Las Contraseñas No Coinciden
+                                                </div>
                                             </div>
                                             <div class="col mb-0">
                                                 <label class="form-label" for="txtConfirPassword">Confirmación Password</label>
-                                                <input type="password" id="txtConfirPassword" class="form-control" placeholder="Confirmar Password"/>
+                                                <input type="password" name="txtConfirPassword" id="txtConfirPassword" class="form-control" placeholder="Confirmar Password" onkeyup="validConfPass()" onblur="validConfPass()" />
                                             </div>
                                         </div>
                                         <br>
@@ -228,6 +240,7 @@
 <script src="../assets/vendor/libs/popper/popper.js"></script>
 <script src="../assets/vendor/js/bootstrap.js"></script>
 <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="/js/restrictionsAU.js"></script>
 <script src="/js/registerUser.js"></script>
 
 <script src="../assets/vendor/js/menu.js"></script>

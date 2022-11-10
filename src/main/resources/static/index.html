@@ -211,6 +211,7 @@
 
           <!-- / Navbar -->
 
+
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
@@ -238,7 +239,8 @@
                           <option value="">Seleccione una opción</option>
                           <option value="DUI">DUI</option>
                           <option value="NIT">NIT</option>
-                          <option value="PASAPORTE">PASAPORTE</option>
+                          <option value="PASAPORTE NACIONAL">PASAPORTE NACIONAL</option>
+                          <option value="PASAPORTE EXTRANJERO">PASAPORTE EXTRANJERO</option>
                           <option value="SEGURO">SEGURO</option>
                           <option value="OTRO TIPO DOCUMENTO">OTRO</option>
                         </select>
@@ -248,13 +250,16 @@
                     <div class="row g-2">
                       <div class="col mb-3">
                         <label for="txtNumDoc" class="form-label">Número Documento</label>
-                        <input type="text" class="form-control" name="txtNumDoc" id="txtNumDoc" placeholder="Número Documento" title="Ingrese Número Documento"  onkeyup="validarDoc()" onblur="validarDoc()" >
+                        <input type="text" class="form-control" name="txtNumDoc" id="txtNumDoc" placeholder="Número Documento" title="Ingrese Número Documento" onkeyup="validar()" onblur="validar()" >
+                        <div id="messageDoc" style="position: relative; left: 10px; top: 10px; color: Red; text-decoration: underline red; z-index: 10" hidden>
+                          Formato no correcto
+                        </div>
                       </div>
                     </div>
                   </form>
                   <div class="offcanvas-footer">
                     <button type="button" onclick="addDocuments()"  class="btn btn-primary mb-2 d-grid w-100" data-bs-dismiss="offcanvas">Agregar</button>
-                    <button type="button" class="btn btn-outline-secondary d-grid w-100" data-bs-dismiss="offcanvas">Cancelar</button>
+                    <button type="button" class="btn btn-outline-secondary d-grid w-100" onclick="location.reload()" data-bs-dismiss="offcanvas">Cancelar</button>
                   </div>
                 </div>
               </div>
@@ -298,7 +303,7 @@
                 </form>
                 <div class="offcanvas-footer">
                   <button type="button" onclick="addAddress()"  class="btn btn-primary mb-2 d-grid w-100" data-bs-dismiss="offcanvas">Agregar</button>
-                  <button type="button" class="btn btn-outline-secondary d-grid w-100" data-bs-dismiss="offcanvas">Cancelar</button>
+                  <button type="button" class="btn btn-outline-secondary d-grid w-100" onclick="location.reload()" data-bs-dismiss="offcanvas">Cancelar</button>
                 </div>
               </div>
             </div>
@@ -390,15 +395,18 @@
           </div>
           <div class="modal-body">
             <div class="alert">
-              <form>
+              <form name="formEdiCli" id="formEdiCli">
                 <div class="row g-2">
                   <div class="col mb-0">
                     <label for="txtName" class="form-label">Nombre Cliente</label>
-                    <input type="text" class="form-control" id="txtName" placeholder="Nombre">
+                      <input type="text" class="form-control" name="txtName" id="txtName" placeholder="Nombre">
+                    <div id="messageENC" style="position: relative; left: 10px; top: 10px; color: Red; text-decoration: underline red; z-index: 10" hidden>
+                      Solo Se Admiten Letras
+                    </div>
                   </div>
                   <div class="col mb-0">
                     <label for="txtLastName" class="form-label">Apellido Cliente</label>
-                    <input type="text" class="form-control" id="txtLastName" placeholder="Apellido">
+                    <input type="text" class="form-control" name="txtLastName" id="txtLastName" placeholder="Apellido">
                   </div>
                 </div>
                 <br>
@@ -417,7 +425,7 @@
                 <div class="row g-2">
                   <div class="col mb-0">
                     <label for="txtEmail" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="txtEmail" placeholder="Email">
+                    <input type="text" class="form-control" name="txtEmail" id="txtEmail" placeholder="Email">
                   </div>
                   <div class="col mb-0">
                     <label for="txtId" class="form-label">Id</label>
