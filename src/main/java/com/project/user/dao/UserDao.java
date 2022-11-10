@@ -11,12 +11,14 @@ public interface UserDao {
 
     userModel addUser(userModel user);
 
+    // Verifica que es usuario exista
     boolean verifyUser(userModel user);
 
     List<userModel> getUser(Long id);
 
     userModel updateUser(userModel user);
 
+    // Verifica que las credenciales existan (actualmente no se está utilizando)
     boolean verifyCredentials(userModel user);
 
     userModel getUserByCredentials(userModel user);

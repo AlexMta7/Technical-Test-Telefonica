@@ -19,6 +19,7 @@ public class UserController {
 
     @Autowired
     private JWTUtil jwtUtil;
+
     /*
      * Create
      * Read
@@ -75,6 +76,7 @@ public class UserController {
         }
     }
 
+    // Obtiene los datos de un usuario
     @RequestMapping(value = "api/users/{id}", method = RequestMethod.GET)
     public List<userModel> getUser(@PathVariable Long id) {
         return userDao.getUser(id);
@@ -87,39 +89,31 @@ public class UserController {
     }
 
     /*
-     * @RequestMapping(value = "api/users", method = RequestMethod.GET)
-     * public List<userModel> getUsers(){
-     * return UserDao.getUsers();
-     * }
-     *
-     */
-
-    /*
-     * Funciona, devuelve la lista
-     *
-     * @RequestMapping(value = "api/usuario123", method = RequestMethod.GET)
-     * public List<userModel> getUsuario(){
-     * List<userModel> users = new ArrayList<>();
-     * userModel usuario = new userModel();
-     * usuario.setId(123L);
-     * usuario.setName("Alex");
-     * usuario.setLastname("Mata");
-     * usuario.setEmail("alexmata@hotmail.com");
-     * usuario.setPassword("1234567");
-     * usuario.setType("admin");
-     *
-     * userModel usuario2 = new userModel();
-     * usuario2.setId(123L);
-     * usuario2.setName("Alex2");
-     * usuario2.setLastname("Mata2");
-     * usuario2.setEmail("alexmata2@hotmail.com");
-     * usuario2.setPassword("12345678");
-     * usuario2.setType("noAdmin");
-     *
-     * users.add(usuario);
-     * users.add(usuario2);
-     * return users;
-     * }
+     * // * Funciona, devuelve la lista
+     * // *
+     * // * @RequestMapping(value = "api/usuario123", method = RequestMethod.GET)
+     * // * public List<userModel> getUsuario(){
+     * // * List<userModel> users = new ArrayList<>();
+     * // * userModel usuario = new userModel();
+     * // * usuario.setId(123L);
+     * // * usuario.setName("Alex");
+     * // * usuario.setLastname("Mata");
+     * // * usuario.setEmail("alexmata@hotmail.com");
+     * // * usuario.setPassword("1234567");
+     * // * usuario.setType("admin");
+     * // *
+     * // * userModel usuario2 = new userModel();
+     * // * usuario2.setId(123L);
+     * // * usuario2.setName("Alex2");
+     * // * usuario2.setLastname("Mata2");
+     * // * usuario2.setEmail("alexmata2@hotmail.com");
+     * // * usuario2.setPassword("12345678");
+     * // * usuario2.setType("noAdmin");
+     * // *
+     * // * users.add(usuario);
+     * // * users.add(usuario2);
+     * // * return users;
+     * // * }
      */
 
 }

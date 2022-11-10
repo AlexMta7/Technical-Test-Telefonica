@@ -28,6 +28,8 @@ async function getUsers() {
   console.log(usuarios);
 
   let listHtml = '';
+
+  // Si no hay datos
   if (usuarios == '') {
     let userHtml = '   <tr> '
       + '  <td>---</td>'
