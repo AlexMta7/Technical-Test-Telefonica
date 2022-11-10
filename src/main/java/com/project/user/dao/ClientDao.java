@@ -11,6 +11,7 @@ public interface ClientDao {
 
     clientModel addClient(clientModel client);
 
+    // Verifica si el cliente ya existe (email)
     boolean verifyClient(clientModel client);
 
     clientModel updateClient(clientModel client);

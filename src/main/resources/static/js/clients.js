@@ -48,6 +48,7 @@ async function getClients() {
   const clientes = await request.json();
 
   console.log(clientes);
+  //Si no hay datos
   if (clientes == '') {
     let clientHtml = '   <tr> '
       + '  <td>----</td>'
@@ -107,12 +108,12 @@ async function updateClient() {
   client.email = document.getElementById("txtModalEmail").value;
   client.service = document.getElementById("txtModalService").value;
 
-
   const request = await fetch('api/clients', {
     method: method,
     headers: getHeaders(),
     body: JSON.stringify(client)
   });
+
   const response = await request.text();
   console.log(response);
 
@@ -148,7 +149,6 @@ async function deleteClient(id) {
     headers: getHeaders()
   });
   location.reload();
-
   alert("Client deleted");
 }
 
