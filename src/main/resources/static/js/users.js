@@ -146,7 +146,7 @@ async function getUserByName(email) {
     return;
   }
   else {
-    
+    //Capitaliza la primera letra
     email = email.trim().replace(/^\w/, (c) => c.toUpperCase());
   const requestEmail = await fetch('/api/username/' + email , {
     method: 'GET',

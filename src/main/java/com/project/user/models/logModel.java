@@ -1,5 +1,7 @@
 package com.project.user.models;
 
+import java.sql.Date;
+
 import javax.persistence.*;
 import lombok.*;
 
@@ -16,12 +18,12 @@ public class logModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "log_client_id")
-    private Long client_id;
+    @Column(name = "log_user_id")
+    private Long user_id;
 
     @Column(name = "log_action")
     private String action;
 
     @Column(name = "log_date")
-    private String date;
+    private Date date;
 }

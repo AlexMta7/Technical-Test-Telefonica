@@ -5,8 +5,10 @@ import lombok.*;
 
 @Entity
 @Table(name = "clients")
-@Getter @Setter
-@ToString @EqualsAndHashCode
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
 public class clientModel {
     @Id
     @Column(name = "cli_id")
