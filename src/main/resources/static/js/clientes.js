@@ -56,7 +56,7 @@ async function cargarClientes(){
 
               //Se listan los datos para mostrarlos en forma ordenada en la tabla correspondiente
               for(let cliente of clientes){
-               let btnEliminar = '<a href="#" onclick="eliminarCliente(' + cliente.id + ')" class="btn btn-icon btn-danger" title="Eliminar"><span class="tf-icons bx bx-trash"></span></a>';
+               let btnEliminar = '<a href="#" onclick="eliminarCliente(' + cliente.id + ');" class="btn btn-icon btn-danger" title="Eliminar"><span class="tf-icons bx bx-trash"></span></a>';
                let btnModificar = '<button type="button" onclick="getInfoCliente(' + cliente.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollable" title="Modificar"><span class="tf-icons bx bx-pencil"></span></button>';
                let btnAddDocs = '<button type="button" onclick="getIdCliente(' + cliente.id + ')" class="btn btn-icon btn-primary" title="Agregar Documentos" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEnd" aria-controls="offcanvasEnd"><span class="tf-icons bx bx-id-card"></span></button>';
                let btnAddAddr = '<button type="button" onclick="getIdCliente(' + cliente.id + ')" class="btn btn-icon btn-secondary" title="Agregar Direcciones" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEnd1" aria-controls="offcanvasEnd"><span class="tf-icons bx bx-home"></span></button>';
@@ -84,6 +84,7 @@ async function eliminarCliente(id){
             method: 'DELETE',
             headers: getHeaders()
           });
+    getEmailUser("Eliminación del Cliente");
     alert("Registro con id: " + id + " eliminado exitosamente");
     location.reload();
 }
@@ -195,4 +196,52 @@ async function searchClientByName(){
         getClientByName(str);
     }
 
+}
+
+
+/** PROGRAMACIÓN PARA LA PARTE DE LOS LOGS **/
+
+async function getInfo(email, act){
+      const request = await fetch('api/search/user/' + email, {
+        method: 'GET',
+        headers: getHeaders()
+      });
+      const userInfo = await request.json();
+
+      for(let U of userInfo){
+        let user = {};
+
+        // crea un nuevo objeto `Date`
+        var today = new Date();
+        // `getDate()` devuelve el día del mes (del 1 al 31)
+        var day = today.getDate();
+        // `getMonth()` devuelve el mes (de 0 a 11)
+        var month = today.getMonth() + 1;
+        // `getFullYear()` devuelve el año completo
+        var year = today.getFullYear();
+        // se le da formato a la fecha de `YYYY/MM/DD`
+        var date = `${year}/${month}/${day}`;
+
+        // Se asigna el valor de la accion
+        var action = act;
+
+        user.id_usu = U.id_usu;
+        user.action = action;
+        user.date = date;
+
+        const request = await fetch('api/logs', {
+            method: 'POST',
+            headers: getHeaders(),
+            body: JSON.stringify(user)
+        });
+
+      }
+}
+
+
+async function getEmailUser(action){
+    const email = localStorage.email;
+    const ac = action;
+
+    getInfo(email,action);
 }

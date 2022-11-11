@@ -26,6 +26,7 @@
     toastPlacementBtn.onclick = function () {
       //Llama la función para la edición de los datos del cliente
       editarCliente();
+      getEmailUser('Modificación de Cliente');
       if (toastPlacement) {
         toastDispose(toastPlacement);
       }
@@ -63,6 +64,7 @@
     toastPlacementBtn.onclick = function () {
       //Llama la función para la edición de los datos de los documentos del cliente
       editarDoc();
+      getEmailUser('Modificación de Documento del Cliente');
       if (toastPlacement) {
         toastDispose(toastPlacement);
       }
@@ -100,6 +102,7 @@
     toastPlacementBtn.onclick = function () {
       //Llama la función para la edición de los datos de los documentos del cliente
       editarDire();
+      getEmailUser('Modificación de Dirección del Cliente');
       if (toastPlacement) {
         toastDispose(toastPlacement);
       }

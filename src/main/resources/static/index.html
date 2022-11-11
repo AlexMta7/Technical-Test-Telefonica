@@ -258,7 +258,7 @@
                     </div>
                   </form>
                   <div class="offcanvas-footer">
-                    <button type="button" onclick="addDocuments()"  class="btn btn-primary mb-2 d-grid w-100" data-bs-dismiss="offcanvas">Agregar</button>
+                    <button type="button" onclick="addDocuments(); getEmailUser('Ingreso de Documento');"  class="btn btn-primary mb-2 d-grid w-100" data-bs-dismiss="offcanvas">Agregar</button>
                     <button type="button" class="btn btn-outline-secondary d-grid w-100" onclick="location.reload()" data-bs-dismiss="offcanvas">Cancelar</button>
                   </div>
                 </div>
@@ -302,7 +302,7 @@
                   </div>
                 </form>
                 <div class="offcanvas-footer">
-                  <button type="button" onclick="addAddress()"  class="btn btn-primary mb-2 d-grid w-100" data-bs-dismiss="offcanvas">Agregar</button>
+                  <button type="button" onclick="addAddress();getEmailUser('Ingreso de Dirección');"  class="btn btn-primary mb-2 d-grid w-100" data-bs-dismiss="offcanvas">Agregar</button>
                   <button type="button" class="btn btn-outline-secondary d-grid w-100" onclick="location.reload()" data-bs-dismiss="offcanvas">Cancelar</button>
                 </div>
               </div>
@@ -329,7 +329,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="demo-inline-spacing">
-                      <button type="button" onclick="clientData()" class="btn btn-success" title="Descargar reporte de Clientes">
+                      <button type="button" onclick="clientData();getEmailUser('Descarga de Información Clientes');" class="btn btn-success" title="Descargar reporte de Clientes">
                         <span class="tf-icons bx bxs-report"></span>&nbsp; Reporte Clientes
                       </button>
                     </div>

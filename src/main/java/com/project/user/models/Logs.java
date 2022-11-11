@@ -24,6 +24,6 @@ public class Logs {
     private String action;
 
     @Getter @Setter @Column(name = "date")
-    private LocalDateTime date;
+    private String date;
 
 }
