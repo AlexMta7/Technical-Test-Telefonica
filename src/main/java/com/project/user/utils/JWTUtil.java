@@ -17,7 +17,7 @@ import java.util.Date;
 /**
  * @author Mahesh
  */
-@Component //Notación para poder compartirlo en todos los lugares
+@Component // Notación para poder compartirlo en todos los lugares
 public class JWTUtil {
     @Value("${security.jwt.secret}")
     private String key;
@@ -28,8 +28,8 @@ public class JWTUtil {
     @Value("${security.jwt.ttlMillis}")
     private long ttlMillis;
 
-    private final Logger log = LoggerFactory
-            .getLogger(JWTUtil.class);
+    // private final Logger log = LoggerFactory
+    // .getLogger(JWTUtil.class);
 
     /**
      * Create a new token.
@@ -46,11 +46,11 @@ public class JWTUtil {
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
 
-        //  sign JWT with our ApiKey secret
+        // sign JWT with our ApiKey secret
         byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(key);
         Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
 
-        //  set the JWT Claims
+        // set the JWT Claims
         JwtBuilder builder = Jwts.builder().setId(id).setIssuedAt(now).setSubject(subject).setIssuer(issuer)
                 .signWith(signatureAlgorithm, signingKey);
 
