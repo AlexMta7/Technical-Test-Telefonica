@@ -24,4 +24,6 @@ public interface UserDao {
     userModel getUserByCredentials(userModel user);
 
     List<userModel> getUserByEmail(String email);
+
+    List<userModel> getUserByName(String name);
 }

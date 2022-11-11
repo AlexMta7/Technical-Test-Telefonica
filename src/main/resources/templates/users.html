@@ -227,6 +227,18 @@
                   <strong id="lblEmail"></strong>
                 </div>
               </div>
+              <div class="navbar-nav align-items-center">
+                <div class="nav-item d-flex align-items-center">
+                  <input
+                    id="txtSearch"
+                    type="text"
+                    class="form-control border-0 shadow-none"
+                    placeholder="Search..."
+                    aria-label="Search..."
+                  />
+                  <i class='bx bx-search bx-sm bx-tada-hover' onclick="getUserByName(document.getElementById('txtSearch').value )"></i>
+                </div>
+              </div>
               <!-- /Search -->
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">

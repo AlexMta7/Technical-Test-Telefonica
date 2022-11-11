@@ -7,16 +7,7 @@ $(document).ready(function () {
 
 // Información del usuario logueado
 async function userInfo() {
-  const requestEmail = await fetch('/api/user/' + localStorage.email , {
-    method: 'GET',
-    headers: getHeaders()
-  });
-
-  const user = await requestEmail.json();
-  console.log(user[0].name);
-
-  localStorage.name = user[0].name + ' ' +user[0].lastname;
-  localStorage.role = user[0].type;
+  
   document.getElementById("lblEmail").innerHTML = localStorage.email;
   document.getElementById("lblUserName").innerHTML = localStorage.name;
   document.getElementById("lblUserRole").innerHTML = localStorage.role;
@@ -146,5 +137,23 @@ async function updateUser() {
   }
   else {
     alert("Couldn't update user");
+  }
+}
+
+async function getUserByName(email) {
+  
+  if (document.getElementById('txtSearch').value == '') {
+    return;
+  }
+  else {
+    
+    email = email.trim().replace(/^\w/, (c) => c.toUpperCase());
+  const requestEmail = await fetch('/api/username/' + email , {
+    method: 'GET',
+    headers: getHeaders()
+  });
+
+  const usuario = await requestEmail.json();
+  console.log(usuario)
   }
 }

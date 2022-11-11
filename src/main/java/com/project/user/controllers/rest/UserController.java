@@ -96,6 +96,16 @@ public class UserController {
         return userDao.getUserByEmail(email);
     }
 
+    // Obtiene los datos de un usuario por nombre
+    @RequestMapping(value = "api/username/{name}", method = RequestMethod.GET)
+    public List<userModel> getUserByName(@PathVariable String name,
+            @RequestHeader(value = "Authorization") String token) {
+        if (!validateToken(token)) {
+            return null;
+        }
+        return userDao.getUserByName(name);
+    }
+
     // Valida que el token sea el mismo del usuario logeado
     private boolean validateToken(String token) {
         String userID = jwtUtil.getKey(token);

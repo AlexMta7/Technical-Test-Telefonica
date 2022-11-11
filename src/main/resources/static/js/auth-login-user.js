@@ -35,6 +35,18 @@ async function login() {
   if (response != 'FAIL') {
     localStorage.token = response;
     localStorage.email = user.email;
+
+    const requestEmail = await fetch('/api/user/' + localStorage.email , {
+      method: 'GET',
+      headers: getHeaders()
+    });
+  
+    const usuario = await requestEmail.json();
+    //console.log(usuario[0].name);
+  
+    localStorage.name = usuario[0].name + ' ' +usuario[0].lastname;
+    localStorage.role = usuario[0].type;
+
     alert("Login successfully.");
     window.location.href = "/clients";
   }

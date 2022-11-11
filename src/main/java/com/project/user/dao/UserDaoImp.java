@@ -109,4 +109,10 @@ public class UserDaoImp implements UserDao {
         String query = "FROM userModel WHERE email = :email";
         return entityManager.createQuery(query).setParameter("email", email.toString()).getResultList();
     }
+
+    @Override
+    public List<userModel> getUserByName(String name) {
+        String query = "FROM userModel WHERE name like :name";
+        return entityManager.createQuery(query).setParameter("name", name.toString() + '%').getResultList();
+    }
 }
