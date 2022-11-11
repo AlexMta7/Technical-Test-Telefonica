@@ -60,4 +60,6 @@ async function login() {
 function logout() {
   localStorage.token = '';
   localStorage.email = '';
+  localStorage.name = '';
+  localStorage.role = '';
 }
