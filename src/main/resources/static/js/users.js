@@ -2,11 +2,24 @@
 $(document).ready(function () {
   //Al iniciar la pagina llama al metodo
   getUsers()
-  emailUser()
+  userInfo()
 });
 
-function emailUser() {
-  document.getElementById("lblEmail").innerHTML = localStorage.email
+// Información del usuario logueado
+async function userInfo() {
+  const requestEmail = await fetch('/api/user/' + localStorage.email , {
+    method: 'GET',
+    headers: getHeaders()
+  });
+
+  const user = await requestEmail.json();
+  console.log(user[0].name);
+
+  localStorage.name = user[0].name + ' ' +user[0].lastname;
+  localStorage.role = user[0].type;
+  document.getElementById("lblEmail").innerHTML = localStorage.email;
+  document.getElementById("lblUserName").innerHTML = localStorage.name;
+  document.getElementById("lblUserRole").innerHTML = localStorage.role;
 }
 
 //Para devolver los Header
@@ -25,12 +38,19 @@ async function getUsers() {
   });
   
   const usuarios = await request.json();
+
   console.log(usuarios);
+  console.log(usuarios.message);
 
-  let listHtml = '';
+  let tableData = '';
 
-  // Si no hay datos
-  if (usuarios == '') {
+  //Si no hay token
+  if (usuarios.message == "JWT String argument cannot be null or empty.") {
+    document.querySelector('#table_user thead').outerHTML = '<div class="container border border-danger">You have to <a href="/login">log in</a> to access this data</div>';
+    document.querySelector('#userInfo').outerHTML = '';
+  } 
+  else if (usuarios == '') {
+     // Si no hay datos
     let userHtml = '   <tr> '
       + '  <td>---</td>'
       + '  <td><strong>---</strong></td>'
@@ -39,10 +59,11 @@ async function getUsers() {
       + '  <td>---</td>'
       + '</tr>'
       + '<div>No data available</div>';
-    listHtml += userHtml;
-    document.querySelector('#table_user tbody').outerHTML = listHtml;
+    tableData += userHtml;
+    document.querySelector('#table_user tbody').outerHTML = tableData;
   }
   else {
+     // Si hay datos
     for (let user of usuarios) {
       let updateButton = '<button type="button" id="updateButton" onclick="getUser(' + user.id + ')" class="btn btn-icon btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">'
         + '   <span class="tf-icons bx bx-edit"></span>'
@@ -57,10 +78,10 @@ async function getUsers() {
         + '  <td>' + user.type + '</td>'
         + '  <td>' + updateButton + ' ' + deleteButton + '</td>'
         + '</tr>';
-      listHtml += userHtml;
+      tableData += userHtml;
     }
-    document.querySelector('#table_user tbody').outerHTML = listHtml;
-  }
+    document.querySelector('#table_user tbody').outerHTML = tableData;
+  } 
 }
 
 async function getUser(id) {

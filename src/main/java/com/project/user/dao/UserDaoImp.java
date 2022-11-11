@@ -5,31 +5,34 @@ import com.project.user.models.userModel;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 
+import org.hibernate.query.NativeQuery;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+
+import java.lang.annotation.Native;
 import java.util.List;
 
 @Repository
 @Transactional
-public class UserDaoImp implements UserDao{
+public class UserDaoImp implements UserDao {
 
     @PersistenceContext
     private EntityManager entityManager;
-    
+
     @Override
     public List<userModel> getUsers() {
         String query = "FROM userModel";
-        //List<Usuario> resultado = entityManager.createQuery(query).getResultList();
-        //return resultado;
+        // List<Usuario> resultado = entityManager.createQuery(query).getResultList();
+        // return resultado;
         return entityManager.createQuery(query).getResultList();
     }
 
     @Override
     public void deleteUsers(Long id) {
-        userModel user = entityManager.find(userModel.class,id);
-    entityManager.remove(user);
+        userModel user = entityManager.find(userModel.class, id);
+        entityManager.remove(user);
     }
 
     @Override
@@ -63,17 +66,17 @@ public class UserDaoImp implements UserDao{
         if (list.isEmpty()) {
             return false;
         }
-        
-         //Gets the password
-         String hashedPassword = list.get(0).getPassword();
 
-         //TO VERIFY THE PASSWORD
-         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
- 
-         //Compares a Hash with a password. returns a boolean
-         if(argon2.verify(hashedPassword, user.getPassword())){
-             return true;
-         }
+        // Gets the password
+        String hashedPassword = list.get(0).getPassword();
+
+        // TO VERIFY THE PASSWORD
+        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+
+        // Compares a Hash with a password. returns a boolean
+        if (argon2.verify(hashedPassword, user.getPassword())) {
+            return true;
+        }
 
         return false;
     }
@@ -86,18 +89,24 @@ public class UserDaoImp implements UserDao{
         if (list.isEmpty()) {
             return null;
         }
-        
-         //Gets the password
-         String hashedPassword = list.get(0).getPassword();
 
-         //TO VERIFY THE PASSWORD
-         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
- 
-         //Compares a Hash with a password. returns a boolean
-         if(argon2.verify(hashedPassword, user.getPassword())){
-             return list.get(0);
-         }
+        // Gets the password
+        String hashedPassword = list.get(0).getPassword();
+
+        // TO VERIFY THE PASSWORD
+        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+
+        // Compares a Hash with a password. returns a boolean
+        if (argon2.verify(hashedPassword, user.getPassword())) {
+            return list.get(0);
+        }
 
         return null;
+    }
+
+    @Override
+    public List<userModel> getUserByEmail(String email) {
+        String query = "FROM userModel WHERE email = :email";
+        return entityManager.createQuery(query).setParameter("email", email.toString()).getResultList();
     }
 }

@@ -1,12 +1,15 @@
 
 $(document).ready(function () {
   //Al iniciar la pagina llama al metodo
-  //getClients()
-  emailUser()
+  getClients()
+  userInfo()
 });
 
-function emailUser() {
-  document.getElementById("lblEmail").innerHTML = localStorage.email
+// Información del usuario logueado
+async function userInfo() {
+  document.getElementById("lblEmail").innerHTML = localStorage.email;
+  document.getElementById("lblUserName").innerHTML = localStorage.name;
+  document.getElementById("lblUserRole").innerHTML = localStorage.role;
 }
 
 //Para devolver los Header
@@ -48,8 +51,15 @@ async function getClients() {
   const clientes = await request.json();
 
   console.log(clientes);
-  //Si no hay datos
-  if (clientes == '') {
+  console.log(clientes.message);
+  if (clientes.message == "JWT String argument cannot be null or empty.") {
+    //Si no está logueado
+    document.querySelector('#btnAddDownload').outerHTML = '<div></div>';
+    document.querySelector('#table_user thead').outerHTML = '<div class="container border border-danger">You have to <a href="/login">log in</a> to access this data</div>';
+    document.querySelector('#userInfo').outerHTML = '';
+  } 
+  else if (clientes == '') {
+    //Si no hay datos
     let clientHtml = '   <tr> '
       + '  <td>----</td>'
       + '  <td><strong>----</strong></td>'
@@ -62,6 +72,7 @@ async function getClients() {
     document.querySelector('#table_user tbody').outerHTML = noData;
   }
   else {
+    //Si hay datos
     let listHtml = '';
     for (let client of clientes) {
       let updateButton = '<button type="button" id="updateButton" onclick="getClient(' + client.id + ')" class="btn btn-icon btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">'

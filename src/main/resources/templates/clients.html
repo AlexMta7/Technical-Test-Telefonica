@@ -86,12 +86,12 @@
 
             <ul class="menu-inner py-1">
                 <!-- Dashboard -->
-                <li class="menu-item">
+                <!-- <li class="menu-item">
                     <a href="index.html" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-home-circle"></i>
                         <div data-i18n="Analytics">Dashboard</div>
                     </a>
-                </li>
+                </li> -->
 
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Pages</span>
@@ -189,7 +189,7 @@
                         </li> -->
 
                         <!-- User -->
-                        <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                        <li class="nav-item navbar-dropdown dropdown-user dropdown" id="userInfo">
                             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                                 <div class="avatar avatar-online">
                                   <i class='bx bx-user-circle bx-md'></i>
@@ -205,8 +205,8 @@
                                                 </div>
                                             </div>
                                             <div class="flex-grow-1">
-                                                <span class="fw-semibold d-block">John Doe</span>
-                                                <small class="text-muted">Admin</small>
+                                                <span class="fw-semibold d-block" id="lblUserName">John Doe</span>
+                                                <small class="text-muted" id="lblUserRole">Admin</small>
                                             </div>
                                         </div>
                                     </a>
@@ -226,9 +226,9 @@
                                         <span class="align-middle">Settings</span>
                                     </a>
                                 </li> -->
-                                <li>
+                                <!-- <li>
                                     <div class="dropdown-divider"></div>
-                                </li>
+                                </li> -->
                                 <li>
                                     <a class="dropdown-item" th:href="@{/login}" onclick="logout()">
                                         <i class="bx bx-power-off me-2"></i>
@@ -258,7 +258,7 @@
                     <!-- Borderless Table -->
                     <div class="card">
                         <h5 class="card-header">Clients Info</h5>
-                        <div class="mb-2">
+                        <div class="mb-2" id="btnAddDownload">
                             <!-- Button trigger modal de ingreso de clientes-->
                             <button type="button" id="addClientButton" onclick="modifyModalAdd()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">
                               Add Client
@@ -330,10 +330,10 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Nombre</th>
+                                    <th>Name</th>
                                     <th>Email</th>
                                     <th>Service</th>
-                                    <th>Acciones</th>
+                                    <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>

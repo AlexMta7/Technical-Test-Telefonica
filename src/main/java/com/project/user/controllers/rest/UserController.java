@@ -76,7 +76,7 @@ public class UserController {
         }
     }
 
-    // Obtiene los datos de un usuario
+    // Obtiene los datos de un usuario por id
     @RequestMapping(value = "api/users/{id}", method = RequestMethod.GET)
     public List<userModel> getUser(@PathVariable Long id, @RequestHeader(value = "Authorization") String token) {
         if (!validateToken(token)) {
@@ -84,6 +84,16 @@ public class UserController {
         }
 
         return userDao.getUser(id);
+    }
+
+    // Obtiene los datos de un usuario por email
+    @RequestMapping(value = "api/user/{email}", method = RequestMethod.GET)
+    public List<userModel> getUserByEmail(@PathVariable String email,
+            @RequestHeader(value = "Authorization") String token) {
+        if (!validateToken(token)) {
+            return null;
+        }
+        return userDao.getUserByEmail(email);
     }
 
     // Valida que el token sea el mismo del usuario logeado

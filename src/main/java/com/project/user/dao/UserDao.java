@@ -22,4 +22,6 @@ public interface UserDao {
     boolean verifyCredentials(userModel user);
 
     userModel getUserByCredentials(userModel user);
+
+    List<userModel> getUserByEmail(String email);
 }
