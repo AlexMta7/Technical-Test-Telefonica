@@ -27,18 +27,18 @@ async function getLogs() {
         headers: getHeaders()
     });
 
-    const usuarios = await request.json();
+    const logs = await request.json();
 
-    console.log(usuarios);
+    console.log(logs);
 
     let tableData = '';
 
     //Si no hay token
-    if (usuarios.message == "JWT String argument cannot be null or empty.") {
+    if (logs.message == "JWT String argument cannot be null or empty.") {
         document.querySelector('#table_logs thead').outerHTML = '<div class="container border border-danger">You have to <a href="/login">log in</a> to access this data</div>';
         document.querySelector('#userInfo').outerHTML = '';
     }
-    else if (usuarios == '') {
+    else if (logs == '') {
         // Si no hay datos
         let userHtml = '   <tr> '
             + '  <td>---</td>'
@@ -53,27 +53,28 @@ async function getLogs() {
     }
     else {
         // Si hay datos
-        for (let user of usuarios) {
-            let updateButton = '<button type="button" id="updateButton" onclick="getUser(' + user.id + ')" class="btn btn-icon btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">'
+        for (let log of logs) {
+            let updateButton = '<button type="button" id="updateButton" onclick="getUser(' + log.id + ')" class="btn btn-icon btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">'
                 + '   <span class="tf-icons bx bx-edit"></span>'
                 + '</button>';
-            let deleteButton = '<button type="button" onclick="deleteUser(' + user.id + ')" class="btn btn-icon btn-danger">'
+            let deleteButton = '<button type="button" onclick="deleteUser(' + log.id + ')" class="btn btn-icon btn-danger">'
                 + '   <span class="tf-icons bx bx-trash-alt"></span>'
                 + '</button>';
-            let userHtml = '   <tr> '
-                + '  <td>' + user.id + '</td>'
-                + '  <td><strong>' + user.user_id + ' ' + user.lastname + '</strong></td>'
-                + '  <td>' + user.action + '</td> '
-                + '  <td>' + user.date + '</td>'
+            let logHtml = '   <tr> '
+                + '  <td>' + log.id + '</td>'
+                + '  <td><strong><a data-bs-toggle="modal" data-bs-target="#modalUser" onclick="getUserLog(' + log.user_id + ')">' + log.user_id + '</a></strong></td>'
+                + '  <td>' + log.action + '</td> '
+                + '  <td>' + log.date + '</td>'
                 // + '  <td>' + updateButton + ' ' + deleteButton + '</td>'
                 + '</tr>';
-            tableData += userHtml;
+            tableData += logHtml;
         }
         document.querySelector('#table_logs tbody').outerHTML = tableData;
     }
 }
 
-// TODO: ARREGLAR ESTO PARA VERLO EN EL FRONT
+// TODO: OBTENER EL VALOR QUE CAMBIA DEPENDIENDO DEL BOTON EN ADD/UPDATE Y ESE PASAR COMO PARAMETRO EN ACTION
+// TODO: BUSCAR COMO OBTENER EL USUARIO PARA PASARLO COMO PARAMETRO
 async function addLog(user_id,action) {
     let log = {};
     // log.name = document.getElementById("txtName").value;
@@ -97,7 +98,7 @@ async function addLog(user_id,action) {
     
     log.user_id = user_id;
     log.action = action
-    log.date = date;
+    // log.date = date;
 
     console.log(log);
 
@@ -117,3 +118,28 @@ async function addLog(user_id,action) {
     //     alert("User already exist.");
     // }
 }
+
+async function getUserLog(id) {
+    const request = await fetch('api/users/' + id, {
+      method: 'GET',
+      headers: getHeaders()
+    });
+  
+    const usuario = await request.json();
+  
+    console.log(usuario);
+    document.getElementById("saveModalLog").innerHTML = "Ya veré que hace este boton";
+    document.getElementById("selectOption1").innerHTML = "ADMIN";
+    document.getElementById("selectOption1").value = "ADMIN";
+    document.getElementById("selectOption2").innerHTML = "NO_ADMIN";
+    document.getElementById("selectOption2").value = "NO_ADMIN";
+  
+    for (user of usuario) {
+      document.getElementById("txtModalId").value = user.id;
+      document.getElementById("txtModalName").value = user.name;
+      document.getElementById("txtModalLastname").value = user.lastname;
+      document.getElementById("txtModalEmail").value = user.email;
+      // document.getElementById("txtModalSecret").value = user.password;
+      document.getElementById("selectOption0").innerHTML = user.type;
+    }
+  }

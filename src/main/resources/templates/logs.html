@@ -328,17 +328,17 @@
 
                 <div class="mb-2">
                   <!-- Button trigger modal -->
-                  <!-- <button type="button" id="addButton" onclick="modifyModalAdd()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">
+                  <!-- <button type="button" id="addButton" onclick="modifyModalAdd()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUser">
                     Add User
                   </button> -->
 
                   <!-- Modal -->
                   <div>
-                    <div class="modal fade" id="modalCenter" tabindex="-1" style="display: none;" aria-hidden="true">
+                    <div class="modal fade" id="modalUser" tabindex="-1" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="modalCenterTitle">Modal title</h5>
+                          <h5 class="modal-title" id="modalUserTitle">Modal title</h5>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -353,21 +353,21 @@
                           <div class="row">
                             <div class="col mb-3">
                               <label for="txtModalName" class="form-label">Name</label>
-                              <input type="text" id="txtModalName" class="form-control" placeholder="Enter Name" required>
+                              <input type="text" id="txtModalName" class="form-control" placeholder="Enter Name" disabled>
                             </div>
                             <div class="col mb-3">
                               <label for="txtModalLastname" class="form-label">Lastname</label>
-                              <input type="text" id="txtModalLastname" class="form-control" placeholder="Enter Lastname" required>
+                              <input type="text" id="txtModalLastname" class="form-control" placeholder="Enter Lastname" disabled>
                             </div>
                           </div>
                           <div class="row g-2">
                             <div class="col mb-0">
                               <label for="txtModalEmail" class="form-label">Email</label>
-                              <input type="text" id="txtModalEmail" class="form-control" placeholder="xxxx@xxx.xx" required>
+                              <input type="text" id="txtModalEmail" class="form-control" placeholder="xxxx@xxx.xx" disabled>
                             </div>
                             <div class="mb-3">
                               <label for="selectModalType" class="form-label">Default select</label>
-                              <select id="selectModalType" class="form-select">
+                              <select id="selectModalType" class="form-select" disabled>
                                 <option id="selectOption0">Select a type</option>
                                 <option id="selectOption1" value="1">One</option>
                                 <option id="selectOption2" value="2">Two</option>
@@ -392,9 +392,10 @@
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th>User</th>
+                        <th>User ID</th>
                         <th>Action</th>
                         <th>Date</th>
+                        <th>Time</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -447,6 +448,7 @@
 
     <!-- Page JS -->
     <script th:src="@{/js/logs.js}"></script>
+    <!-- <script th:src="@{/js/users.js}"></script> -->
     <!-- <script th:src="@{/js/auth-login-user.js}"></script> -->
 
 

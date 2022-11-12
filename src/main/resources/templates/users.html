@@ -379,7 +379,7 @@
                           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                             Close
                           </button>
-                          <button onclick="updateUser();addLog('7','Actualiza usuario')" id="saveModal" class="btn btn-primary">Save changes</button>
+                          <button onclick="updateUser();addLog(localStorage.user_id,document.getElementById('saveModalUser').innerHTML + ': ' + document.getElementById('txtModalId').value)" id="saveModalUser" class="btn btn-primary">Save changes</button>
                         </div>
                       </div>
                     </div>
@@ -449,6 +449,7 @@
     <!-- Page JS -->
     <script th:src="@{/js/users.js}"></script>
     <script th:src="@{/js/auth-login-user.js}"></script>
+    <script th:src="@{/js/logs.js}"></script>
 
 
     <!-- Place this tag in your head or just before your close body tag. -->

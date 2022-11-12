@@ -1,8 +1,9 @@
 package com.project.user.controllers.rest;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,13 @@ public class LogController {
         if (!validateToken(token)) {
             return null;
         }
+        LocalTime time = LocalTime.now();
+        System.out.println(
+                ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + time);
+        System.out.println(
+                ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+                        + LocalDateTime.now());
+        log.setDate(LocalDateTime.now().toString());
         logDao.addLog(log);
         return "OK";
     }

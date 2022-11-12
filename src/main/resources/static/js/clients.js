@@ -30,7 +30,7 @@ async function getClient(id) {
   const cliente = await request.json();
 
   console.log(cliente);
-  document.getElementById("saveModal").innerHTML = "Update";
+  document.getElementById("saveModalClient").innerHTML = "Update Client";
   document.getElementById("lblModalClient").innerHTML = "Update Client";
 
   for (client of cliente) {

@@ -59,6 +59,7 @@ async function getUsers() {
       let updateButton = '<button type="button" id="updateButton" onclick="getUser(' + user.id + ')" class="btn btn-icon btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">'
         + '   <span class="tf-icons bx bx-edit"></span>'
         + '</button>';
+      //TODO: AGREGAR AQUI EL METODO PARA LOG DE ELIMINAR
       let deleteButton = '<button type="button" onclick="deleteUser(' + user.id + ')" class="btn btn-icon btn-danger">'
         + '   <span class="tf-icons bx bx-trash-alt"></span>'
         + '</button>';
@@ -84,7 +85,8 @@ async function getUser(id) {
   const usuario = await request.json();
 
   console.log(usuario);
-  document.getElementById("saveModal").innerHTML = "Update";
+  document.getElementById("saveModalUser").innerHTML = "Update User"; //No está agarrando este valor
+  document.getElementById("saveModalUser").value = "Update User"; //No está agarrando este valor
   document.getElementById("selectOption1").innerHTML = "ADMIN";
   document.getElementById("selectOption1").value = "ADMIN";
   document.getElementById("selectOption2").innerHTML = "NO_ADMIN";
@@ -95,24 +97,30 @@ async function getUser(id) {
     document.getElementById("txtModalName").value = user.name;
     document.getElementById("txtModalLastname").value = user.lastname;
     document.getElementById("txtModalEmail").value = user.email;
-    document.getElementById("txtModalSecret").value = user.password;
+    // document.getElementById("txtModalSecret").value = user.password;
     document.getElementById("selectOption0").innerHTML = user.type;
   }
 }
 
 async function deleteUser(id) {
 
-  if (!confirm('Do you want to delete the user?')) {
-    //Con return se corta el flujo de la función
+  if (id == localStorage.user_id) {
+    alert("Can't delete logged user");
     return;
   }
+  else {
 
-  const request = await fetch('api/users/' + id, {
-    method: 'DELETE',
-    headers: getHeaders()
-  });
-  location.reload();
-  alert("User Deleted");
+    if (!confirm('Do you want to delete the user?')) {
+      //Con return se corta el flujo de la función
+      return;
+    }
+    const request = await fetch('api/users/' + id, {
+      method: 'DELETE',
+      headers: getHeaders()
+    });
+    location.reload();
+    alert("User Deleted");
+  }
 }
 
 async function updateUser() {

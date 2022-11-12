@@ -1,6 +1,6 @@
 package com.project.user.models;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.*;
 import lombok.*;
@@ -25,5 +25,5 @@ public class logModel {
     private String action;
 
     @Column(name = "log_date")
-    private Date date;
+    private String date;
 }

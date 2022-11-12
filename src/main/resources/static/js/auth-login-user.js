@@ -46,6 +46,8 @@ async function login() {
   
     localStorage.name = usuario[0].name + ' ' +usuario[0].lastname;
     localStorage.role = usuario[0].type;
+    localStorage.user_id = usuario[0].id;
+
 
     alert("Login successfully.");
     window.location.href = "/clients";
@@ -74,4 +76,5 @@ function logout() {
   localStorage.email = '';
   localStorage.name = '';
   localStorage.role = '';
+  localStorage.user_id = '';
 }
