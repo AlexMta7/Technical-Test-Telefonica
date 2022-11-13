@@ -32,6 +32,23 @@ async function getUserInfo(email){
       }
 }
 
+//Búsqueda de información del cliente por ID
+async function getInfoC(id){
+      const request = await fetch('api/clients/' + id, {
+        method: 'GET',
+        headers: getHeaders()
+      });
+      const cli = await request.json();
+
+      for(let C of cli){
+        document.getElementById("txtIDC").value = C.id;
+        document.getElementById("txtNameC").value = C.nombre;
+        document.getElementById("txtLNC").value = C.apellido;
+        document.getElementById("txtCC").value = C.email;
+      }
+
+}
+
 /*Funcion que solicita informacion a detalle guardada de los clientes
   de forma asincrona.
 */
@@ -56,8 +73,9 @@ async function cargarInfoDocs(){
           for(let doc of docs){
            let btnDelete = '<button type="button" onclick="eliminarDoc(' + doc.id + ')" class="btn btn-icon btn-danger" title="Eliminar Documento"><span class="tf-icons bx bx-trash"></span></button>';
            let btnMod = '<button type="button" onclick="getInfoDoc(' + doc.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollableDoc" title="Modificar Documento"><span class="tf-icons bx bx-pencil"></span></button>';
+           let idClient = '<button type="button" onclick="getInfoC(' + doc.id_client + ')" class="btn rounded-pill btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalScrollableInfoC">' + doc.id_client + '</button>';
 
-           let docHtml = '<tr><td>'+ doc.id +'</td><td>' + doc.id_client + '</td><td>' + doc.document_name + '</td><td>'
+           let docHtml = '<tr><td>'+ doc.id +'</td><td>' + idClient + '</td><td>' + doc.document_name + '</td><td>'
            + doc.document +  '</td><td>' + btnDelete + ' ' + btnMod + '</td></tr>';
             listHtml += docHtml;
           }
@@ -91,8 +109,9 @@ async function cargarInfoAddress(){
           for(let ac of addressC){
            let btnDelete = '<a href="#" onclick="eliminarAdr(' + ac.id + ')" class="btn btn-icon btn-danger" title="Eliminar Dirección"><span class="tf-icons bx bx-trash"></span></a>';
            let btnMod = '<button type="button" onclick="getInfoDirec(' + ac.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollableDir" title="Modificar Dirección"><span class="tf-icons bx bx-pencil"></span></button>';
+           let idClient = '<button type="button" onclick="getInfoC(' + ac.id_client + ')" class="btn rounded-pill btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalScrollableInfoC">' + ac.id_client + '</button>';
 
-           let docHtml = '<tr><td>' + ac.id + '</td><td>'  + ac.id_client + '</td><td>'+ ac.name_address + '</td><td>' + ac.address +  '</td><td>'
+           let docHtml = '<tr><td>' + ac.id + '</td><td>'  + idClient + '</td><td>'+ ac.name_address + '</td><td>' + ac.address +  '</td><td>'
             + btnDelete + ' ' + btnMod + '</td></tr>';
             listHtml += docHtml;
           }
@@ -205,6 +224,7 @@ async function eliminarAdr(id){
     location.reload();
 }
 
+//Funcion para la busqueda de documentos por ID del cliente y el llenado de la tabla correspondiente
 async function getDocsClientByID(id){
 
     const request = await fetch('api/search/docs/client/' + id, {
@@ -229,8 +249,9 @@ async function getDocsClientByID(id){
                   for(let clis of client){
                    let btnDelete = '<button type="button" onclick="eliminarDoc(' + clis.id + ')" class="btn btn-icon btn-danger" title="Eliminar Documento"><span class="tf-icons bx bx-trash"></span></button>';
                    let btnMod = '<button type="button" onclick="getInfoDoc(' + clis.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollableDoc" title="Modificar Documento"><span class="tf-icons bx bx-pencil"></span></button>';
+                   let idClient = '<button type="button" onclick="getInfoC(' + clis.id_client + ')" class="btn rounded-pill btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalScrollableInfoC">' + clis.id_client + '</button>';
 
-                   let docHtml1 = '<tr><td>'+ clis.id +'</td><td>' + clis.id_client + '</td><td>' + clis.document_name + '</td><td>'
+                   let docHtml1 = '<tr><td>'+ clis.id +'</td><td>' + idClient + '</td><td>' + clis.document_name + '</td><td>'
                    + clis.document +  '</td><td>' + btnDelete + ' ' + btnMod + '</td></tr>';
                     listHtml1 += docHtml1;
                   }
@@ -240,6 +261,7 @@ async function getDocsClientByID(id){
     }
 }
 
+//Funcion para la busqueda de Direcciones por ID del cliente y el llenado de la tabla correspondiente
 async function getDirClientByID(id){
 
     const request = await fetch('api/search/address/client/' + id, {
@@ -264,8 +286,9 @@ async function getDirClientByID(id){
                   for(let di of dir_client){
                    let btnDelete = '<button type="button" onclick="eliminarAdr(' + di.id + ')" class="btn btn-icon btn-danger" title="Eliminar Documento"><span class="tf-icons bx bx-trash"></span></button>';
                    let btnMod = '<button type="button" onclick="getInfoDirec(' + di.id + ')" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#modalScrollableDir" title="Modificar Dirección"><span class="tf-icons bx bx-pencil"></span></button>';
+                   let idClient = '<button type="button" onclick="getInfoC(' + di.id_client + ')" class="btn rounded-pill btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalScrollableInfoC">' + di.id_client + '</button>';
 
-                   let docHtml2 = '<tr><td>'+ di.id +'</td><td>' + di.id_client + '</td><td>' + di.name_address + '</td><td>'
+                   let docHtml2 = '<tr><td>'+ di.id +'</td><td>' + idClient + '</td><td>' + di.name_address + '</td><td>'
                    + di.address +  '</td><td>' + btnDelete + ' ' + btnMod + '</td></tr>';
                     listHtml2 += docHtml2;
                   }
@@ -275,6 +298,7 @@ async function getDirClientByID(id){
     }
 }
 
+//Busqueda de Cliente por ID
 async function searchClientByID(){
 
     if(document.getElementById("txtSearchID").value == ""){

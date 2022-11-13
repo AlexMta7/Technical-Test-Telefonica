@@ -26,19 +26,30 @@ public class UsuarioController {
         return usuarioId != null;
     }
 
-    @RequestMapping(value = "api/users", method
-= RequestMethod.GET)
-    public List<Usuarios> getUsuarios(){
+    @RequestMapping(value = "api/users", method = RequestMethod.GET)
+    public List<Usuarios> getUsuarios(@RequestHeader(value = "Authorization") String token){
+        if (!validarToken(token)){
+            return null;
+        }
+
         return usuarioDao.getUsuarios();
     }
 
     @RequestMapping(value = "api/user/{id}", method = RequestMethod.GET)
-    public List<Usuarios> getInfoUsuarios(@PathVariable Long id){
+    public List<Usuarios> getInfoUsuarios(@RequestHeader(value = "Authorization") String token, @PathVariable Long id){
+        if (!validarToken(token)){
+            return null;
+        }
+
         return usuarioDao.getInfoUsuarios(id);
     }
 
     @RequestMapping(value = "api/users", method = RequestMethod.PUT)
-    public void editarUsuario(@RequestBody Usuarios usuario){
+    public void editarUsuario(@RequestHeader(value = "Authorization") String token, @RequestBody Usuarios usuario){
+        if (!validarToken(token)){
+            return;
+        }
+
         //Se implementa Hash para el guardado de la contraseña segura en la base de datos
         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
         String hash = argon2.hash(1, 1024, 1, usuario.getPass_usu());
@@ -48,12 +59,20 @@ public class UsuarioController {
     }
 
     @RequestMapping(value = "api/users/{id}", method = RequestMethod.DELETE)
-    public void eliminarUsuario(@PathVariable Long id){
+    public void eliminarUsuario(@RequestHeader(value = "Authorization") String token, @PathVariable Long id){
+        if (!validarToken(token)){
+            return;
+        }
+
         usuarioDao.eliminar(id);
     }
 
     @RequestMapping(value = "api/users", method = RequestMethod.POST)
-    public void registrarUsuario(@RequestBody Usuarios usuario){
+    public void registrarUsuario(@RequestHeader(value = "Authorization") String token, @RequestBody Usuarios usuario){
+        if (!validarToken(token)){
+            return;
+        }
+
         //Se implementa Hash para el guardado de la contraseña segura en la base de datos
         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
         String hash = argon2.hash(1, 1024, 1, usuario.getPass_usu());
@@ -63,12 +82,20 @@ public class UsuarioController {
     }
 
     @RequestMapping(value = "api/search/users/{name}", method = RequestMethod.GET )
-    public List<Usuarios> getUserByName(@PathVariable String name){
+    public List<Usuarios> getUserByName(@RequestHeader(value = "Authorization") String token, @PathVariable String name){
+        if (!validarToken(token)){
+            return null;
+        }
+
         return usuarioDao.getUserByName(name);
     }
 
     @RequestMapping(value = "api/search/user/{email}", method = RequestMethod.GET )
-    public List<Usuarios> getUserByEmail(@PathVariable String email){
+    public List<Usuarios> getUserByEmail(@RequestHeader(value = "Authorization") String token, @PathVariable String email){
+        if (!validarToken(token)){
+            return null;
+        }
+
         return usuarioDao.getUserByEmail(email);
     }
 }
