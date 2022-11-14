@@ -338,7 +338,7 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="modalUserTitle">Modal title</h5>
+                          <h5 class="modal-title" id="modalUserTitleLog">Modal title</h5>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -366,12 +366,9 @@
                               <input type="text" id="txtModalEmail" class="form-control" placeholder="xxxx@xxx.xx" disabled>
                             </div>
                             <div class="mb-3">
-                              <label for="selectModalType" class="form-label">Default select</label>
-                              <select id="selectModalType" class="form-select" disabled>
-                                <option id="selectOption0">Select a type</option>
-                                <option id="selectOption1" value="1">One</option>
-                                <option id="selectOption2" value="2">Two</option>
-                              </select>
+                              <label for="txtModalType" class="form-label">Type</label>
+                              <input id="txtModalType" class="form-control" disabled>
+                              </input>
                             </div>
                           </div>
                         </div>
@@ -379,7 +376,7 @@
                           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                             Close
                           </button>
-                          <button onclick="updateUser()" id="saveModal" class="btn btn-primary">Save changes</button>
+                          <!-- <button onclick="" id="saveModalLog" class="btn btn-primary">Save changes</button> -->
                         </div>
                       </div>
                     </div>

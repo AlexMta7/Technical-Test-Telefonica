@@ -128,11 +128,7 @@ async function getUserLog(id) {
     const usuario = await request.json();
   
     console.log(usuario);
-    document.getElementById("saveModalLog").innerHTML = "Ya veré que hace este boton";
-    document.getElementById("selectOption1").innerHTML = "ADMIN";
-    document.getElementById("selectOption1").value = "ADMIN";
-    document.getElementById("selectOption2").innerHTML = "NO_ADMIN";
-    document.getElementById("selectOption2").value = "NO_ADMIN";
+    // document.getElementById("saveModalLog").innerHTML = "Ya veré que hace este boton";
   
     for (user of usuario) {
       document.getElementById("txtModalId").value = user.id;
@@ -140,6 +136,6 @@ async function getUserLog(id) {
       document.getElementById("txtModalLastname").value = user.lastname;
       document.getElementById("txtModalEmail").value = user.email;
       // document.getElementById("txtModalSecret").value = user.password;
-      document.getElementById("selectOption0").innerHTML = user.type;
+      document.getElementById("txtModalType").value = user.type;
     }
   }

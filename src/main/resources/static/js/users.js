@@ -7,7 +7,7 @@ $(document).ready(function () {
 
 // Información del usuario logueado
 async function userInfo() {
-  
+
   document.getElementById("lblEmail").innerHTML = localStorage.email;
   document.getElementById("lblUserName").innerHTML = localStorage.name;
   document.getElementById("lblUserRole").innerHTML = localStorage.role;
@@ -27,7 +27,7 @@ async function getUsers() {
     method: 'GET',
     headers: getHeaders()
   });
-  
+
   const usuarios = await request.json();
 
   console.log(usuarios);
@@ -39,9 +39,9 @@ async function getUsers() {
   if (usuarios.message == "JWT String argument cannot be null or empty.") {
     document.querySelector('#table_user thead').outerHTML = '<div class="container border border-danger">You have to <a href="/login">log in</a> to access this data</div>';
     document.querySelector('#userInfo').outerHTML = '';
-  } 
+  }
   else if (usuarios == '') {
-     // Si no hay datos
+    // Si no hay datos
     let userHtml = '   <tr> '
       + '  <td>---</td>'
       + '  <td><strong>---</strong></td>'
@@ -54,13 +54,13 @@ async function getUsers() {
     document.querySelector('#table_user tbody').outerHTML = tableData;
   }
   else {
-     // Si hay datos
+    // Si hay datos
     for (let user of usuarios) {
       let updateButton = '<button type="button" id="updateButton" onclick="getUser(' + user.id + ')" class="btn btn-icon btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">'
         + '   <span class="tf-icons bx bx-edit"></span>'
         + '</button>';
       //TODO: AGREGAR AQUI EL METODO PARA LOG DE ELIMINAR
-      let deleteButton = '<button type="button" onclick="deleteUser(' + user.id + ')" class="btn btn-icon btn-danger">'
+      let deleteButton = '<button type="button" onclick="deleteUser(' + user.id + ');addLog('+localStorage.user_id+', \'Deleted User: ' + user.id + '\')" class="btn btn-icon btn-danger">'
         + '   <span class="tf-icons bx bx-trash-alt"></span>'
         + '</button>';
       let userHtml = '   <tr> '
@@ -73,7 +73,7 @@ async function getUsers() {
       tableData += userHtml;
     }
     document.querySelector('#table_user tbody').outerHTML = tableData;
-  } 
+  }
 }
 
 async function getUser(id) {
@@ -85,8 +85,8 @@ async function getUser(id) {
   const usuario = await request.json();
 
   console.log(usuario);
-  document.getElementById("saveModalUser").innerHTML = "Update User"; //No está agarrando este valor
-  document.getElementById("saveModalUser").value = "Update User"; //No está agarrando este valor
+  document.getElementById("saveModalUser").innerHTML = "Update User";
+  document.getElementById("saveModalUser").value = "Update User";
   document.getElementById("selectOption1").innerHTML = "ADMIN";
   document.getElementById("selectOption1").value = "ADMIN";
   document.getElementById("selectOption2").innerHTML = "NO_ADMIN";
@@ -149,19 +149,19 @@ async function updateUser() {
 }
 
 async function getUserByName(email) {
-  
+
   if (document.getElementById('txtSearch').value == '') {
     return;
   }
   else {
     //Capitaliza la primera letra
     email = email.trim().replace(/^\w/, (c) => c.toUpperCase());
-  const requestEmail = await fetch('/api/username/' + email , {
-    method: 'GET',
-    headers: getHeaders()
-  });
+    const requestEmail = await fetch('/api/username/' + email, {
+      method: 'GET',
+      headers: getHeaders()
+    });
 
-  const usuario = await requestEmail.json();
-  console.log(usuario)
+    const usuario = await requestEmail.json();
+    console.log(usuario)
   }
 }
