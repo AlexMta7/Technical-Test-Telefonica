@@ -65,9 +65,9 @@ async function getAddresses(id) {
         + '<li><input id="dpTypeAddress' + cont6 + '" class="dropdown-item" onclick="changeDDAddress(document.getElementById(\'dpTypeAddress' + cont6 + '\').value,' + cont + ')" placeholder="Type an option"></input></li>'
         + '</ul>'
         + '<input type="text" id="txtAddress' + cont + '" class="form-control" value="' + addre.address + '" aria-label="Text input with dropdown button">'
-        + '<button class="btn btn-primary tf-icons bx bxs-edit"  onclick="updateAddress(' + addre.id + ',' + cont + ')" type="button" aria-expanded="false">'
+        + '<button class="btn btn-primary tf-icons bx bxs-edit"  onclick="updateAddress(' + addre.id + ',' + cont + ');addLog('+localStorage.user_id+', \'Updated Address '+addre.type+' for Client: ' + document.getElementById("modalLongTitleID").innerHTML + '\')" type="button" aria-expanded="false">'
         + '</button>'
-        + '<button class="btn btn-danger tf-icons bx bx-trash-alt"  onclick="deleteAddress(' + addre.id + ')" type="button" aria-expanded="false">'
+        + '<button class="btn btn-danger tf-icons bx bx-trash-alt"  onclick="deleteAddress(' + addre.id + ');addLog('+localStorage.user_id+', \'Deleted Address '+addre.type+' for Client: ' + document.getElementById("modalLongTitleID").innerHTML + '\')" type="button" aria-expanded="false">'
         + '</button>'
         + '</div>';
       inputHtml += data;
@@ -129,9 +129,16 @@ async function updateAddress(id, cont) {
   });
 
   const response = await request.text();
+
+  let inputHtml = '';
+  let data = '<div class="input-group col mb-3">'
+      + '</div>';
+    inputHtml += data;
+    document.querySelector('#input_address div').outerHTML = inputHtml;
   
   console.log(response);
   alert("Address updated");
+  getAddresses(document.getElementById("modalLongTitleID").innerHTML);
 }
 
 async function deleteAddress(id) {

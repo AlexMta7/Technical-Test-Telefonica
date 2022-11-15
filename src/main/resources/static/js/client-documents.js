@@ -63,9 +63,9 @@ async function getDocuments(id) {
         + '<li><input id="dpType' + cont6 + '" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType' + cont6 + '\').value,' + cont + ')" placeholder="Type an option"></input></li>'
         + '</ul>'
         + '<input type="text" id="txtDocument' + cont + '" class="form-control" value="' + docs.document + '" aria-label="Text input with dropdown button">'
-        + '<button class="btn btn-primary tf-icons bx bxs-edit"  onclick="updateDoc(' + docs.id + ',' + cont + ')" type="button" aria-expanded="false">'
+        + '<button class="btn btn-primary tf-icons bx bxs-edit"  onclick="updateDoc(' + docs.id + ',' + cont + ');addLog('+localStorage.user_id+', \'Updated Document '+docs.type+' for Client: ' + document.getElementById("modalLongTitleID").innerHTML + '\')" type="button" aria-expanded="false">'
         + '</button>'
-        + '<button class="btn btn-danger tf-icons bx bx-trash-alt"  onclick="deleteDoc(' + docs.id + ')" type="button" aria-expanded="false">'
+        + '<button class="btn btn-danger tf-icons bx bx-trash-alt"  onclick="deleteDoc(' + docs.id + ');addLog('+localStorage.user_id+', \'Deleted Document '+docs.type+' for Client: ' + document.getElementById("modalLongTitleID").innerHTML + '\')" type="button" aria-expanded="false">'
         + '</button>'
         + '</div>';
       inputHtml += data;
@@ -124,6 +124,7 @@ async function updateDoc(id, cont) {
   docs.client_id = document.getElementById("txtSecretClientId").value;
   docs.document = document.getElementById("txtDocument" + cont + "").value;
   docs.type = document.getElementById("btnDropDown" + cont + "").innerHTML;
+  document.getElementById("btnDropDown" + cont + "").value = document.getElementById("btnDropDown" + cont + "").innerHTML
 
   console.log();
   const request = await fetch('api/docs/', {
@@ -133,9 +134,16 @@ async function updateDoc(id, cont) {
   });
 
   const response = await request.text();
+  let inputHtml = '';
+  let data = '<div class="input-group col mb-3">'
+      + '</div>';
+    inputHtml += data;
+    document.querySelector('#input_docs div div').outerHTML = inputHtml;
 
   console.log(response);
   alert("Document updated");
+
+  getDocuments(document.getElementById("modalLongTitleID").innerHTML);
 }
 
 async function deleteDoc(id) {
@@ -159,6 +167,7 @@ async function deleteDoc(id) {
 /*Cambia el estado del boton cuando muestra los resultados de los documentos*/
 function changeDP(name, numId) {
   document.getElementById('btnDropDown' + numId + '').innerHTML = name;
+  document.getElementById('btnDropDown' + numId + '').value = name;
 }
 
 /*Cambia el estado del boton para agregar documentos*/

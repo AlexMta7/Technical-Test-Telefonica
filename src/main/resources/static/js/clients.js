@@ -78,7 +78,7 @@ async function getClients() {
       let updateButton = '<button type="button" id="updateButton" onclick="getClient(' + client.id + ')" class="btn btn-icon btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">'
         + '   <span class="tf-icons bx bx-edit"></span>'
         + '</button>';
-      let deleteButton = '<button type="button" id="deleteButton" onclick="deleteClient(' + client.id + ')" class="btn btn-icon btn-danger">'
+      let deleteButton = '<button type="button" id="deleteButton" onclick="deleteClient(' + client.id + ');addLog('+localStorage.user_id+', \'Deleted Client: ' + client.id + '\')" class="btn btn-icon btn-danger">'
         + '   <span class="tf-icons bx bx-trash-alt"></span>'
         + '</button>';
       let findButton = '<button type="button" id="findButton" onclick="getDocuments(\'' + client.id + '\');getAddresses(\'' + client.id + '\')" class="btn btn-icon btn-success" data-bs-toggle="modal" data-bs-target="#modalLong">'
@@ -107,6 +107,17 @@ async function getClients() {
 async function updateClient() {
   let client = {};
   let method = "";
+
+  client.name = document.getElementById("txtModalName").value;
+  client.lastname = document.getElementById("txtModalLastname").value;
+  client.email = document.getElementById("txtModalEmail").value;
+  client.service = document.getElementById("txtModalService").value;
+
+  if (client.name == "" || client.lastname == "" || client.email == "" || client.service == "") {
+    alert("Please fill all the inputs");
+    return;
+  }
+
   if (document.getElementById("txtModalId").value != "") {
     method = 'PUT';
     client.id = document.getElementById("txtModalId").value;
@@ -114,11 +125,6 @@ async function updateClient() {
   else {
     method = 'POST';
   }
-  client.name = document.getElementById("txtModalName").value;
-  client.lastname = document.getElementById("txtModalLastname").value;
-  client.email = document.getElementById("txtModalEmail").value;
-  client.service = document.getElementById("txtModalService").value;
-
   const request = await fetch('api/clients', {
     method: method,
     headers: getHeaders(),
@@ -165,7 +171,7 @@ async function deleteClient(id) {
 
 //Changes the name of the button depending on what button is clicked on
 function modifyModalAdd() {
-  document.getElementById("saveModal").innerHTML = "Add";
+  document.getElementById("saveModalClient").innerHTML = "Add Client";
   document.getElementById("lblModalClient").innerHTML = "Add Client";
 
   document.getElementById("txtModalId").value = "";

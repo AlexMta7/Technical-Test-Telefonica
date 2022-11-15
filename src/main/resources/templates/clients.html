@@ -264,15 +264,15 @@
                               Add Client
                             </button>
                             <!--/ Button trigger modal de ingreso de clientes-->
-                            
+
                             <!-- Button para descargar datos del cliente-->
                             <button type="button" id="btnDownloadData" onclick="getDataToDownload()" class="btn btn-info">
                               <i class='bx bxs-download' ></i>
                               Download Info
                             </button>
                             <!--/ Button para descargar datos del cliente-->
-    
-                            <!-- Modal de ingreso de clientes -->
+
+                            <!-- Modal de ingreso y modificación de clientes -->
                             <div>
                               <div class="modal fade" id="modalCenter" tabindex="-1" style="display: none;" aria-hidden="true">
                               <div class="modal-dialog modal-dialog-centered" role="document">
@@ -313,7 +313,7 @@
                                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                       Close
                                     </button>
-                                    <button onclick="updateClient()" id="saveModalClient" class="btn btn-primary">Save changes</button>
+                                    <button onclick="updateClient();addLog(localStorage.user_id,document.getElementById('saveModalClient').innerHTML + ': ' +document.getElementById('txtModalId').value)" id="saveModalClient" class="btn btn-primary">Save changes</button>
                                   </div>
                                 </div>
                               </div>
@@ -359,16 +359,16 @@
                                     <div class="row" id="input_docs">
                                       <div class="col mb-3" >
                                         <label class="form-label">Documentos</label>
-                                        <!-- Input generado por JS -->
+                                        <!-- Input generado por JS en client-documents -->
                                         <div>
-                                         
+
                                         </div>
                                       </div>
                                       <div class="col mb-3" id="input_address">
                                         <label  class="form-label">Direcciones</label>
                                         <!-- <input type="text"  class="form-control" placeholder="Enter Lastname" required> -->
                                         <div>
-                                         
+                                        <!-- Input generado por JS en client-addresses -->
                                         </div>
                                       </div>
                                     </div>
@@ -417,7 +417,7 @@
                                           <li><input id="dpInsertDoc5" class="dropdown-item" onclick="changeDDInsertDoc(document.getElementById('dpInsertDoc5').value)" placeholder="Type an option"></input></li>
                                           </ul>
                                           <input type="text" id="txtDocumentInsert" class="form-control" value="" aria-label="Text input with dropdown button">
-                                          <button class="btn btn-success tf-icons bx bx-save bx-sm"  onclick="addDocument()" type="button" aria-expanded="false">
+                                          <button class="btn btn-success tf-icons bx bx-save bx-sm"  onclick="addDocument();addLog(localStorage.user_id,'Added Document '+document.getElementById('btnDropDownInsertDoc').value+' for Client: '+document.getElementById('txtInsertDocSecretClientId').value)" type="button" aria-expanded="false">
                                           </button>
                                         </div>
                                         <!--/ Input  -->
@@ -442,7 +442,7 @@
                                           <li><input id="dpInsertAddress5" class="dropdown-item" onclick="changeDDInsertAddress(document.getElementById('dpInsertAddress5').value)" placeholder="Type an option"></input></li>
                                           </ul>
                                           <input type="text" id="txtAddressInsert" class="form-control" value="" aria-label="Text input with dropdown button">
-                                          <button class="btn btn-success tf-icons bx bx-save bx-sm"  onclick="addAddress()" type="button" aria-expanded="false">
+                                          <button class="btn btn-success tf-icons bx bx-save bx-sm"  onclick="addAddress();addLog(localStorage.user_id,'Added Address '+document.getElementById('btnDropDownInsertAddress').value+' for Client: '+document.getElementById('txtInsertAddressSecretClientId').value)" type="button" aria-expanded="false">
                                           </button>
                                         </div>
                                         <!--/ Input  -->
@@ -512,7 +512,8 @@
 <script th:src="@{/js/FileSaver.js}"></script>
 <script th:src="@{/js/download-data.js}"></script>
 <script th:src="@{/js/auth-login-user.js}"></script>
-<script th:src="@{/js/client-delete-documents-addresses.js}"></script>
+<script th:src="@{/js/logs.js}"></script>
+<!-- <script th:src="@{/js/client-delete-documents-addresses.js}"></script> -->
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>

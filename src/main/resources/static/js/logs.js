@@ -29,7 +29,7 @@ async function getLogs() {
 
     const logs = await request.json();
 
-    console.log(logs);
+    //console.log(logs);
 
     let tableData = '';
 
@@ -74,13 +74,8 @@ async function getLogs() {
 }
 
 // TODO: OBTENER EL VALOR QUE CAMBIA DEPENDIENDO DEL BOTON EN ADD/UPDATE Y ESE PASAR COMO PARAMETRO EN ACTION
-// TODO: BUSCAR COMO OBTENER EL USUARIO PARA PASARLO COMO PARAMETRO
 async function addLog(user_id,action) {
     let log = {};
-    // log.name = document.getElementById("txtName").value;
-    // log.lastname = document.getElementById("txtLastname").value;
-    // log.email = document.getElementById("txtEmail").value;
-    // log.password = document.getElementById("txtPassword").value;
 
     // crea un nuevo objeto `Date`
     let today = new Date();
@@ -94,10 +89,13 @@ async function addLog(user_id,action) {
     let year = today.getFullYear();
     // se le da formato a la fecha de `YYYY/MM/DD//Time`
     let date = `${year}/${month}/${day}//${time}`;
-
     
     log.user_id = user_id;
-    log.action = action
+    log.action = action;
+    if (action == 'Add Client: ') {
+        log.action = 'Added New Client';
+    }
+    
     // log.date = date;
 
     console.log(log);
@@ -107,18 +105,11 @@ async function addLog(user_id,action) {
         headers: getHeaders(),
         body: JSON.stringify(log)
     });
-    const response = await request.json();
+    const response = await request.text();
     console.log(response);
-
-    // if (response == 'OK') {
-    //     alert("User added successfully.");
-    //     location.reload();
-    // }
-    // else {
-    //     alert("User already exist.");
-    // }
 }
 
+//Muestra el usuario que realizó el log
 async function getUserLog(id) {
     const request = await fetch('api/users/' + id, {
       method: 'GET',
