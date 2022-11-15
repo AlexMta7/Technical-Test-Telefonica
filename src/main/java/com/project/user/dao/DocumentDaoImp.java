@@ -10,11 +10,11 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class DocumentDaoImp implements DocumentDao{
+public class DocumentDaoImp implements DocumentDao {
 
     @PersistenceContext
     private EntityManager entityManager;
-    
+
     @Override
     public List<documentModel> getDocs() {
         String query = "FROM documentModel";
@@ -24,7 +24,7 @@ public class DocumentDaoImp implements DocumentDao{
     @Override
     public List<documentModel> getDoc(Long id) {
         String query = "FROM documentModel WHERE client_id = :id";
-        return entityManager.createQuery(query).setParameter("id",id).getResultList();
+        return entityManager.createQuery(query).setParameter("id", id).getResultList();
     }
 
     @Override
@@ -39,7 +39,7 @@ public class DocumentDaoImp implements DocumentDao{
 
     @Override
     public void deleteDoc(Long id) {
-        documentModel document = entityManager.find(documentModel.class,id);
+        documentModel document = entityManager.find(documentModel.class, id);
         entityManager.remove(document);
     }
 }
