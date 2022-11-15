@@ -44,7 +44,7 @@ async function getDocuments(id) {
       cont5 += 6;
       cont6 += 6;
       cont7 += 6;
-      console.log(cont);
+      //console.log(cont);
 
       let data = '<div class="input-group col mb-3">'
         + '<input id="txtSecretID' + cont + '" class="dropdown-item" value="' + docs.id + '" disabled hidden></input>'
@@ -63,9 +63,9 @@ async function getDocuments(id) {
         + '<li><input id="dpType' + cont6 + '" class="dropdown-item" onclick="changeDP(document.getElementById(\'dpType' + cont6 + '\').value,' + cont + ')" placeholder="Type an option"></input></li>'
         + '</ul>'
         + '<input type="text" id="txtDocument' + cont + '" class="form-control" value="' + docs.document + '" aria-label="Text input with dropdown button">'
-        + '<button class="btn btn-primary tf-icons bx bxs-edit"  onclick="updateDoc(' + docs.id + ',' + cont + ');addLog('+localStorage.user_id+', \'Updated Document '+docs.type+' for Client: ' + document.getElementById("modalLongTitleID").innerHTML + '\')" type="button" aria-expanded="false">'
+        + '<button class="btn btn-primary tf-icons bx bxs-edit"  onclick="updateDoc(' + docs.id + ',' + cont + ')" type="button" aria-expanded="false">'
         + '</button>'
-        + '<button class="btn btn-danger tf-icons bx bx-trash-alt"  onclick="deleteDoc(' + docs.id + ');addLog('+localStorage.user_id+', \'Deleted Document '+docs.type+' for Client: ' + document.getElementById("modalLongTitleID").innerHTML + '\')" type="button" aria-expanded="false">'
+        + '<button class="btn btn-danger tf-icons bx bx-trash-alt"  onclick="deleteDoc(' + docs.id + ',\''+docs.type+'\')" type="button" aria-expanded="false">'
         + '</button>'
         + '</div>';
       inputHtml += data;
@@ -103,6 +103,20 @@ async function addDocument() {
  
   console.log(response);
   if (response == 'OK') {
+    // -------- LOG --------
+    let log = {};
+    log.user_id = localStorage.user_id;
+    log.action = 'Document '+doc.type+' Added for Client: ' + doc.client_id;
+    console.log(log);
+
+    const requestLog = await fetch('api/logs', {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify(log)
+    });
+    const responseLog = await requestLog.text();
+    console.log(responseLog);
+    // -------- LOG --------
     alert("Document added successfully");
     document.getElementById('btnDropDownInsertDoc').innerHTML = "<i class='bx bx-file-blank bx-sm'></i>";
     document.getElementById("btnDropDownInsertDoc").value = "";
@@ -113,18 +127,17 @@ async function addDocument() {
   }
 }
 
-function insertDocumentAtId(id) {
-  document.getElementById('txtInsertDocSecretClientId').value = id;
-  document.getElementById("modalLongTitle2").innerHTML = document.querySelector('#table_user tbody tr strong').outerHTML + ', id: ' + id;
-}
-
 async function updateDoc(id, cont) {
   let docs = {};
   docs.id = id
   docs.client_id = document.getElementById("txtSecretClientId").value;
   docs.document = document.getElementById("txtDocument" + cont + "").value;
   docs.type = document.getElementById("btnDropDown" + cont + "").innerHTML;
-  document.getElementById("btnDropDown" + cont + "").value = document.getElementById("btnDropDown" + cont + "").innerHTML
+
+  if (docs.type == "" || docs.document == "") {
+    alert("Please fill all the inputs");
+    return;
+  }
 
   console.log();
   const request = await fetch('api/docs/', {
@@ -134,6 +147,22 @@ async function updateDoc(id, cont) {
   });
 
   const response = await request.text();
+
+   // -------- LOG --------
+   let log = {};
+   log.user_id = localStorage.user_id;
+   log.action = 'Document '+document.getElementById("btnDropDown" + cont + "").value+' Updated into '+docs.type+' for Client: ' + docs.client_id;
+   console.log(log);
+
+   const requestLog = await fetch('api/logs', {
+     method: 'POST',
+     headers: getHeaders(),
+     body: JSON.stringify(log)
+   });
+   const responseLog = await requestLog.text();
+   console.log(responseLog);
+   // -------- LOG --------
+
   let inputHtml = '';
   let data = '<div class="input-group col mb-3">'
       + '</div>';
@@ -146,7 +175,7 @@ async function updateDoc(id, cont) {
   getDocuments(document.getElementById("modalLongTitleID").innerHTML);
 }
 
-async function deleteDoc(id) {
+async function deleteDoc(id,type) {
 
   if (!confirm('Do you want to delete document?')) {
     //Con return se corta el flujo de la función
@@ -158,16 +187,37 @@ async function deleteDoc(id) {
     headers: getHeaders()
   });
 
+     // -------- LOG --------
+     let log = {};
+     log.user_id = localStorage.user_id;
+     log.action = 'Document '+type+' Deleted for Client: ' + document.getElementById("modalLongTitleID").innerHTML;
+     console.log(log);
+ 
+     const requestLog = await fetch('api/logs', {
+       method: 'POST',
+       headers: getHeaders(),
+       body: JSON.stringify(log)
+     });
+     const responseLog = await requestLog.text();
+     console.log(responseLog);
+     // -------- LOG --------
+
   document.querySelector('#input_docs div').outerHTML = '<div class="col mb-3"><label class="form-label">Documentos</label><div></div></div>';
   alert("Document deleted");
   let UserId = document.getElementById("modalLongTitleID").innerHTML;
   getDocuments(UserId);
 }
 
+// Asigan los valores del id a un lbl
+function insertDocumentAtId(id) {
+  document.getElementById('txtInsertDocSecretClientId').value = id;
+  document.getElementById("modalLongTitle2").innerHTML = document.querySelector('#table_user tbody tr strong').outerHTML + ', id: ' + id;
+}
+
 /*Cambia el estado del boton cuando muestra los resultados de los documentos*/
 function changeDP(name, numId) {
   document.getElementById('btnDropDown' + numId + '').innerHTML = name;
-  document.getElementById('btnDropDown' + numId + '').value = name;
+  // document.getElementById('btnDropDown' + numId + '').value = name;
 }
 
 /*Cambia el estado del boton para agregar documentos*/

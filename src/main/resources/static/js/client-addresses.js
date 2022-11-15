@@ -46,7 +46,7 @@ async function getAddresses(id) {
       cont5 += 6;
       cont6 += 6;
       cont7 += 6;
-      console.log(cont);
+      //console.log(cont);
 
       let data = '<div class="input-group col mb-3">'
         + '<input id="txtSecretIDAddress' + cont + '" class="dropdown-item" value="' + addre.id + '" disabled hidden></input>'
@@ -65,9 +65,9 @@ async function getAddresses(id) {
         + '<li><input id="dpTypeAddress' + cont6 + '" class="dropdown-item" onclick="changeDDAddress(document.getElementById(\'dpTypeAddress' + cont6 + '\').value,' + cont + ')" placeholder="Type an option"></input></li>'
         + '</ul>'
         + '<input type="text" id="txtAddress' + cont + '" class="form-control" value="' + addre.address + '" aria-label="Text input with dropdown button">'
-        + '<button class="btn btn-primary tf-icons bx bxs-edit"  onclick="updateAddress(' + addre.id + ',' + cont + ');addLog('+localStorage.user_id+', \'Updated Address '+addre.type+' for Client: ' + document.getElementById("modalLongTitleID").innerHTML + '\')" type="button" aria-expanded="false">'
+        + '<button class="btn btn-primary tf-icons bx bxs-edit"  onclick="updateAddress(' + addre.id + ',' + cont + ')" type="button" aria-expanded="false">'
         + '</button>'
-        + '<button class="btn btn-danger tf-icons bx bx-trash-alt"  onclick="deleteAddress(' + addre.id + ');addLog('+localStorage.user_id+', \'Deleted Address '+addre.type+' for Client: ' + document.getElementById("modalLongTitleID").innerHTML + '\')" type="button" aria-expanded="false">'
+        + '<button class="btn btn-danger tf-icons bx bx-trash-alt"  onclick="deleteAddress(' + addre.id + ',\'' + addre.type + '\')" type="button" aria-expanded="false">'
         + '</button>'
         + '</div>';
       inputHtml += data;
@@ -104,6 +104,20 @@ async function addAddress() {
 
   console.log(response);
   if (response == 'OK') {
+    // -------- LOG --------
+    let log = {};
+    log.user_id = localStorage.user_id;
+    log.action = 'Address ' + address.type + ' Added for Client: ' + address.client_id;
+    console.log(log);
+
+    const requestLog = await fetch('api/logs', {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify(log)
+    });
+    const responseLog = await requestLog.text();
+    console.log(responseLog);
+    // -------- LOG --------
     alert("Address added successfully");
     document.getElementById('btnDropDownInsertAddress').innerHTML = "<i class='bx bx-file-blank bx-sm'></i>";
     document.getElementById("btnDropDownInsertAddress").value = "";
@@ -121,6 +135,11 @@ async function updateAddress(id, cont) {
   address.type = document.getElementById("btnDropDownAddress" + cont + "").innerHTML;
   address.address = document.getElementById("txtAddress" + cont + "").value;
 
+  if (address.type == "" || address.address == "") {
+    alert("Please fill all the inputs");
+    return;
+  }
+
   console.log(address);
   const request = await fetch('api/address/', {
     method: 'PUT',
@@ -130,18 +149,33 @@ async function updateAddress(id, cont) {
 
   const response = await request.text();
 
+  // -------- LOG --------
+  let log = {};
+  log.user_id = localStorage.user_id;
+  log.action = 'Address ' + document.getElementById("btnDropDownAddress" + cont + "").value + ' Updated into ' + address.type + ' for Client: ' + address.client_id;
+  console.log(log);
+
+  const requestLog = await fetch('api/logs', {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(log)
+  });
+  const responseLog = await requestLog.text();
+  console.log(responseLog);
+  // -------- LOG --------
+
   let inputHtml = '';
   let data = '<div class="input-group col mb-3">'
-      + '</div>';
-    inputHtml += data;
-    document.querySelector('#input_address div').outerHTML = inputHtml;
-  
+    + '</div>';
+  inputHtml += data;
+  document.querySelector('#input_address div').outerHTML = inputHtml;
+
   console.log(response);
   alert("Address updated");
   getAddresses(document.getElementById("modalLongTitleID").innerHTML);
 }
 
-async function deleteAddress(id) {
+async function deleteAddress(id, type) {
 
   if (!confirm('Do you want to delete the address?')) {
     //Con return se corta el flujo de la función
@@ -152,6 +186,21 @@ async function deleteAddress(id) {
     method: 'DELETE',
     headers: getHeaders()
   });
+
+  // -------- LOG --------
+  let log = {};
+  log.user_id = localStorage.user_id;
+  log.action = 'Address ' + type + ' Deleted for Client: ' + document.getElementById("modalLongTitleID").innerHTML;
+  console.log(log);
+
+  const requestLog = await fetch('api/logs', {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(log)
+  });
+  const responseLog = await requestLog.text();
+  console.log(responseLog);
+  // -------- LOG --------
   document.querySelector('#input_address').outerHTML = '<div class="col mb-3" id="input_address">'
     + '<label  class="form-label" > Direcciones</label> '
     + '<div></div >'

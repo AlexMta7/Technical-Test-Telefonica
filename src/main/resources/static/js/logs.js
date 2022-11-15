@@ -74,40 +74,40 @@ async function getLogs() {
 }
 
 // TODO: OBTENER EL VALOR QUE CAMBIA DEPENDIENDO DEL BOTON EN ADD/UPDATE Y ESE PASAR COMO PARAMETRO EN ACTION
-async function addLog(user_id,action) {
-    let log = {};
+// async function addLog(user_id,action) {
+//     let log = {};
 
-    // crea un nuevo objeto `Date`
-    let today = new Date();
-    // `getDate()` devuelve el día del mes (del 1 al 31)
-    let time = today.getTime();
-    // `getDate()` devuelve el día del mes (del 1 al 31)
-    let day = today.getDate();
-    // `getMonth()` devuelve el mes (de 0 a 11)
-    let month = today.getMonth() + 1;
-    // `getFullYear()` devuelve el año completo
-    let year = today.getFullYear();
-    // se le da formato a la fecha de `YYYY/MM/DD//Time`
-    let date = `${year}/${month}/${day}//${time}`;
+//     // crea un nuevo objeto `Date`
+//     let today = new Date();
+//     // `getDate()` devuelve el día del mes (del 1 al 31)
+//     let time = today.getTime();
+//     // `getDate()` devuelve el día del mes (del 1 al 31)
+//     let day = today.getDate();
+//     // `getMonth()` devuelve el mes (de 0 a 11)
+//     let month = today.getMonth() + 1;
+//     // `getFullYear()` devuelve el año completo
+//     let year = today.getFullYear();
+//     // se le da formato a la fecha de `YYYY/MM/DD//Time`
+//     let date = `${year}/${month}/${day}//${time}`;
     
-    log.user_id = user_id;
-    log.action = action;
-    if (action == 'Add Client: ') {
-        log.action = 'Added New Client';
-    }
+//     log.user_id = user_id;
+//     log.action = action;
+//     if (action == 'Add Client: ') {
+//         log.action = 'Added New Client';
+//     }
     
-    // log.date = date;
+//     // log.date = date;
 
-    console.log(log);
+//     console.log(log);
 
-    const request = await fetch('api/logs', {
-        method: 'POST',
-        headers: getHeaders(),
-        body: JSON.stringify(log)
-    });
-    const response = await request.text();
-    console.log(response);
-}
+//     const request = await fetch('api/logs', {
+//         method: 'POST',
+//         headers: getHeaders(),
+//         body: JSON.stringify(log)
+//     });
+//     const response = await request.text();
+//     console.log(response);
+// }
 
 //Muestra el usuario que realizó el log
 async function getUserLog(id) {

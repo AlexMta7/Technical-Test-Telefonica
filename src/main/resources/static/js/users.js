@@ -60,7 +60,7 @@ async function getUsers() {
         + '   <span class="tf-icons bx bx-edit"></span>'
         + '</button>';
       //TODO: AGREGAR AQUI EL METODO PARA LOG DE ELIMINAR
-      let deleteButton = '<button type="button" onclick="deleteUser(' + user.id + ');addLog('+localStorage.user_id+', \'Deleted User: ' + user.id + '\')" class="btn btn-icon btn-danger">'
+      let deleteButton = '<button type="button" onclick="deleteUser(' + user.id + ')" class="btn btn-icon btn-danger">'
         + '   <span class="tf-icons bx bx-trash-alt"></span>'
         + '</button>';
       let userHtml = '   <tr> '
@@ -118,6 +118,28 @@ async function deleteUser(id) {
       method: 'DELETE',
       headers: getHeaders()
     });
+
+    console.log(request);
+    console.log(request.status);
+    if (request.status == 500) {
+      alert("Can't delete user");
+      return;
+    }
+    // -------- LOG --------
+    let log = {};
+    log.user_id = localStorage.user_id;
+    log.action = 'Deleted User: ' + id;
+    console.log(log);
+
+    const requestLog = await fetch('api/logs', {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify(log)
+    });
+    const responseLog = await requestLog.text();
+    console.log(responseLog);
+    // -------- LOG --------
+  
     location.reload();
     alert("User Deleted");
   }
@@ -140,6 +162,20 @@ async function updateUser() {
   const response = await request.text();
   console.log(response);
   if (response == 'OK') {
+      // -------- LOG --------
+      let log = {};
+      log.user_id = localStorage.user_id;
+      log.action = 'Updated User: ' + user.id;
+      console.log(log);
+  
+      const requestLog = await fetch('api/logs', {
+          method: 'POST',
+          headers: getHeaders(),
+          body: JSON.stringify(log)
+      });
+      const responseLog = await requestLog.text();
+      console.log(responseLog);
+      // -------- LOG --------
     alert("User updated successfully");
     location.reload();
   }
@@ -150,7 +186,7 @@ async function updateUser() {
 
 async function getUserByName(email) {
 
-  if (document.getElementById('txtSearch').value == '') {
+  if (document.getElementByuser.id('txtSearch').value == '') {
     return;
   }
   else {

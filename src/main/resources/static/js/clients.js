@@ -57,7 +57,7 @@ async function getClients() {
     document.querySelector('#btnAddDownload').outerHTML = '<div></div>';
     document.querySelector('#table_user thead').outerHTML = '<div class="container border border-danger">You have to <a href="/login">log in</a> to access this data</div>';
     document.querySelector('#userInfo').outerHTML = '';
-  } 
+  }
   else if (clientes == '') {
     //Si no hay datos
     let clientHtml = '   <tr> '
@@ -78,7 +78,7 @@ async function getClients() {
       let updateButton = '<button type="button" id="updateButton" onclick="getClient(' + client.id + ')" class="btn btn-icon btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">'
         + '   <span class="tf-icons bx bx-edit"></span>'
         + '</button>';
-      let deleteButton = '<button type="button" id="deleteButton" onclick="deleteClient(' + client.id + ');addLog('+localStorage.user_id+', \'Deleted Client: ' + client.id + '\')" class="btn btn-icon btn-danger">'
+      let deleteButton = '<button type="button" id="deleteButton" onclick="deleteClient(' + client.id + ')" class="btn btn-icon btn-danger">'
         + '   <span class="tf-icons bx bx-trash-alt"></span>'
         + '</button>';
       let findButton = '<button type="button" id="findButton" onclick="getDocuments(\'' + client.id + '\');getAddresses(\'' + client.id + '\')" class="btn btn-icon btn-success" data-bs-toggle="modal" data-bs-target="#modalLong">'
@@ -136,6 +136,20 @@ async function updateClient() {
 
   if (method == 'PUT') {
     if (response == 'OK') {
+      // -------- LOG --------
+      let log = {};
+      log.user_id = localStorage.user_id;
+      log.action = 'Updated Client: ' + client.id;
+      console.log(log);
+
+      const requestLog = await fetch('api/logs', {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify(log)
+      });
+      const responseLog = await requestLog.text();
+      console.log(responseLog);
+      // -------- LOG --------
       alert("Client updated successfully");
       location.reload();
     }
@@ -145,6 +159,20 @@ async function updateClient() {
   }
   else if (method == 'POST') {
     if (response == 'OK') {
+      // -------- LOG --------
+      let log = {};
+      log.user_id = localStorage.user_id;
+      log.action = 'Added New Client: ';
+      console.log(log);
+
+      const requestLog = await fetch('api/logs', {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify(log)
+      });
+      const responseLog = await requestLog.text();
+      console.log(responseLog);
+      // -------- LOG --------
       alert("Client added successfully");
       location.reload();
     }
@@ -165,8 +193,22 @@ async function deleteClient(id) {
     method: 'DELETE',
     headers: getHeaders()
   });
-  location.reload();
+  // -------- LOG --------
+  let log = {};
+  log.user_id = localStorage.user_id;
+  log.action = 'Deleted Client: ' + id;
+  console.log(log);
+
+  const requestLog = await fetch('api/logs', {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(log)
+  });
+  const responseLog = await requestLog.text();
+  console.log(responseLog);
+  // -------- LOG --------
   alert("Client deleted");
+  location.reload();
 }
 
 //Changes the name of the button depending on what button is clicked on

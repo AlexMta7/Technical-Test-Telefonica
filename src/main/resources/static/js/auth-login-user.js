@@ -48,6 +48,20 @@ async function login() {
     localStorage.role = usuario[0].type;
     localStorage.user_id = usuario[0].id;
 
+    // -------- LOG --------
+    let log = {};
+    log.user_id = localStorage.user_id;
+    log.action = 'User Logged in: ' + localStorage.user_id;
+    console.log(log);
+
+    const requestLog = await fetch('api/logs', {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify(log)
+    });
+    const responseLog = await requestLog.text();
+    console.log(responseLog);
+    // -------- LOG --------
 
     alert("Login successfully.");
     window.location.href = "/clients";
