@@ -1,7 +1,5 @@
 package com.project.user.models;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.*;
 import lombok.*;
 

@@ -5,13 +5,11 @@ import com.project.user.models.userModel;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 
-import org.hibernate.query.NativeQuery;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 
-import java.lang.annotation.Native;
 import java.util.List;
 
 @Repository
