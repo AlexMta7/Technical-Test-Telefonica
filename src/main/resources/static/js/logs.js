@@ -57,6 +57,7 @@ async function getLogs() {
   
         for (let log of logs) {
    
+            //Manda a llamar la información de cada usuario relacionado al log
             const request = await fetch('api/users/' + log.user_id, {
                 method: 'GET',
                 headers: getHeaders()
