@@ -44,6 +44,7 @@ async function getLogs() {
             + '  <td>---</td>'
             + '  <td><strong>---</strong></td>'
             + '  <td>---</td> '
+            + '  <td>---</td> '
             + '  <td>---</td>'
             + '  <td>---</td>'
             + '</tr>'
@@ -53,7 +54,16 @@ async function getLogs() {
     }
     else {
         // Si hay datos
+  
         for (let log of logs) {
+   
+            const request = await fetch('api/users/' + log.user_id, {
+                method: 'GET',
+                headers: getHeaders()
+              });
+            
+            const user = await request.json();
+            console.log(user[0].name);
             let updateButton = '<button type="button" id="updateButton" onclick="getUser(' + log.id + ')" class="btn btn-icon btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">'
                 + '   <span class="tf-icons bx bx-edit"></span>'
                 + '</button>';
@@ -63,6 +73,7 @@ async function getLogs() {
             let logHtml = '   <tr> '
                 + '  <td>' + log.id + '</td>'
                 + '  <td><strong><a data-bs-toggle="modal" data-bs-target="#modalUser" onclick="getUserLog(' + log.user_id + ')">' + log.user_id + '</a></strong></td>'
+                + '  <td>' + user[0].name + '</td> '
                 + '  <td>' + log.action + '</td> '
                 + '  <td>' + log.date + '</td>'
                 // + '  <td>' + updateButton + ' ' + deleteButton + '</td>'

@@ -10,10 +10,10 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class ClientDaoImp implements ClientDao{
+public class ClientDaoImp implements ClientDao {
     @PersistenceContext
     private EntityManager entityManager;
-    
+
     @Override
     public List<clientModel> getClients() {
         String query = "FROM clientModel";
@@ -45,15 +45,17 @@ public class ClientDaoImp implements ClientDao{
     @Override
     public boolean verifyClient(clientModel client) {
         String query = "FROM clientModel WHERE email = :email";
-        List<clientModel> list = entityManager.createQuery(query).setParameter("email", client.getEmail()).getResultList(); 
+        List<clientModel> list = entityManager.createQuery(query).setParameter("email", client.getEmail())
+                .getResultList();
         return !list.isEmpty();
     }
 
     // @Override
     // public List<clientModel> getClientsReport() {
-    //     String query = "FROM clientModel INTO OUTFILE 'C:/Users/GIS0607/Desktop/Reports/abc.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n';";
-    //     return entityManager.createQuery(query).getResultList();
+    // String query = "FROM clientModel INTO OUTFILE
+    // 'C:/Users/GIS0607/Desktop/Reports/abc.csv' FIELDS TERMINATED BY ',' ENCLOSED
+    // BY '\"' LINES TERMINATED BY '\n';";
+    // return entityManager.createQuery(query).getResultList();
     // }
-
 
 }
